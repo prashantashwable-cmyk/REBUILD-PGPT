@@ -1,4 +1,13 @@
-# Release note — build 106 (rebuild, 17 Nov 2026)
+# Release note — builds 106–108 (rebuild, 17 Nov 2026)
+
+## Build 108
+* Partner company states: **Paused**, **Rejected** and **Offboarded** added (reason required, Head Quarter/Admin); **Expired papers** shown automatically when a company's lift licence or insurance has ended. Paused companies get no new jobs but keep their open jobs; Rejected/Offboarded companies' open jobs get a handover task.
+
+## Build 107
+* **KPI board:** every number opens to show how it is worked out (in Marathi, Hindi and English), with an "as of" line naming the data source and sync state; "—" means no records yet, not zero.
+* **Security:** the Content-Security-Policy now allows only the app's own script (by SHA-256) and the map library, which carries an integrity hash. After editing the script, run `npm run csp`.
+
+## Build 106
 
 Based on build 105 (`UNLIT-GPT-HTML@605575a`, tag `baseline-605575a`). Nothing was removed; every existing workflow, record and test is kept.
 
@@ -34,7 +43,7 @@ Based on build 105 (`UNLIT-GPT-HTML@605575a`, tag `baseline-605575a`). Nothing w
 No record format change (record version stays 2). Existing company files load as before; the first start replays records once (the snapshot belongs to the old app code). Old capacity checks by an Admin stay valid; the new Head Quarter rule applies from 17 Nov 2026 00:00 UTC. Companies that already set service areas keep theirs.
 
 ## Deferred
-Server-side validation (needs Owner approval), KPI formula/freshness on every tile, separate partner states Paused/Rejected/Expired/Offboarded, double-entry ledger (server), hash-based CSP, human review of Marathi/Hindi, professional legal/safety review.
+Server-side validation (needs Owner approval), double-entry ledger (server), human review of Marathi/Hindi, professional legal/safety review.
 
 ## Rollback
-Redeploy build 105 from tag `baseline-605575a` with a higher cache number (see `docs/operations/DEPLOYMENT_AND_ROLLBACK.md`).
+Redeploy the previous build (or build 105 from tag `baseline-605575a`) with a higher cache number (see `docs/operations/DEPLOYMENT_AND_ROLLBACK.md`).

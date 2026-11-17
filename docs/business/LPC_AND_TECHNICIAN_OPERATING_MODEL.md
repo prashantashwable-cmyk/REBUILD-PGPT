@@ -23,7 +23,7 @@ Implemented states (`P_STATUS`): Applied, Under review, Verified, Active, Condit
 | Suspended, Terminated | No | A suspended company is not offered new jobs; handover tasks go |
 
 * Every change needs a reason, is allowed only for Admin or Owner (Sales cannot), only applies to partner companies, and is kept in a company history. (`bp2partners.test.js`)
-* The master prompt also lists Paused, Rejected, Expired and Offboarded as states: **Not built** (Terminated and Suspended cover them for now). Needs approval before adding.
+* **Implemented in build 108:** Paused (no new jobs, open jobs continue, no handover task), Rejected (application refused) and Offboarded (left on agreed terms) can be set by Head Quarter/Admin with a reason; Rejected, Offboarded, Suspended and Terminated give open jobs a handover task. **Expired papers** is worked out automatically (an Active/Conditional company whose lift licence or insurance has ended) and can never be set by hand. Tests: `rebuild.test.js`, `bp2partners.test.js`.
 
 ## 3. Documents and due-diligence checks
 

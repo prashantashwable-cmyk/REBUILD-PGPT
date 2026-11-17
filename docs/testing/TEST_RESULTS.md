@@ -18,6 +18,12 @@ Environment: Linux container, Node 22.23, Playwright 1.56 + Chromium (headless),
 
 **Result: every test file passes on build 106** (run 1 for the 111 unchanged files, run 2 for the rest).
 
+## Build 107 — full run (run 3)
+Hash-based CSP + SRI and the KPI dictionary: **113 of 113 files passed**, 2,362 passing assertions, no CSP violations (any blocked script or style would surface as a page error and fail the test). Log: `logs/run3-build107-summary.txt`.
+
+## Build 108 — full run (run 4, current)
+Partner states Paused / Rejected / Offboarded / Expired papers: **113 of 113 files passed**, 2,369 passing assertions. Log: `logs/run4-build108-summary.txt`.
+
 ## Tests changed in the rebuild (and why)
 | File | Change | Reason |
 |---|---|---|
@@ -26,7 +32,8 @@ Environment: Linux container, Node 22.23, Playwright 1.56 + Chromium (headless),
 | `audit-privacy.test.js` | capacity check recorded by the Head Quarter | same rule |
 | `finish.test.js` | new dark-theme colour | design v2 |
 | `custtrust.test.js` | late = job's own target | per-size target (§3.4) |
-| `rebuild.test.js` (new) | 22 checks for the rebuild rules and screens | — |
+| `rebuild.test.js` (new) | 32 checks: rebuild rules, screens, KPI formulas, partner states | — |
+| `access.test.js`, `static.test.js` | CSP now checked as script-hash policy; static check fails if the hash is stale | build 107 |
 | `shots-roles.js` (new) | role screenshots mr/hi/en, sideways-scroll and missing-word checks: 58 screens, **SHOTS OK** | before/after |
 
 ## Not executed here (needs real devices / services)

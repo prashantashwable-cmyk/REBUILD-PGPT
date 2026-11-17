@@ -57,6 +57,17 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert(/Company server \(sync\)\s*Not connected/.test(txt) && /nothing below is ever contacted/.test(txt), 'in practice even the company server is Not connected');
   assert(!/(Payment gateway|NBFC|e-Sign|WhatsApp Business)[^\n]*\n?\s*Connected/.test(txt), 'no outside service says Connected');
 
+  /* partner states: Paused / Rejected / Offboarded block new jobs; Expired papers is worked out, never set by hand */
+  const C = 'PPART1', post = await ev(`(Object.values(S.posts).find(p => jobWhyNot('PPART1', p) === null) || {}).id`);
+  const pact = (status, reason) => act('PARTNER_STATUS_SET', null, { uid: C, status, reason }, 'PADMIN');
+  assert(await ev(`P_STATUS.map(x => x[0]).join() === 'APPLIED,UNDER_REVIEW,VERIFIED,ACTIVE,CONDITIONAL,PAUSED,SUSPENDED,REJECTED,OFFBOARDED,TERMINATED'`), 'partner states include Paused, Rejected and Offboarded');
+  assert((await act('PARTNER_STATUS_SET', null, { uid: C, status: 'EXPIRED', reason: 'x' }, 'PADMIN')).err === 'err_choose', '"Expired" cannot be set by hand');
+  assert((await pact('PAUSED', 'Company asked for a 2-week break (festival)')).ok && !(await ev(`partnerTakes('${C}')`)) && (!post || await ev(`jobWhyNot('${C}', S.posts['${post}']) !== null`)), 'a Paused company gets no new jobs');
+  assert(!(await ev(`Object.values(S.projects).some(P => P.partner === '${C}' && needs(P).some(n => n.k === 'partner_handover'))`)), 'pausing does not ask for a handover of open jobs');
+  assert((await pact('OFFBOARDED', 'Left on agreed terms; final bill settled')).ok && await ev(`Object.values(S.projects).filter(P => P.partner === '${C}' && OPEN_STAGES.includes(P.stage)).every(P => needs(P).some(n => n.k === 'partner_handover'))`), 'an Offboarded company\'s open jobs get a handover task');
+  assert((await pact('ACTIVE', 'Back after review')).ok && await ev(`partnerShown('${C}') === 'ACTIVE'`), 'the company can be made Active again with a reason');
+  assert(await ev(`(() => { const l = licOf('${C}'), k = l.licExpiry; l.licExpiry = '2020-01-01'; const s = partnerShown('${C}'); l.licExpiry = k; return s === 'EXPIRED'; })()`), 'an Active company whose licence has ended shows "Expired papers"');
+
   /* KPI dictionary: every number on the board explains its formula and says how fresh it is */
   await page.evaluate(() => { loginAs(S.users.POWNER); ACT.permsDone(); Notify.hide(); go('kpi', { days: 30 }); }); await page.waitForTimeout(300);
   const kp = await page.evaluate(() => { const keys = kpiData(30).flatMap(([g, r]) => r.map(x => x[0])); return { keys, missing: keys.filter(k => !L['kf_' + k.slice(4)]), rows: document.querySelectorAll('details.kpid').length, asof: /As of .* counted from the records on this phone/.test(document.querySelector('main').innerText) }; });

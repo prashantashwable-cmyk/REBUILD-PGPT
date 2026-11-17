@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-24SDTGSTvVenir2ypxdVnpWeFPnKaRgZmaNX18kgyq8=' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' data: blob: https://tile.openstreetmap.org https://unpkg.com; media-src 'self' data: blob:; connect-src 'self' https: http://127.0.0.1:* http://localhost:* data: blob:; font-src 'self' data:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-Tw/JImTmxd23L3ZY2P6cA4W7bZMKF7ant7q8SucicHM=' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' data: blob: https://tile.openstreetmap.org https://unpkg.com; media-src 'self' data: blob:; connect-src 'self' https: http://127.0.0.1:* http://localhost:* data: blob:; font-src 'self' data:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="theme-color" content="#102341">
 <meta name="description" content="AIEC Elevator OS - lead to handover work manager for All India Elevators Company">
 <title>AIEC Elevator OS</title>
@@ -3829,6 +3829,14 @@ const L = {
   ps_ACTIVE: ['Active', 'सक्रिय', 'सक्रिय'],
   ps_CONDITIONAL: ['Conditional', 'शर्त के साथ', 'अटीसह'],
   ps_SUSPENDED: ['Suspended', 'निलंबित', 'निलंबित'],
+  ps_PAUSED: ['Paused', 'रुका हुआ', 'थांबवलेले'],
+  ps_PAUSED_d: ['Paused on request or for a short break: no new jobs; open jobs continue.', 'अनुरोध पर या थोड़े समय के लिए रुका: नए काम नहीं; खुले काम जारी।', 'विनंतीवरून किंवा थोड्या काळासाठी थांबवले: नवीन कामे नाहीत; उघडी कामे सुरू.'],
+  ps_REJECTED: ['Rejected', 'अस्वीकृत', 'नाकारले'],
+  ps_REJECTED_d: ['The application was refused (reason recorded). No jobs.', 'आवेदन अस्वीकार हुआ (कारण दर्ज)। कोई काम नहीं।', 'अर्ज नाकारला (कारण नोंदवले). कामे नाहीत.'],
+  ps_OFFBOARDED: ['Offboarded', 'अलग हुई', 'बाहेर पडली'],
+  ps_OFFBOARDED_d: ['The company left on agreed terms. No new jobs; history stays.', 'कंपनी तय शर्तों पर अलग हुई। नए काम नहीं; इतिहास रहता है।', 'कंपनी ठरलेल्या अटींवर बाहेर पडली. नवीन कामे नाहीत; इतिहास राहतो.'],
+  ps_EXPIRED: ['Expired papers', 'कागज़ों की अवधि खत्म', 'कागदपत्रांची मुदत संपली'],
+  ps_EXPIRED_d: ['Its lift licence or insurance has ended: no new jobs until renewed papers are checked.', 'लिफ्ट लाइसेंस या बीमा खत्म: नए कागज़ जाँचे जाने तक नए काम नहीं।', 'लिफ्ट परवाना किंवा विमा संपला: नवीन कागदपत्रे तपासेपर्यंत नवीन कामे नाहीत.'],
   ps_TERMINATED: ['Terminated', 'समाप्त', 'समाप्त'],
   ps_APPLIED_d: ['Registration not complete: no jobs yet.', 'पंजीकरण अधूरा: अभी काम नहीं।', 'नोंदणी अपूर्ण: अजून कामे नाहीत.'],
   ps_UNDER_REVIEW_d: ['Documents are being checked: no jobs yet.', 'दस्तावेज़ जाँचे जा रहे हैं: अभी काम नहीं।', 'कागदपत्रे तपासली जात आहेत: अजून कामे नाहीत.'],
@@ -9185,7 +9193,7 @@ function needs0(P) {
   }
   for (const b of P.blockers) if (b.open) add('resolve_blocker', uniq([b.role, 'admin']), { bid: b.id, urgent: true, since: b.t });
   for (const i of P.incidents) if (i.open) add('resolve_incident', ['admin', 'owner'], { iid: i.id, urgent: true, since: i.t, shared: i.type === 'injury' });
-  if (P.partner && ['SUSPENDED', 'TERMINATED'].includes(partnerStatus(P.partner)) && OPEN_STAGES.includes(P.stage)) add('partner_handover', ['admin', 'owner'], { urgent: true, uid: P.partner });
+  if (P.partner && P_GONE.includes(partnerStatus(P.partner)) && OPEN_STAGES.includes(P.stage)) add('partner_handover', ['admin', 'owner'], { urgent: true, uid: P.partner });
   for (const i of P.incidents) if (reportDue(i) && i.t >= ACT_FROM) add('report_accident', ['admin', 'owner'], { iid: i.id, urgent: true, alarm: true, shared: true, since: i.t, overdue: Date.now() - Date.parse(i.t) > 24 * 3600e3 });
   { const ins = statOf(P).insurance; if (ins && P.stage !== 'lost') { const d = Math.round((new Date(ins.expiry + 'T12:00:00') - new Date(todayStr() + 'T12:00:00')) / 864e5); if (d <= (S.config.licWarnDays || 60)) add('insurance_due', statRoles(), { uids: statLead() ? [statLead()] : [], urgent: d <= 7, overdue: d < 0 }); } }
   /* statutory records, holds and disputes */
@@ -9535,7 +9543,7 @@ async function getMedia(key) {
    older phones answer "update the app" for them instead of guessing */
 const EV_V = 2, ACT_V = 2;
 /* shown on Me; the same number as the cache name in sw.js (checked by the tests), so anyone can tell which version a phone runs */
-const APP_BUILD = 107;
+const APP_BUILD = 108;
 const evV = ev => ev.v || 1;
 /* money going out, forgiving money, who-can-do-what and taking data off the phone need the PIN again (2-minute grace) */
 const RECHECK = (type, d) => ['REFUND_DECIDED', 'REFUND_PAID', 'CONFIG_SET', 'DATA_EXPORTED'].includes(type) || (type === 'CHARGE_SETTLED' && d.how === 'waived') || (type === 'USER_UPDATED' && d.role != null);
@@ -15844,7 +15852,7 @@ function companyChips(p) {
   const st = companyStars(p), d = licDays(p);
   return `<span class="chip ${licenceOk(p) ? (d != null && d <= (S.config.licWarnDays || 60) ? 'c-warn' : 'c-ok') : 'c-bad'}">📜 ${licenceOk(p) ? (d != null && d <= (S.config.licWarnDays || 60) ? t('lic_days', { n: d }) : t('lic_ok')) : t('lic_bad')}</span> `
     + (st.count < 3 ? `<span class="chip c-mute">⭐ ${t('stars_new', { n: st.count })}</span>` : `<span class="chip c-info">★ ${starTxt(st.fair)} (${t('reviews_n', { n: st.count })})</span>`)
-    + ` <span class="chip c-info">${TIER_ICON[partnerTier(p).tier]} ${t('ptier_' + partnerTier(p).tier)}</span>` + (partnerStatus(p) !== 'ACTIVE' ? ` <span class="chip ${partnerTakes(p) ? 'c-warn' : 'c-bad'}">${t('ps_' + partnerStatus(p))}</span>` : '');
+    + ` <span class="chip c-info">${TIER_ICON[partnerTier(p).tier]} ${t('ptier_' + partnerTier(p).tier)}</span>` + (partnerShown(p) !== 'ACTIVE' ? ` <span class="chip ${partnerTakes(p) && partnerShown(p) !== 'EXPIRED' ? 'c-warn' : 'c-bad'}">${t('ps_' + partnerShown(p))}</span>` : '');
 }
 function memberChip(uid) {
   const u = S.users[uid]; if (!u || u.role !== 'tech') return '';
@@ -15859,7 +15867,11 @@ function memberCard(uid) {
     <p class="small muted">${t('member_pay_note')}</p></div>`;
 }
 /* ---------- blueprint B2: partner company status, due-diligence checks and tiers ---------- */
-const P_STATUS = [['APPLIED', '📝'], ['UNDER_REVIEW', '🔎'], ['VERIFIED', '✅'], ['ACTIVE', '🟢'], ['CONDITIONAL', '🟡'], ['SUSPENDED', '⛔'], ['TERMINATED', '✖️']];
+const P_STATUS = [['APPLIED', '📝'], ['UNDER_REVIEW', '🔎'], ['VERIFIED', '✅'], ['ACTIVE', '🟢'], ['CONDITIONAL', '🟡'], ['PAUSED', '⏸️'], ['SUSPENDED', '⛔'], ['REJECTED', '🚫'], ['OFFBOARDED', '📦'], ['TERMINATED', '✖️']];
+/* rebuild: statuses after which open jobs need a handover plan; and "Expired" is worked out (never set by hand) when a company
+   that could take work has a lift licence or insurance that has ended */
+const P_GONE = ['SUSPENDED', 'TERMINATED', 'REJECTED', 'OFFBOARDED'];
+const partnerShown = p => { const s = partnerStatus(p); return ['ACTIVE', 'CONDITIONAL'].includes(s) && (!licenceOk(p) || !partnerInsOk(p)) ? 'EXPIRED' : s; };
 const DD_ITEMS = [['kyc', '🪪'], ['signatory', '✍️'], ['liftlic', '📜'], ['eleclic', '⚡'], ['insurance', '🛡️'], ['team', '👷'], ['refs', '🏢'], ['safety', '🦺'], ['service', '📞'], ['bank', '🏦'], ['agreement', '🤝']];
 /* companies set up before this rule: active when their lift licence is valid, otherwise under review */
 function partnerStatus(p) { const w = S.workers[p] || {}; return w.pst ? w.pst.s : licenceOk(p) ? 'ACTIVE' : 'UNDER_REVIEW'; }
@@ -15880,8 +15892,8 @@ function partnerTier(p) {
 const tierOf = (n, fp, sk, tr) => n >= 10 && fp >= 90 && sk === 0 && tr >= 80 ? 'platinum' : n >= 3 && fp >= 75 && sk <= 1 ? 'gold' : 'silver';
 const TIER_ICON = { silver: '🥈', gold: '🥇', platinum: '💎' };
 function partnerStatusCard(p) {
-  const adm = ['owner', 'admin'].includes(App.me.role), ps = partnerStatus(p), w = S.workers[p] || {}, tr = partnerTier(p);
-  const chip = s => `<span class="chip ${s === 'ACTIVE' ? 'c-ok' : ['SUSPENDED', 'TERMINATED'].includes(s) ? 'c-bad' : s === 'CONDITIONAL' ? 'c-warn' : 'c-info'}">${(P_STATUS.find(x => x[0] === s) || [])[1]} ${t('ps_' + s)}</span>`;
+  const adm = ['owner', 'admin'].includes(App.me.role), ps = partnerShown(p), w = S.workers[p] || {}, tr = partnerTier(p);
+  const chip = s => `<span class="chip ${s === 'ACTIVE' ? 'c-ok' : P_GONE.concat('EXPIRED').includes(s) ? 'c-bad' : ['CONDITIONAL', 'PAUSED'].includes(s) ? 'c-warn' : 'c-info'}">${s === 'EXPIRED' ? '⌛' : (P_STATUS.find(x => x[0] === s) || [])[1]} ${t('ps_' + s)}</span>`;
   return `<div class="card"><h3>🏷️ ${t('ps_title')}</h3><div class="row wrapw">${chip(ps)} <span class="chip c-info">${TIER_ICON[tr.tier]} ${t('ptier_' + tr.tier)}</span></div>
     <p class="small muted">${t('ps_' + ps + '_d')}</p><p class="small">${TIER_ICON[tr.tier]} ${esc(tr.why)} · ${t('ptier_note')}</p>
     ${w.pst && w.pst.reason ? `<p class="small">📝 ${esc(w.pst.reason)} · ${esc(userName(w.pst.by))} · ${fmtD(w.pst.t)}</p>` : ''}
