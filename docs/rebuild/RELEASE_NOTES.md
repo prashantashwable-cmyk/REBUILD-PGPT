@@ -1,4 +1,10 @@
-# Release note — builds 106–109 (rebuild, 17 Nov 2026)
+# Release note — builds 106–110 (rebuild, 17 Nov 2026)
+
+## Build 110
+* **Security fix (high):** server settings in a file (company server address and key) are now taken only with a valid Head Quarter/Admin signature over them. Before, a forged or altered file could switch an office phone to another server. **Older files with server settings still load their records but not their server settings**; send a fresh file or one-time code. Connected phones keep working.
+* Office phones refuse an inbox message whose file does not belong to the box that sent it.
+* Server: phones change only their own alert subscription; person phones may send at most 60 messages a minute; old rate counters and ended invites are cleaned up on Cloudflare D1.
+* Professional reviews recorded as reported by the Owner (`docs/compliance/REVIEW_LOG.md`); evidence still to attach.
 
 ## Build 109
 * **Controlled hold when a partner's papers end mid-job:** the company holding a job is re-checked at material handover, every installation step, and the Marketplace inspection request and handover. If its lift licence or insurance has ended, the step is refused with the reason, and the office gets an urgent "Job on hold" task that opens the company's page. When the office records renewed papers, the hold lifts by itself. Older records stay valid (rule from 17 Nov 2026).

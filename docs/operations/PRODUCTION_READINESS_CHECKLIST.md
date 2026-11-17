@@ -82,12 +82,12 @@ How to use: copy this file when starting the pilot, fill in name and date beside
 
 | Gate group | Signed by | Date |
 |---|---|---|
-| A Legal | | |
-| B Engineering and safety | | |
-| C Finance and tax | | |
-| D Language | | |
+| A Legal | Reported done by the Owner — reviewer name and evidence to attach | 17 Nov 2026 |
+| B Engineering and safety | Reported done by the Owner — reviewer name and evidence to attach | 17 Nov 2026 |
+| C Finance and tax | Reported done by the Owner — reviewer name and evidence to attach | 17 Nov 2026 |
+| D Language | Reported done by the Owner — reviewer name and evidence to attach | 17 Nov 2026 |
 | E People and operations | | |
-| F Devices | | |
+| F Devices | Reported done by the Owner — reviewer name and evidence to attach | 17 Nov 2026 |
 | G Server | | |
 | H Backups and rollback | | |
 | I Software | | |

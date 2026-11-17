@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-yZ9gkVp22C9sTYmRi4wdEdv7P+L6xZh3oIjtJoK2PM8=' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' data: blob: https://tile.openstreetmap.org https://unpkg.com; media-src 'self' data: blob:; connect-src 'self' https: http://127.0.0.1:* http://localhost:* data: blob:; font-src 'self' data:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-iBRu9EMU6l561sJbXMDub0dPrBOBaoy28GRbSKEszWQ=' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' data: blob: https://tile.openstreetmap.org https://unpkg.com; media-src 'self' data: blob:; connect-src 'self' https: http://127.0.0.1:* http://localhost:* data: blob:; font-src 'self' data:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="theme-color" content="#102341">
 <meta name="description" content="AIEC Elevator OS - lead to handover work manager for All India Elevators Company">
 <title>AIEC Elevator OS</title>
@@ -5627,6 +5627,15 @@ const Sign = {
     return pack;
   },
   packBytes: async pack => new TextEncoder().encode(await sha256(JSON.stringify([pack.org, pack.by, pack.for, pack.at, pack.kind, pack.events]))),
+  /* rebuild: the company-server settings in a file (address and keys) get their own signature. The file signature above
+     covers only the records, so without this a forged or altered file could point a phone at another server. */
+  syncBytes: async pack => new TextEncoder().encode(await sha256(JSON.stringify(['sync', pack.org, pack.by, pack.for || null, pack.at, pack.kind, pack.sync]))),
+  async signSync(pack) {
+    if (!pack.sync) return pack;
+    const k = this.ok() && await this.load(pack.by); if (!k) return pack;
+    pack.ssig = { kid: k.kid, s: b64(await crypto.subtle.sign(ECSIG, k.priv, await this.syncBytes(pack))) };
+    return pack;
+  },
   /* check every record in a file: a person with a known key must have signed their own records */
   async check(pack, fresh) {
     if (!this.ok()) return { keep: fresh, bad: 0 };
@@ -5638,8 +5647,10 @@ const Sign = {
     const pre = clone(K); for (const ev of order) { if (ev.type === 'KEY_ADDED') addKey(pre, ev); if (ev.type === 'KEY_APPROVED') approve(pre, ev); }
     let tmp = null; const roleIn = uid => (S.users[uid] && S.users[uid].role) || ((tmp = tmp || rebuild(EVENTS.concat(fresh))).users[uid] || {}).role;
     const pk = pack.sig && (pre[pack.by] || []).find(x => x.ok && x.kid === pack.sig.kid);
-    let office = false;
+    let office = false, syncOk = false;
     if (pk && ['owner', 'admin'].includes(roleIn(pack.by))) { try { const key = await crypto.subtle.importKey('jwk', pk.pub, ECDSA, false, ['verify']); office = await crypto.subtle.verify(ECSIG, key, unb64(pack.sig.s), await this.packBytes(pack)); } catch (e) { office = false; } }
+    const spk = pack.sync && pack.ssig && (pre[pack.by] || []).find(x => x.ok && x.kid === pack.ssig.kid);
+    if (spk && ['owner', 'admin'].includes(roleIn(pack.by))) { try { const key = await crypto.subtle.importKey('jwk', spk.pub, ECDSA, false, ['verify']); syncOk = await crypto.subtle.verify(ECSIG, key, unb64(pack.ssig.s), await this.syncBytes(pack)); } catch (e) { syncOk = false; } }
     const keep = [], blank = v => v == null || v === '' || v === 'p2$' || v === 'x';
     let bad = 0;
     for (const ev of order) {
@@ -5655,7 +5666,7 @@ const Sign = {
       if (ev.type === 'KEY_ADDED') addKey(K, ev);
       if (ev.type === 'KEY_APPROVED') approve(K, ev);
     }
-    return { keep, bad, office };
+    return { keep, bad, office, syncOk };
   }
 };
 /* ---------- company server: automatic sync through an encrypted mailbox; files stay as the fallback ----------
@@ -5745,7 +5756,7 @@ const Sync = {
       const r = await this.api(c, '/recv/' + box + '?after=' + (c.cur || 0), auth);
       if (!r.ok) return r;
       for (const m of r.body.msgs) {
-        try { const raw = await keyOf(m); if (raw) await importText(await this.unlock(raw, m.blob)); } catch (e) { /* a message this phone cannot open is skipped */ }
+        try { const raw = await keyOf(m); if (raw) await importText(await this.unlock(raw, m.blob), box === 'inbox' ? { from: m.from } : {}); } catch (e) { /* a message this phone cannot open is skipped */ }
         c.cur = m.seq;
       }
       await this.save(c);
@@ -5804,7 +5815,7 @@ const Sync = {
     const c = this.cfg(), ck = c && c.role === 'office' && await this.ck();
     if (!ck) return { err: 'srv_needed' };
     if (!validPhone(phone || '')) return { err: 'err_phone' };
-    const pack = await finishPack(exportPack('person', uid)); pack.sync = await this.creds('person', uid);
+    const pack = await finishPack(exportPack('person', uid)); pack.sync = await this.creds('person', uid); await Sign.signSync(pack);
     const code = String(100000 + (crypto.getRandomValues(new Uint32Array(1))[0] % 900000)), id = await this.inviteId(phone);
     const r = await this.leave(c, ck, id, code, JSON.stringify(pack), 2);
     return r.ok ? { code } : r;
@@ -5850,7 +5861,7 @@ const Sync = {
     const last = (list.body.backups || [])[0];
     if (last) { App.set.bkLast = Object.assign({}, App.set.bkLast, { [App.mode]: last.t }); }
     if (!force && last && Date.now() - Date.parse(last.t) < 20 * 3600e3) return { ok: true, skipped: true };
-    const pack = await finishPack(exportPack('full')); pack.sync = await this.creds('full');
+    const pack = await finishPack(exportPack('full')); pack.sync = await this.creds('full'); await Sign.signSync(pack);
     for (const ev of pack.events) for (const e of (ev.data && ev.data.ev) || []) if (e.m && !pack.media[e.m]) { const v = await getMedia(e.m); if (v) pack.media[e.m] = v; }
     const blob = await this.lock(unb64(bk), JSON.stringify(pack)), d = new Date(), id = 'B' + d.toISOString().replace(/[-:]/g, '').slice(0, 15), size = 6 * 1024 * 1024, n = Math.ceil(blob.length / size);
     for (let i = 0; i < n; i++) {
@@ -9553,7 +9564,7 @@ async function getMedia(key) {
    older phones answer "update the app" for them instead of guessing */
 const EV_V = 2, ACT_V = 2;
 /* shown on Me; the same number as the cache name in sw.js (checked by the tests), so anyone can tell which version a phone runs */
-const APP_BUILD = 109;
+const APP_BUILD = 110;
 const evV = ev => ev.v || 1;
 /* money going out, forgiving money, who-can-do-what and taking data off the phone need the PIN again (2-minute grace) */
 const RECHECK = (type, d) => ['REFUND_DECIDED', 'REFUND_PAID', 'CONFIG_SET', 'DATA_EXPORTED'].includes(type) || (type === 'CHARGE_SETTLED' && d.how === 'waived') || (type === 'USER_UPDATED' && d.role != null);
@@ -14608,7 +14619,7 @@ async function jqApproveAnswer(x, uid) {
   const b = await Sync.api(c, '/box/' + uid, { tok: await Sync.tokenFor(ck, 'office') }, 'PUT', { hash: await sha256(await Sync.tokenFor(ck, uid)) });
   if (!b.ok) return { err: 'err_server_down' };
   c.boxes = uniq((c.boxes || []).concat(uid)); await Sync.save(c);
-  const pack = await finishPack(exportPack('person', uid)); pack.sync = await Sync.creds('person', uid);
+  const pack = await finishPack(exportPack('person', uid)); pack.sync = await Sync.creds('person', uid); await Sign.signSync(pack);
   return jqAnswer(x, { decision: 'ok', uid, pack: JSON.stringify(pack) });
 }
 SCREENS.reports = () => {
@@ -14852,7 +14863,7 @@ async function exportFile(kind, forUid, opts) {
   if (!(await pinRecheck())) return toast(t('err_pin_recheck'), true);
   logAccess('export', kind + (forUid ? ':' + forUid : '')); await flushAccess();
   const pack = await finishPack(exportPack(kind, forUid, opts));
-  const sc = await Sync.creds(kind, forUid); if (sc) pack.sync = sc;
+  const sc = await Sync.creds(kind, forUid); if (sc) { pack.sync = sc; await Sign.signSync(pack); }
   const keys = new Set();
   pack.events.forEach(ev => (ev.data && ev.data.ev || []).forEach(e => keys.add(e.m)));
   for (const k of keys) { const v = await getMedia(k); if (v) pack.media[k] = v; }
@@ -14863,12 +14874,14 @@ async function exportFile(kind, forUid, opts) {
   toast(t('export_done', { n: pack.events.length }));
   render();
 }
-async function importText(text) {
+async function importText(text, opts = {}) {
   let pack;
   try { pack = JSON.parse(text); } catch (e) { return { ok: false, msg: t('imp_bad') }; }
   if (!pack || pack.format !== 'aiec-elevator-os' || !Array.isArray(pack.events)) return { ok: false, msg: t('imp_bad') };
   if (pack.mode !== App.mode) return { ok: false, msg: t('imp_mode') };
   if (S.org && pack.org !== S.org.id) return { ok: false, msg: t('imp_org', { name: pack.orgName || '' }) };
+  /* rebuild: a message from a person's server box may only be that person's own file (the server vouches for the box) */
+  if (opts.from && opts.from !== 'office' && pack.by !== opts.from) return { ok: false, msg: t('imp_bad') };
   const have = new Set(EVENTS.map(e => e.id));
   let fresh = pack.events.filter(e => e && e.id && !have.has(e.id));
   let refused = 0;
@@ -14887,10 +14900,12 @@ async function importText(text) {
   S = rebuild(all); EVENTS = all;
   await saveAll(); snapK = 0; setTimeout(() => snapSave(), 2000);
   const rej = S.rejected.filter(r => fresh.some(f => f.id === r.ev.id)).length;
-  if (pack.sync && ['owner', 'admin'].includes(packRole)) await Sync.adopt(pack);
+  /* server settings are taken only with a valid Head Quarter / Admin signature over them (real company data) */
+  const syncRefused = !!pack.sync && ['owner', 'admin'].includes(packRole) && Sign.ok() && !chk.syncOk;
+  if (pack.sync && ['owner', 'admin'].includes(packRole) && !syncRefused) await Sync.adopt(pack);
   if (App.me) Notify.check();
   App.set.imports = [{ t: nowISO(), by: pack.by || '', kind: pack.kind || '', added: fresh.length - rej, rejected: rej + refused }].concat(App.set.imports || []).slice(0, 20); saveSettings();
-  return { ok: true, added: fresh.length - rej, rejected: rej + refused, unsigned: chk.bad, photos: Object.keys(pack.media || {}).length, before };
+  return { ok: true, added: fresh.length - rej, rejected: rej + refused, unsigned: chk.bad, photos: Object.keys(pack.media || {}).length, before, syncRefused };
 }
 
 /* =====================================================================

@@ -14,7 +14,7 @@ Principle: **improve the working system in small, tested, reversible steps.** Ev
 
 ## Next highest-risk work items
 
-1. **Server-side validation** of records when a company server is used (closes R-1). Needs Owner approval for scope; design keeps the same `validate()` code running in the Worker.
+1. ~~Server-side validation~~ — reviewed in build 110: impossible without breaking end-to-end encryption; the office phone validates instead. Fixed the holes found (`docs/architecture/SERVER_SIDE_REVIEW.md`).
 2. **Human review of Marathi/Hindi** for all safety and money screens (R-2).
 3. **Professional review** of compliance templates (R-3).
 4. ~~KPI dictionary in the app~~ — done in build 107.

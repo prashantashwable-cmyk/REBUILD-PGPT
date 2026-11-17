@@ -24,8 +24,11 @@ Hash-based CSP + SRI and the KPI dictionary: **113 of 113 files passed**, 2,362 
 ## Build 108 — full run (run 4)
 Partner states Paused / Rejected / Offboarded / Expired papers: **113 of 113 files passed**, 2,369 passing assertions. Log: `logs/run4-build108-summary.txt`.
 
-## Build 109 — full run (run 5, current)
+## Build 109 — full run (run 5)
 Controlled hold on ended partner papers + accessibility test: **114 of 114 files passed**, 2,376 passing assertions; `a11y.test.js`: no WCAG 2 A/AA violations in 72 screen checks. Log: `logs/run5-build109-summary.txt`.
+
+## Build 110 — full run (run 6, current)
+Server-side review fixes: **116 of 116 files passed**, 2,394 passing assertions. New: `server-hardening.test.js` (9 checks, no browser) and `sync-forgery.test.js` (9 checks on a real, signed company). The forged-settings hole was also reproduced on build 109 and shown closed on build 110. Log: `logs/run6-build110-summary.txt`.
 
 ## Tests changed in the rebuild (and why)
 | File | Change | Reason |

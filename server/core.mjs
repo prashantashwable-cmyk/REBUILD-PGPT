@@ -6,7 +6,7 @@
    Tokens are never stored, only their SHA-256 fingerprints. */
 
 export const VERSION = '1';
-const MAX_BLOB = 900 * 1024, PAGE = 50, KEEP_DAYS = 120, PER_MIN = 600;
+const MAX_BLOB = 900 * 1024, PAGE = 50, KEEP_DAYS = 120, PER_MIN = 600, PERSON_SENDS_PER_MIN = 60;
 const ID = /^[A-Za-z0-9_-]{2,40}$/;
 
 const enc = new TextEncoder();
@@ -196,6 +196,9 @@ export async function handle(req, env, store) {
     if (parts[0] === 'push-sub' && ['POST', 'DELETE'].includes(req.method)) {
       const b = await body(), ep = b && b.endpoint;
       if (typeof ep !== 'string' || ep.length > 600 || !pushHostOk(ep, env)) return json(400, { error: 'bad_endpoint' });
+      /* a phone may change only its own alert subscription; the office may tidy any */
+      const owner = await store.getSub(ep);
+      if (owner && owner !== who.box && !who.office) return json(403, { error: 'not_your_sub' });
       if (req.method === 'DELETE') { await store.delSub(ep); return json(200, { ok: true }); }
       await store.putSub(ep, who.box); return json(200, { ok: true });
     }
@@ -231,7 +234,7 @@ export async function handle(req, env, store) {
     /* put an encrypted message into a box */
     if (req.method === 'POST' && parts[0] === 'send' && parts[1]) {
       const to = parts[1];
-      if (to === 'inbox') { /* anyone registered */ }
+      if (to === 'inbox') { if (!who.office && !(await store.allow(who.box + '|send', PERSON_SENDS_PER_MIN))) return json(429, { error: 'too_many' }); }
       else if (!who.office) return json(403, { error: 'office_only' });
       else if (!ID.test(to) || !(await store.getBox(to))) return json(404, { error: 'no_box' });
       const b = await body();
@@ -270,6 +273,7 @@ export function memoryStore() {
     async putSub(ep, box) { subs.set(ep, box); },
     async delSub(ep) { subs.delete(ep); },
     async listSubs(box) { return [...subs].filter(([, b]) => b === box).map(([endpoint]) => ({ endpoint })); },
+    async getSub(ep) { return subs.has(ep) ? subs.get(ep) : null; },
     async getInvite(id) { return invites.get(id) || null; },
     async putInvite(id, v) { invites.set(id, v); },
     async delInvite(id) { invites.delete(id); },
@@ -282,7 +286,7 @@ export function memoryStore() {
     async addMsg(box, frm, t, blob) { msgs.push({ seq: ++seq, box, frm, t, blob }); return seq; },
     async listMsgs(box, after, n) { return msgs.filter(m => m.box === box && m.seq > after).slice(0, n).map(m => ({ seq: m.seq, from: m.frm, t: m.t, blob: m.blob })); },
     async prune(before) { for (let i = msgs.length - 1; i >= 0; i--) if (msgs[i].t < before) msgs.splice(i, 1); },
-    async allow(who, max) { const k = who + '|' + Math.floor(Date.now() / 60000), n = (hits.get(k) || 0) + 1; hits.set(k, n); return n <= max; }
+    async allow(who, max) { const k = who + '|' + Math.floor(Date.now() / 60000), n = (hits.get(k) || 0) + 1; hits.set(k, n); if (hits.size > 5000) hits.clear(); return n <= max; }
   };
 }
 
@@ -300,6 +304,7 @@ export function d1Store(db, bucket) {
     async putSub(ep, box) { await db.prepare('INSERT INTO subs (endpoint, box, t) VALUES (?, ?, ?) ON CONFLICT(endpoint) DO UPDATE SET box = excluded.box, t = excluded.t').bind(ep, box, new Date().toISOString()).run(); },
     async delSub(ep) { await db.prepare('DELETE FROM subs WHERE endpoint = ?').bind(ep).run(); },
     async listSubs(box) { const r = await db.prepare('SELECT endpoint FROM subs WHERE box = ?').bind(box).all(); return r.results; },
+    async getSub(ep) { const r = await db.prepare('SELECT box FROM subs WHERE endpoint = ?').bind(ep).first(); return r ? r.box : null; },
     async getMeta(k) { const r = await db.prepare('SELECT v FROM meta WHERE k = ?').bind(k).first(); return r ? r.v : null; },
     async setMeta(k, v) { await db.prepare('INSERT INTO meta (k, v) VALUES (?, ?) ON CONFLICT(k) DO UPDATE SET v = excluded.v').bind(k, v).run(); },
     async getBox(id) { return await db.prepare('SELECT hash, t FROM boxes WHERE id = ?').bind(id).first(); },
@@ -308,7 +313,8 @@ export function d1Store(db, bucket) {
     async listBoxes() { const r = await db.prepare('SELECT id FROM boxes ORDER BY id').all(); return r.results.map(x => x.id); },
     async addMsg(box, frm, t, blob) { const r = await db.prepare('INSERT INTO msgs (box, frm, t, blob) VALUES (?, ?, ?, ?)').bind(box, frm, t, blob).run(); return r.meta.last_row_id; },
     async listMsgs(box, after, n) { const r = await db.prepare('SELECT seq, frm, t, blob FROM msgs WHERE box = ? AND seq > ? ORDER BY seq LIMIT ?').bind(box, after, n).all(); return r.results.map(m => ({ seq: m.seq, from: m.frm, t: m.t, blob: m.blob })); },
-    async prune(before) { await db.prepare('DELETE FROM msgs WHERE t < ?').bind(before).run(); },
+    /* old messages, ended invites and old per-minute rate counters (these were never removed before) */
+    async prune(before) { await db.prepare('DELETE FROM msgs WHERE t < ?').bind(before).run(); await db.prepare('DELETE FROM invites WHERE exp < ?').bind(new Date().toISOString()).run(); await db.prepare("DELETE FROM meta WHERE k LIKE 'rate|%' AND k NOT LIKE ?").bind('%|' + Math.floor(Date.now() / 60000)).run(); },
     async allow(who, max) {
       const k = 'rate|' + who + '|' + Math.floor(Date.now() / 60000);
       await db.prepare('INSERT INTO meta (k, v) VALUES (?, 1) ON CONFLICT(k) DO UPDATE SET v = CAST(v AS INTEGER) + 1').bind(k).run();

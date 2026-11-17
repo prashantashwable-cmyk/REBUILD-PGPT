@@ -25,9 +25,9 @@
 
 | ID | Risk | Severity | Mitigation / status |
 |---|---|---|---|
-| R-1 | No authoritative server: rules and permissions are enforced on each phone and on import, not centrally. | High | Signed records, re-validation on import, second-phone approval. Next step: server-side validation (option in plan, needs Owner approval). |
-| R-2 | Marathi and Hindi text is machine-checked for completeness only. | High for production | Fluent human review before go-live (`PRODUCTION_READINESS_CHECKLIST.md`). New rebuild strings flagged for review. |
-| R-3 | Legal/safety templates (agreement, NOC, QC checklists, 12 SOP steps, training answers, Maharashtra Lifts Act notes) are not professionally verified. | High for production | Compliance register; status "Unverified". |
+| R-1 | No server-side rule checks: the company server is an end-to-end encrypted mailbox and cannot read records (by design). | Medium (reviewed 17 Nov 2026) | The office phone is the authoritative validator: signatures, sender binding, signed server settings, full `validate()` on every import. A forged-settings hole (S-1) was found and fixed in build 110. See `docs/architecture/SERVER_SIDE_REVIEW.md`. |
+| R-2 | Marathi and Hindi text is machine-checked for completeness only. | High for production | Fluent human review before go-live (`PRODUCTION_READINESS_CHECKLIST.md`). New rebuild strings flagged for review. **17 Nov 2026: Owner reports the review is done; attach reviewer name, date and evidence (`docs/compliance/REVIEW_LOG.md`).** |
+| R-3 | Legal/safety templates (agreement, NOC, QC checklists, 12 SOP steps, training answers, Maharashtra Lifts Act notes) are not professionally verified. | High for production | Compliance register; status "Unverified". **17 Nov 2026: Owner reports the review is done; attach reviewer name, date and evidence (`docs/compliance/REVIEW_LOG.md`).** |
 | R-4 | Drawn signatures are not certified e-signatures. | Medium | Labelled on Connections screen and documents. |
 | R-5 | Media stored as data URLs in IndexedDB; large companies may hit quota. | Medium | Storage warning, photo archive, persistent-storage request. Future: Blob storage. |
 | R-6 | Client clock is the event time. | Medium | `clock_gap` flag; server receipt time when a server is used. |
