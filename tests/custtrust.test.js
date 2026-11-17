@@ -46,7 +46,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
 
   /* a late job explains itself to the customer */
   const L = await ev('Object.values(S.projects).find(P => P.stage === "installing" && P.mhand).id');
-  const lc = await ev(`(P => { const keep = P.mhand.t, bl = P.blockers; P.blockers = []; P.mhand.t = new Date(Date.now() - (S.config.installDays + 6) * 864e5).toISOString(); loginAs(S.users.PADMIN); const h = lateCard(P); P.mhand.t = keep; P.blockers = bl; return h.replace(/<[^>]+>/g, ' '); })(S.projects["${L}"])`);
+  const lc = await ev(`(P => { const keep = P.mhand.t, bl = P.blockers; P.blockers = []; P.mhand.t = new Date(Date.now() - (targetDays(P) + 6) * 864e5).toISOString(); loginAs(S.users.PADMIN); const h = lateCard(P); P.mhand.t = keep; P.blockers = bl; return h.replace(/<[^>]+>/g, ' '); })(S.projects["${L}"])`);
   assert(/Running \d+ days late/.test(lc) && /Now waiting for:/.test(lc) && /(office has been told|This step is with you)/.test(lc), 'a job running late says by how much, what it waits for and with whom: ' + lc.trim().slice(0, 120));
   assert(await ev(`(P => custPause(P) ? lateCard(P) === "" : true)(S.projects["${L}"])`), 'a job paused for a blocker shows the pause, not "late"');
   assert(await ev(`lateCard(S.projects["AIEC-P001"]) === ""`), 'a finished job shows nothing');

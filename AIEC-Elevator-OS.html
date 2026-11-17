@@ -6043,6 +6043,8 @@ const ISC_FROM = '2026-11-01T00:00:00.000Z';
 const ACT_FROM = '2026-11-01T00:00:00.000Z';
 /* site check details (floor heights, door opening), "could not check", "cannot be fitted", drawing approval: from this date */
 const SURVEY_FROM = '2026-11-04T00:00:00.000Z';
+/* rebuild: from this time a capacity exception above the pilot limit needs the Head Quarter (an Admin's check becomes a request); older records stay valid */
+const CAPOWNER_FROM = '2026-11-17T00:00:00.000Z';
 /* after handover: test values as numbers, breakdown accept and root cause, "watch" parts at service visits */
 const LIFE_FROM = '2026-11-04T00:00:00.000Z';
 const ROOT_CAUSES = [['door', '🚪'], ['controller', '🎛️'], ['power', '⚡'], ['brake', '🛑'], ['rope', '🪢'], ['sensor', '📡'], ['misuse', '🙅'], ['other', '❔']];
@@ -6864,6 +6866,7 @@ function needsSecond(S, ev, P) {
   const d = ev.data;
   /* a price below the margin floor always needs a second Owner/Admin, even when two-person approval is off */
   if (ev.type === 'QUOTE_DECISION' && d.decision === 'approve' && lastQuote(P) && lastQuote(P).margin < S.config.minMargin) return true;
+  if (ev.type === 'CAPACITY_CHECKED' && ev.t >= CAPOWNER_FROM && roleOf(ev.by) !== 'owner') return true;
   if (!S.config.dualControl) return false;
   switch (ev.type) {
     case 'QUOTE_DECISION': return d.decision === 'approve' && lastQuote(P) && lastQuote(P).margin < S.config.minMargin;
@@ -6874,7 +6877,7 @@ function needsSecond(S, ev, P) {
   }
   return false;
 }
-const HIGH_RISK = ['QUOTE_DECISION', 'PAYMENT_STATUS', 'INCIDENT_RESOLVED', 'DEAL_REOPENED', 'USER_UPDATED', 'PAY_APPROVED'];
+const HIGH_RISK = ['QUOTE_DECISION', 'PAYMENT_STATUS', 'INCIDENT_RESOLVED', 'DEAL_REOPENED', 'USER_UPDATED', 'PAY_APPROVED', 'CAPACITY_CHECKED'];
 /* backup approver: a trusted person the Owner names for set days, who sees the office queue and gives second approvals */
 const isBackup = (uid, t) => { const b = S.backup; if (!b || b.ended || b.uid !== uid) return false; const d = safeDay(t || nowISO()); return d >= b.from && d <= b.to; };
 const backupNow = () => S.backup && !S.backup.ended && isBackup(S.backup.uid) ? S.backup.uid : null;
@@ -8267,6 +8270,7 @@ const RULES = {
       const r = S.approvals[ev.data.aid];
       if (!r || r.status !== 'pending') return 'err_already';
       if (r.by === u.uid) return 'err_same_person';
+      if (r.action && r.action.type === 'CAPACITY_CHECKED' && ev.t >= CAPOWNER_FROM && u.role !== 'owner') return { k: 'err_role', v: { roles: rolesTxt(['owner']) } };
       if (!['approve', 'reject'].includes(ev.data.decision)) return 'err_choose';
       if (ev.data.decision === 'reject') return need((ev.data.reason || '').trim(), 'err_reason');
       return validate(S, innerEvent(r, ev));
@@ -9506,7 +9510,7 @@ async function getMedia(key) {
    older phones answer "update the app" for them instead of guessing */
 const EV_V = 2, ACT_V = 2;
 /* shown on Me; the same number as the cache name in sw.js (checked by the tests), so anyone can tell which version a phone runs */
-const APP_BUILD = 105;
+const APP_BUILD = 106;
 const evV = ev => ev.v || 1;
 /* money going out, forgiving money, who-can-do-what and taking data off the phone need the PIN again (2-minute grace) */
 const RECHECK = (type, d) => ['REFUND_DECIDED', 'REFUND_PAID', 'CONFIG_SET', 'DATA_EXPORTED'].includes(type) || (type === 'CHARGE_SETTLED' && d.how === 'waived') || (type === 'USER_UPDATED' && d.role != null);

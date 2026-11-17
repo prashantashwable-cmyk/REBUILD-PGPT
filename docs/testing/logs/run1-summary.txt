@@ -1,0 +1,228 @@
+=== practice-roles.test.js
+PRACTICE PASSED
+=== lead-to-handover.e2e.test.js
+E2E PASSED
+=== escalation.test.js
+ESCALATION PASSED
+=== market.test.js
+MARKET PASSED
+=== security2.test.js
+SECURITY2 PASSED
+=== statutory.test.js
+STATUTORY PASSED
+=== material.test.js
+MATERIAL PASSED
+=== extras.test.js
+EXTRAS PASSED
+=== branches.test.js
+BRANCHES PASSED
+=== recon.test.js
+RECON PASSED
+=== hq.test.js
+HQ PASSED
+=== server-push.test.js
+SERVER PUSH PASSED
+=== server-request.test.js
+SERVER REQUEST PASSED
+=== waits.test.js
+WAITS PASSED
+=== statlead.test.js
+STATUTORY LIAISON PASSED
+=== moneyline.test.js
+MONEY LINE PASSED
+=== golden.test.js
+GOLDEN HISTORY PASSED
+=== homeui.test.js
+HOME UI PASSED
+=== easeuse.test.js
+EASE OF USE PASSED
+=== growth.test.js
+GROWTH PASSED
+=== money.test.js
+MONEY PASSED
+=== journeyB.test.js
+JOURNEY B PASSED
+=== journeyF.test.js
+JOURNEY F PASSED
+=== signinL3.test.js
+SIGN-IN L3 PASSED
+=== hqname.test.js
+HQ NAME PASSED
+=== mapzoom.test.js
+MAP ZOOM PASSED
+=== bp1compliance.test.js
+BP1 COMPLIANCE PASSED
+=== bp5market.test.js
+BP5 MARKET PASSED
+=== rebuild.test.js
+REBUILD PASSED
+ALL TESTS PASSED
+=== voice-guide.test.js
+VOICE PASSED
+=== sync.test.js
+SYNC PASSED
+=== notifications.test.js
+NOTIFICATIONS PASSED
+=== fairness.test.js
+FAIRNESS PASSED
+=== partner.test.js
+PARTNER PASSED
+=== quality.test.js
+QUALITY PASSED
+=== tickets.test.js
+TICKETS PASSED
+=== finish.test.js
+FAILED ASSERT: dark theme for night work: rgb(13, 20, 32)
+=== checkin.test.js
+CHECKIN PASSED
+=== tracker.test.js
+TRACKER PASSED
+=== gate.test.js
+GATE PASSED
+=== server-backup.test.js
+SERVER BACKUP PASSED
+=== joinflow.test.js
+JOIN FLOW PASSED
+=== service.test.js
+SERVICE PASSED
+=== discount.test.js
+DISCOUNT PASSED
+=== replace.test.js
+REPLACE PASSED
+=== snapshot.test.js
+SNAPSHOT AND SPEED PASSED
+=== workers.test.js
+WORKERS PASSED
+=== sitequality.test.js
+SITE QUALITY PASSED
+=== survey.test.js
+SURVEY PASSED
+=== salesfield.test.js
+SALES FIELD PASSED
+=== journeyC.test.js
+JOURNEY C PASSED
+=== journeyG.test.js
+JOURNEY G PASSED
+=== signinL1.test.js
+SIGN-IN L1 PASSED
+=== homemap.test.js
+HOME MAP PASSED
+=== payplans.test.js
+PAY PLANS PASSED
+=== bp2partners.test.js
+BP2 PARTNERS PASSED
+=== audit-privacy.test.js
+AUDIT PRIVACY PASSED
+=== install-gate.test.js
+INSTALL GATE PASSED
+=== permissions-denied.test.js
+PERMISSIONS PASSED
+=== home-fold.test.js
+HOME FOLD PASSED
+=== sync2.test.js
+SYNC2 PASSED
+=== safety.test.js
+SAFETY PASSED
+=== sales.test.js
+SALES PASSED
+=== office.test.js
+OFFICE PASSED
+=== wake.test.js
+WAKE PASSED
+=== mhandcust.test.js
+MATERIAL CUSTOMER SIGN PASSED
+=== history.test.js
+HISTORY PASSED
+=== server-sync.test.js
+SERVER SYNC PASSED
+=== server-report.test.js
+SERVER REPORT PASSED
+=== custlead.test.js
+CUSTOMER LEAD PASSED
+=== pinrecover.test.js
+PIN RECOVER PASSED
+=== qcrecheck.test.js
+QC RECHECK PASSED
+=== static.test.js
+STATIC PASSED
+=== access.test.js
+ACCESS PASSED
+=== maps.test.js
+MAPS PASSED
+=== custtrust.test.js
+FAILED ASSERT: a job running late says by how much, what it waits for and with whom: 
+=== liftlife.test.js
+LIFT LIFE PASSED
+=== jobno.test.js
+JOB NUMBERS PASSED
+=== journeyD.test.js
+JOURNEY D PASSED
+=== journeyH.test.js
+JOURNEY H PASSED
+=== signinL4.test.js
+SIGN-IN L4 PASSED
+=== navease.test.js
+NAV EASE PASSED
+=== shareapp.test.js
+SHARE APP PASSED
+=== bp3kpi.test.js
+BP3 KPI PASSED
+=== timetravel.test.js
+TIME TRAVEL PASSED
+=== screen-scale.test.js
+SCALE PASSED
+=== operations.test.js
+OPERATIONS PASSED
+=== ladder.test.js
+LADDER PASSED
+=== security.test.js
+SECURITY PASSED
+=== privacy.test.js
+PRIVACY PASSED
+=== sales2.test.js
+SALES2 PASSED
+=== reports.test.js
+REPORTS PASSED
+=== smallteam.test.js
+SMALLTEAM PASSED
+=== supplierbills.test.js
+SUPPLIER BILLS PASSED
+=== chatplan.test.js
+CHAT PLAN PASSED
+=== server-code.test.js
+SERVER CODE PASSED
+=== server-free.test.js
+SERVER FREE PASSED
+=== firstweek.test.js
+FIRST WEEK PASSED
+=== bars.test.js
+BARS PASSED
+=== safetysign.test.js
+SAFETY SIGN PASSED
+=== rulesagree.test.js
+RULES AGREE PASSED
+=== bizlogic.test.js
+BUSINESS LOGIC PASSED
+=== fieldev.test.js
+FIELD EVIDENCE PASSED
+=== supply.test.js
+SUPPLY PASSED
+=== builder.test.js
+BUILDER PASSED
+=== journeyA.test.js
+JOURNEY A PASSED
+=== journeyE.test.js
+JOURNEY E PASSED
+=== signinL2.test.js
+SIGN-IN L2 PASSED
+=== signinL5.test.js
+SIGN-IN L5 PASSED
+=== beforework.test.js
+BEFORE WORK PASSED
+=== fullnotice.test.js
+FULL NOTICE PASSED
+=== bp4finance.test.js
+BP4 FINANCE PASSED
+=== layout.test.js
+LAYOUT PASSED
+ALL TESTS PASSED

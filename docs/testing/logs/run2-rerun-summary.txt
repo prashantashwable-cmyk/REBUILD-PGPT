@@ -1,0 +1,25 @@
+STATIC PASSED
+=== finish
+FINISH PASSED
+exit 0
+=== custtrust
+CUSTOMER TRUST PASSED
+exit 0
+=== rebuild
+REBUILD PASSED
+exit 0
+=== bars
+BARS PASSED
+exit 0
+=== bp3kpi
+BP3 KPI PASSED
+exit 0
+=== bp5market
+BP5 MARKET PASSED
+exit 0
+=== audit-privacy
+AUDIT PRIVACY PASSED
+exit 0
+=== waits
+WAITS PASSED
+exit 0

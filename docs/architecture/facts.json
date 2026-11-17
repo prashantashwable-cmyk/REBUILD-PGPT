@@ -1,0 +1,4176 @@
+{
+ "rules": [
+  {
+   "type": "ORG_CREATED",
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Company created"
+  },
+  {
+   "type": "KEY_ADDED",
+   "roles": [
+    "owner",
+    "admin",
+    "field",
+    "sales",
+    "finance",
+    "qc",
+    "supplier",
+    "partner",
+    "tech",
+    "customer"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "New phone added for signing"
+  },
+  {
+   "type": "KEY_APPROVED",
+   "roles": [
+    "owner",
+    "admin"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "New phone approved"
+  },
+  {
+   "type": "PIN_ALERT",
+   "roles": [
+    "owner",
+    "admin",
+    "field",
+    "sales",
+    "finance",
+    "qc",
+    "supplier",
+    "partner",
+    "tech",
+    "customer"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Wrong PIN tries reported"
+  },
+  {
+   "type": "DEVICE_USED",
+   "roles": [
+    "owner",
+    "admin",
+    "field",
+    "sales",
+    "finance",
+    "qc",
+    "supplier",
+    "partner",
+    "tech",
+    "customer"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Signed in on a phone"
+  },
+  {
+   "type": "DEVICE_ALERT_SEEN",
+   "roles": [
+    "owner",
+    "admin"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Two-phone alert checked"
+  },
+  {
+   "type": "PIN_ALERT_SEEN",
+   "roles": [
+    "owner",
+    "admin"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "PIN alert checked"
+  },
+  {
+   "type": "PIN_UPGRADED",
+   "roles": [
+    "owner",
+    "admin",
+    "field",
+    "sales",
+    "finance",
+    "qc",
+    "supplier",
+    "partner",
+    "tech",
+    "customer"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "PIN protection upgraded"
+  },
+  {
+   "type": "USER_ADDED",
+   "roles": [
+    "owner",
+    "admin",
+    "sales",
+    "partner"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Person added"
+  },
+  {
+   "type": "USER_UPDATED",
+   "roles": [
+    "owner",
+    "admin"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Person changed"
+  },
+  {
+   "type": "PARTNER_PROFILE",
+   "roles": [
+    "owner",
+    "admin",
+    "partner"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Company licence details saved"
+  },
+  {
+   "type": "MEMBER_APPROVED",
+   "roles": [
+    "owner",
+    "admin"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Technician approved for the company"
+  },
+  {
+   "type": "MEMBER_REMOVED",
+   "roles": [
+    "owner",
+    "admin",
+    "partner"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Technician left the company"
+  },
+  {
+   "type": "TEAM_SET",
+   "roles": [
+    "owner",
+    "admin",
+    "partner"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": true,
+   "label": "Company changed the team"
+  },
+  {
+   "type": "CONFIG_SET",
+   "roles": [
+    "owner"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Business rule changed"
+  },
+  {
+   "type": "SHIFT_STARTED",
+   "roles": [
+    "field"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Shift started"
+  },
+  {
+   "type": "SHIFT_ENDED",
+   "roles": [
+    "field"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Shift ended"
+  },
+  {
+   "type": "ENQUIRY_ADDED",
+   "roles": [
+    "admin",
+    "owner",
+    "sales"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Enquiry received"
+  },
+  {
+   "type": "FIN_INTEREST",
+   "roles": [
+    "customer",
+    "sales",
+    "admin",
+    "owner"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Finance interest recorded (with consent)"
+  },
+  {
+   "type": "FIN_WITHDRAWN",
+   "roles": [
+    "customer",
+    "sales",
+    "admin",
+    "owner",
+    "finance"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Finance consent withdrawn"
+  },
+  {
+   "type": "FIN_REFERRED",
+   "roles": [
+    "admin",
+    "owner",
+    "finance"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Finance referral recorded"
+  },
+  {
+   "type": "MODEL_SET",
+   "roles": [
+    "admin",
+    "owner"
+   ],
+   "stages": [
+    "accepted",
+    "contacted",
+    "requirements"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Sales model set"
+  },
+  {
+   "type": "RFQ_SENT",
+   "roles": [
+    "admin",
+    "owner"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": true,
+   "label": "Quotes asked from partners"
+  },
+  {
+   "type": "PQUOTE_SENT",
+   "roles": [
+    "partner"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": true,
+   "label": "Partner quote sent"
+  },
+  {
+   "type": "MK_PICKED",
+   "roles": [
+    "customer",
+    "sales",
+    "admin",
+    "owner"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": true,
+   "label": "Customer picked a company"
+  },
+  {
+   "type": "MK_PICK_HELD",
+   "roles": [
+    "admin",
+    "owner"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": true,
+   "label": "Pick held by AIEC"
+  },
+  {
+   "type": "MK_ANSWER",
+   "roles": [
+    "partner"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": true,
+   "label": "Company answered the pick"
+  },
+  {
+   "type": "MK_INTRODUCED",
+   "roles": [
+    "customer",
+    "sales",
+    "admin",
+    "owner"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": true,
+   "label": "Customer's contact shared with the company"
+  },
+  {
+   "type": "MK_PAY_RECORDED",
+   "roles": [
+    "partner",
+    "customer"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": true,
+   "label": "Partner payment recorded"
+  },
+  {
+   "type": "MK_PAY_VERIFIED",
+   "roles": [
+    "customer",
+    "partner",
+    "finance",
+    "admin",
+    "owner"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": true,
+   "label": "Partner payment checked"
+  },
+  {
+   "type": "MK_READY",
+   "roles": [
+    "partner"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": true,
+   "label": "Company asked for the AIEC inspection"
+  },
+  {
+   "type": "MK_INSPECTED",
+   "roles": [
+    "qc"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": true,
+   "label": "AIEC inspection of a Marketplace lift"
+  },
+  {
+   "type": "MK_DONE",
+   "roles": [
+    "partner"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": true,
+   "label": "Marketplace lift handed over"
+  },
+  {
+   "type": "COMM_STATUS",
+   "roles": [
+    "finance",
+    "admin",
+    "owner"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Commission status changed"
+  },
+  {
+   "type": "COMM_CREDIT",
+   "roles": [
+    "finance",
+    "admin",
+    "owner"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Commission credit note"
+  },
+  {
+   "type": "ENQUIRY_CLOSED",
+   "roles": [
+    "admin",
+    "owner",
+    "sales",
+    "field"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Enquiry closed"
+  },
+  {
+   "type": "JOIN_DECIDED",
+   "roles": [
+    "admin",
+    "owner"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Join request decided"
+  },
+  {
+   "type": "CUSTOMER_LINKED",
+   "roles": [
+    "admin",
+    "owner",
+    "sales"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Customer linked to another site"
+  },
+  {
+   "type": "LEAD_CREATED",
+   "roles": [
+    "field",
+    "sales",
+    "admin",
+    "owner",
+    "customer"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "New site added"
+  },
+  {
+   "type": "LEAD_EDITED",
+   "roles": [
+    "customer"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": true,
+   "label": "Site details changed by the customer"
+  },
+  {
+   "type": "LEAD_INFO_ADDED",
+   "roles": [
+    "field",
+    "sales",
+    "admin"
+   ],
+   "stages": [
+    "new",
+    "returned",
+    "accepted",
+    "contacted",
+    "requirements",
+    "quote_approval",
+    "quote_ready",
+    "quoted",
+    "won",
+    "agreement",
+    "signed",
+    "site_prep",
+    "qc_site",
+    "site_fix",
+    "site_ok",
+    "material_order",
+    "dispatched",
+    "arrived",
+    "installing",
+    "qc_final",
+    "install_fix",
+    "final_pay",
+    "handover"
+   ],
+   "project": true,
+   "open": true,
+   "gate": false,
+   "label": "Photos / info added"
+  },
+  {
+   "type": "REFERRAL_SET",
+   "roles": [
+    "sales",
+    "admin",
+    "owner"
+   ],
+   "stages": [
+    "new",
+    "returned",
+    "accepted",
+    "contacted",
+    "requirements",
+    "quote_approval",
+    "quote_ready",
+    "quoted",
+    "won",
+    "agreement",
+    "signed",
+    "site_prep",
+    "qc_site",
+    "site_fix",
+    "site_ok",
+    "material_order",
+    "dispatched",
+    "arrived",
+    "installing",
+    "qc_final",
+    "install_fix",
+    "final_pay",
+    "handover"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Referral recorded"
+  },
+  {
+   "type": "REFERRAL_REWARDED",
+   "roles": [
+    "admin",
+    "owner"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Referral thank-you given"
+  },
+  {
+   "type": "SOC_SET",
+   "roles": [
+    "sales",
+    "admin",
+    "owner"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": true,
+   "label": "Society committee set"
+  },
+  {
+   "type": "SOC_APPROVED",
+   "roles": [
+    "sales",
+    "admin",
+    "owner",
+    "customer"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Committee member approved"
+  },
+  {
+   "type": "SOC_VOTED",
+   "roles": [
+    "sales",
+    "admin",
+    "owner",
+    "customer"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Committee member voted"
+  },
+  {
+   "type": "SITE_GROUP_SET",
+   "roles": [
+    "sales",
+    "admin",
+    "owner"
+   ],
+   "stages": [
+    "new",
+    "returned",
+    "accepted",
+    "contacted",
+    "requirements",
+    "quote_approval",
+    "quote_ready",
+    "quoted",
+    "won",
+    "agreement",
+    "signed",
+    "site_prep",
+    "qc_site",
+    "site_fix",
+    "site_ok",
+    "material_order",
+    "dispatched",
+    "arrived",
+    "installing",
+    "qc_final",
+    "install_fix",
+    "final_pay",
+    "handover"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Lift added to a site"
+  },
+  {
+   "type": "FINISH_APPROVED",
+   "roles": [
+    "customer",
+    "sales",
+    "admin",
+    "owner"
+   ],
+   "stages": [
+    "won",
+    "agreement",
+    "signed",
+    "site_prep",
+    "qc_site",
+    "site_fix",
+    "site_ok"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Cabin finish answered"
+  },
+  {
+   "type": "STOCK_ITEM_SET",
+   "roles": [
+    "admin",
+    "owner",
+    "finance"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Stock item set"
+  },
+  {
+   "type": "STOCK_MOVED",
+   "roles": [
+    "admin",
+    "owner",
+    "finance",
+    "tech"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Stock moved"
+  },
+  {
+   "type": "EXPENSE_ADDED",
+   "roles": [
+    "tech",
+    "sales",
+    "qc",
+    "admin",
+    "owner",
+    "finance"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Expense added"
+  },
+  {
+   "type": "EXPENSE_DECIDED",
+   "roles": [
+    "finance",
+    "admin",
+    "owner"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Expense decided"
+  },
+  {
+   "type": "SUP_COMPARED",
+   "roles": [
+    "admin",
+    "owner"
+   ],
+   "stages": [
+    "site_ok"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Suppliers compared"
+  },
+  {
+   "type": "LEAD_ACCEPTED",
+   "roles": [
+    "sales",
+    "admin"
+   ],
+   "stages": [
+    "new"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Lead accepted by Sales"
+  },
+  {
+   "type": "LEAD_RETURNED",
+   "roles": [
+    "sales",
+    "admin"
+   ],
+   "stages": [
+    "new"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Lead sent back"
+  },
+  {
+   "type": "LEAD_RESUBMITTED",
+   "roles": [
+    "field",
+    "sales",
+    "admin",
+    "owner"
+   ],
+   "stages": [
+    "returned"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Lead sent again"
+  },
+  {
+   "type": "CONTACT_CORRECTED",
+   "roles": [
+    "field",
+    "sales",
+    "admin",
+    "owner"
+   ],
+   "stages": [
+    "new",
+    "returned",
+    "accepted",
+    "contacted",
+    "requirements",
+    "quote_approval",
+    "quote_ready",
+    "quoted",
+    "won",
+    "agreement",
+    "signed",
+    "site_prep",
+    "qc_site",
+    "site_fix",
+    "site_ok",
+    "material_order",
+    "dispatched",
+    "arrived",
+    "installing",
+    "qc_final",
+    "install_fix",
+    "final_pay",
+    "handover"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Contact corrected"
+  },
+  {
+   "type": "CONTACT_LOGGED",
+   "roles": [
+    "sales"
+   ],
+   "stages": [
+    "accepted",
+    "contacted",
+    "requirements",
+    "quote_ready",
+    "quoted"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Customer contacted"
+  },
+  {
+   "type": "FOLLOWUP_SET",
+   "roles": [
+    "sales"
+   ],
+   "stages": [
+    "accepted",
+    "contacted",
+    "requirements",
+    "quote_ready",
+    "quoted"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Follow-up set"
+  },
+  {
+   "type": "REQ_SAVED",
+   "roles": [
+    "sales"
+   ],
+   "stages": [
+    "contacted",
+    "requirements",
+    "quoted"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Lift needs saved"
+  },
+  {
+   "type": "SURVEY_DONE",
+   "roles": [
+    "field",
+    "sales",
+    "admin",
+    "owner"
+   ],
+   "stages": [
+    "accepted",
+    "contacted",
+    "requirements",
+    "quote_ready",
+    "quoted",
+    "new"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Shaft measured before price"
+  },
+  {
+   "type": "QUOTE_CREATED",
+   "roles": [
+    "sales"
+   ],
+   "stages": [
+    "requirements",
+    "quoted"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Quotation made"
+  },
+  {
+   "type": "QUOTE_DECISION",
+   "roles": [
+    "owner",
+    "admin"
+   ],
+   "stages": [
+    "quote_approval"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Quotation approval decision"
+  },
+  {
+   "type": "QUOTE_SENT",
+   "roles": [
+    "sales"
+   ],
+   "stages": [
+    "quote_ready"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Quotation given to customer"
+  },
+  {
+   "type": "OPTION_CHOSEN",
+   "roles": [
+    "customer",
+    "sales",
+    "admin",
+    "owner"
+   ],
+   "stages": [
+    "quoted"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Option chosen"
+  },
+  {
+   "type": "DEAL_WON",
+   "roles": [
+    "sales"
+   ],
+   "stages": [
+    "quoted"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Deal won"
+  },
+  {
+   "type": "REFUND_PROPOSED",
+   "roles": [
+    "finance"
+   ],
+   "stages": [
+    "lost"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Refund worked out"
+  },
+  {
+   "type": "REFUND_DECIDED",
+   "roles": [
+    "owner",
+    "admin"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Refund decided"
+  },
+  {
+   "type": "REFUND_PAID",
+   "roles": [
+    "finance"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Refund paid"
+  },
+  {
+   "type": "OPT_OUT",
+   "roles": [
+    "owner",
+    "admin",
+    "sales",
+    "customer"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Contact asked to stop"
+  },
+  {
+   "type": "COUNTER_OFFER",
+   "roles": [
+    "customer",
+    "sales"
+   ],
+   "stages": [
+    "quoted"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Customer's offer"
+  },
+  {
+   "type": "DEAL_LOST",
+   "roles": [
+    "sales",
+    "admin",
+    "owner"
+   ],
+   "stages": [
+    "new",
+    "returned",
+    "accepted",
+    "contacted",
+    "requirements",
+    "quote_approval",
+    "quote_ready",
+    "quoted"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Lead lost"
+  },
+  {
+   "type": "PROJECT_CANCELLED",
+   "roles": [
+    "owner"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": true,
+   "label": "Project cancelled"
+  },
+  {
+   "type": "DEAL_REOPENED",
+   "roles": [
+    "admin",
+    "owner"
+   ],
+   "stages": [
+    "lost"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Lead opened again"
+  },
+  {
+   "type": "AGREEMENT_PREPARED",
+   "roles": [
+    "sales"
+   ],
+   "stages": [
+    "won"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Agreement prepared"
+  },
+  {
+   "type": "AGREEMENT_SIGNED",
+   "roles": [
+    "customer",
+    "sales"
+   ],
+   "stages": [
+    "agreement"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Agreement signed"
+  },
+  {
+   "type": "PAYMENT_RECORDED",
+   "roles": [
+    "sales",
+    "finance",
+    "customer"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": true,
+   "label": "Payment recorded"
+  },
+  {
+   "type": "PAYMENT_STATUS",
+   "roles": [
+    "finance"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Payment checked by Finance"
+  },
+  {
+   "type": "PREP_ITEM_DONE",
+   "roles": [
+    "customer",
+    "sales"
+   ],
+   "stages": [
+    "site_prep"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Site preparation item done"
+  },
+  {
+   "type": "QC_REQUESTED",
+   "roles": [
+    "customer",
+    "sales"
+   ],
+   "stages": [
+    "site_prep",
+    "site_fix"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Site inspection requested"
+  },
+  {
+   "type": "QC_SITE_RESULT",
+   "roles": [
+    "qc"
+   ],
+   "stages": [
+    "qc_site"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Site inspection result"
+  },
+  {
+   "type": "QC_SITE_CORRECTED",
+   "roles": [
+    "qc",
+    "admin",
+    "owner"
+   ],
+   "stages": [
+    "site_ok"
+   ],
+   "project": true,
+   "open": false,
+   "gate": true,
+   "label": "Site check corrected (new version)"
+  },
+  {
+   "type": "INFEASIBLE_DECIDED",
+   "roles": [
+    "admin",
+    "owner"
+   ],
+   "stages": [
+    "qc_site"
+   ],
+   "project": true,
+   "open": false,
+   "gate": true,
+   "label": "Decision on \"cannot be fitted\""
+  },
+  {
+   "type": "DRAWING_APPROVED",
+   "roles": [
+    "admin",
+    "owner"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": true,
+   "label": "Drawing version approved"
+  },
+  {
+   "type": "CORRECTION_DONE",
+   "roles": [
+    "customer",
+    "sales",
+    "tech"
+   ],
+   "stages": [
+    "site_fix",
+    "install_fix",
+    "installing"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Correction done"
+  },
+  {
+   "type": "GAD_SIGNED",
+   "roles": [
+    "customer",
+    "sales",
+    "admin",
+    "owner"
+   ],
+   "stages": [
+    "site_ok"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Layout and civil promises signed"
+  },
+  {
+   "type": "DAMAGE_REPORTED",
+   "roles": [
+    "tech",
+    "sales",
+    "admin",
+    "owner",
+    "qc"
+   ],
+   "stages": [
+    "arrived",
+    "installing",
+    "qc_final",
+    "install_fix"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Site damage reported"
+  },
+  {
+   "type": "DAMAGE_DECIDED",
+   "roles": [
+    "admin",
+    "owner"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Site damage decided"
+  },
+  {
+   "type": "CHARGE_SETTLED",
+   "roles": [
+    "finance",
+    "admin",
+    "owner"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Damage charge settled"
+  },
+  {
+   "type": "LIFT_MODE_SET",
+   "roles": [
+    "tech",
+    "qc",
+    "admin",
+    "owner"
+   ],
+   "stages": [
+    "qc_final",
+    "final_pay",
+    "handover",
+    "amc"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Lift mode set"
+  },
+  {
+   "type": "RELEASED",
+   "roles": [
+    "admin",
+    "owner"
+   ],
+   "stages": [
+    "site_ok"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Drawings released, team assigned"
+  },
+  {
+   "type": "CAPACITY_CHECKED",
+   "roles": [
+    "admin",
+    "owner"
+   ],
+   "stages": [
+    "site_ok"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Capacity check recorded"
+  },
+  {
+   "type": "ASSIGNED",
+   "roles": [
+    "admin",
+    "owner"
+   ],
+   "stages": [
+    "new",
+    "returned",
+    "accepted",
+    "contacted",
+    "requirements",
+    "quote_approval",
+    "quote_ready",
+    "quoted",
+    "won",
+    "agreement",
+    "signed",
+    "site_prep",
+    "qc_site",
+    "site_fix",
+    "site_ok",
+    "material_order",
+    "dispatched",
+    "arrived",
+    "installing",
+    "qc_final",
+    "install_fix",
+    "final_pay",
+    "handover",
+    "amc"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Team changed"
+  },
+  {
+   "type": "PO_ACCEPTED",
+   "roles": [
+    "supplier"
+   ],
+   "stages": [
+    "material_order"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Purchase order accepted"
+  },
+  {
+   "type": "PO_DECLINED",
+   "roles": [
+    "supplier"
+   ],
+   "stages": [
+    "material_order"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Purchase order declined"
+  },
+  {
+   "type": "DISPATCHED",
+   "roles": [
+    "supplier"
+   ],
+   "stages": [
+    "material_order"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Material dispatched"
+  },
+  {
+   "type": "LOT_DISPATCHED",
+   "roles": [
+    "supplier"
+   ],
+   "stages": [
+    "arrived",
+    "installing"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Material lot sent"
+  },
+  {
+   "type": "LOT_ARRIVED",
+   "roles": [
+    "tech",
+    "supplier"
+   ],
+   "stages": [
+    "arrived",
+    "installing"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Material lot arrived"
+  },
+  {
+   "type": "ARRIVED",
+   "roles": [
+    "tech",
+    "supplier"
+   ],
+   "stages": [
+    "dispatched"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Material arrived"
+  },
+  {
+   "type": "INCIDENT_RAISED",
+   "roles": [
+    "owner",
+    "admin",
+    "sales",
+    "finance",
+    "qc",
+    "supplier",
+    "tech",
+    "partner"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": true,
+   "label": "Security problem reported"
+  },
+  {
+   "type": "INCIDENT_RESOLVED",
+   "roles": [
+    "admin",
+    "owner"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Security problem closed"
+  },
+  {
+   "type": "INCIDENT_REPORTED",
+   "roles": [
+    "admin",
+    "owner"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Accident reported to authorities"
+  },
+  {
+   "type": "REP_SET",
+   "roles": [
+    "customer",
+    "sales",
+    "admin",
+    "owner"
+   ],
+   "stages": [
+    "won",
+    "agreement",
+    "signed",
+    "site_prep",
+    "qc_site",
+    "site_ok",
+    "material_order",
+    "dispatched",
+    "arrived"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Representative named"
+  },
+  {
+   "type": "MATERIAL_HANDED",
+   "roles": [
+    "tech"
+   ],
+   "stages": [
+    "arrived"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Material handed over"
+  },
+  {
+   "type": "SERIAL_RESOLVED",
+   "roles": [
+    "admin",
+    "owner"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Serial mismatch settled"
+  },
+  {
+   "type": "MATERIAL_RECEIPT_SIGNED",
+   "roles": [
+    "customer"
+   ],
+   "stages": [
+    "arrived"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Customer signed for the material"
+  },
+  {
+   "type": "SOP_STEP_DONE",
+   "roles": [
+    "tech"
+   ],
+   "stages": [
+    "installing"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Installation step done"
+  },
+  {
+   "type": "CLAIM_RAISED",
+   "roles": [
+    "tech"
+   ],
+   "stages": [
+    "arrived",
+    "installing",
+    "install_fix"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Part claim raised"
+  },
+  {
+   "type": "CLAIM_DECIDED",
+   "roles": [
+    "admin",
+    "owner"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Part claim decided"
+  },
+  {
+   "type": "CLAIM_SENT",
+   "roles": [
+    "supplier"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Replacement part sent"
+  },
+  {
+   "type": "CLAIM_RECEIVED",
+   "roles": [
+    "tech"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Replacement part received"
+  },
+  {
+   "type": "PEER_CHECKED",
+   "roles": [
+    "tech",
+    "qc"
+   ],
+   "stages": [
+    "installing"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Co-worker check"
+  },
+  {
+   "type": "SURPRISE_SET",
+   "roles": [
+    "owner",
+    "admin"
+   ],
+   "stages": [
+    "arrived",
+    "installing",
+    "install_fix"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Surprise inspection planned"
+  },
+  {
+   "type": "SURPRISE_DONE",
+   "roles": [
+    "qc"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Surprise inspection"
+  },
+  {
+   "type": "VARIATION_PROPOSED",
+   "roles": [
+    "owner",
+    "admin",
+    "sales"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Variation quote"
+  },
+  {
+   "type": "VARIATION_SIGNED",
+   "roles": [
+    "customer",
+    "sales"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Variation signed"
+  },
+  {
+   "type": "VARIATION_DECLINED",
+   "roles": [
+    "customer",
+    "sales"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Variation not accepted"
+  },
+  {
+   "type": "SUPPLIER_INVOICE",
+   "roles": [
+    "supplier"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": true,
+   "label": "Supplier invoice"
+  },
+  {
+   "type": "SUP_INVOICE_DECIDED",
+   "roles": [
+    "admin",
+    "owner"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Supplier invoice checked"
+  },
+  {
+   "type": "SUP_INVOICE_PAID",
+   "roles": [
+    "finance"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Supplier invoice paid"
+  },
+  {
+   "type": "SITE_CHECKED_IN",
+   "roles": [
+    "tech"
+   ],
+   "stages": [
+    "arrived",
+    "installing",
+    "install_fix"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Checked in at the site"
+  },
+  {
+   "type": "CHECKIN_REVIEWED",
+   "roles": [
+    "admin",
+    "owner"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Check-in looked at"
+  },
+  {
+   "type": "DAY_ENDED_TECH",
+   "roles": [
+    "tech"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Day ended at the site"
+  },
+  {
+   "type": "SAFETY_CHECKED",
+   "roles": [
+    "tech"
+   ],
+   "stages": [
+    "installing",
+    "install_fix"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Daily safety check"
+  },
+  {
+   "type": "SAFETY_REVIEWED",
+   "roles": [
+    "partner",
+    "qc",
+    "admin",
+    "owner"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Safety check reviewed"
+  },
+  {
+   "type": "SOS_RAISED",
+   "roles": [
+    "owner",
+    "admin",
+    "field",
+    "sales",
+    "finance",
+    "qc",
+    "supplier",
+    "partner",
+    "tech"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "SOS raised"
+  },
+  {
+   "type": "ACCESS_LOGGED",
+   "roles": [
+    "owner",
+    "admin",
+    "field",
+    "sales",
+    "finance",
+    "qc",
+    "supplier",
+    "partner",
+    "tech",
+    "customer"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Pages opened (log)"
+  },
+  {
+   "type": "ACCESS_REVIEWED",
+   "roles": [
+    "owner",
+    "admin"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Access log checked"
+  },
+  {
+   "type": "SOS_CLOSED",
+   "roles": [
+    "owner",
+    "admin"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "SOS closed — person safe"
+  },
+  {
+   "type": "BLOCKER_RAISED",
+   "roles": [
+    "tech",
+    "qc",
+    "sales",
+    "supplier",
+    "admin",
+    "owner"
+   ],
+   "stages": [
+    "new",
+    "returned",
+    "accepted",
+    "contacted",
+    "requirements",
+    "quote_approval",
+    "quote_ready",
+    "quoted",
+    "won",
+    "agreement",
+    "signed",
+    "site_prep",
+    "qc_site",
+    "site_fix",
+    "site_ok",
+    "material_order",
+    "dispatched",
+    "arrived",
+    "installing",
+    "qc_final",
+    "install_fix",
+    "final_pay",
+    "handover"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Work problem reported"
+  },
+  {
+   "type": "BLOCKER_RESOLVED",
+   "roles": [
+    "admin",
+    "owner",
+    "sales",
+    "supplier",
+    "qc",
+    "tech"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Work problem solved"
+  },
+  {
+   "type": "INSPECTION_REQUESTED",
+   "roles": [
+    "tech"
+   ],
+   "stages": [
+    "installing",
+    "install_fix"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Final inspection requested"
+  },
+  {
+   "type": "QC_FINAL_RESULT",
+   "roles": [
+    "qc"
+   ],
+   "stages": [
+    "qc_final"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Final inspection result"
+  },
+  {
+   "type": "SAFETY_COUNTERSIGNED",
+   "roles": [
+    "tech",
+    "customer"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Safety check counter-signed by the builder"
+  },
+  {
+   "type": "QC_RECHECK_DONE",
+   "roles": [
+    "qc"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Second QC re-checked a passed lift"
+  },
+  {
+   "type": "QC_RECHECK_REVIEWED",
+   "roles": [
+    "owner",
+    "admin"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Office reviewed a QC disagreement"
+  },
+  {
+   "type": "HANDOVER_SIGNED",
+   "roles": [
+    "customer",
+    "tech",
+    "qc"
+   ],
+   "stages": [
+    "handover"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Handover signed"
+  },
+  {
+   "type": "HANDOVER_COMPLETED",
+   "roles": [
+    "admin",
+    "owner",
+    "qc"
+   ],
+   "stages": [
+    "handover"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Handover completed, AMC started"
+  },
+  {
+   "type": "DRAWING_ADDED",
+   "roles": [
+    "admin",
+    "owner"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": true,
+   "label": "Drawing version added"
+  },
+  {
+   "type": "STATUTORY_SET",
+   "roles": [
+    "owner",
+    "admin",
+    "qc",
+    "sales",
+    "finance"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": true,
+   "label": "Statutory record saved"
+  },
+  {
+   "type": "HOLD_REQUESTED",
+   "roles": [
+    "owner",
+    "admin",
+    "sales",
+    "tech",
+    "partner",
+    "supplier"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": true,
+   "label": "Hold asked"
+  },
+  {
+   "type": "HOLD_DECIDED",
+   "roles": [
+    "owner",
+    "admin"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Hold decided"
+  },
+  {
+   "type": "HOLD_ENDED",
+   "roles": [
+    "owner",
+    "admin"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Hold ended — work restarts"
+  },
+  {
+   "type": "STAGE_BACK",
+   "roles": [
+    "owner",
+    "admin"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": true,
+   "label": "Moved back a stage"
+  },
+  {
+   "type": "DISPUTE_SET",
+   "roles": [
+    "owner",
+    "admin",
+    "sales"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Dispute marked"
+  },
+  {
+   "type": "DISPUTE_CLEARED",
+   "roles": [
+    "owner",
+    "admin"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Dispute settled"
+  },
+  {
+   "type": "CHAT_POSTED",
+   "roles": [
+    "owner",
+    "admin",
+    "field",
+    "sales",
+    "finance",
+    "qc",
+    "supplier",
+    "partner",
+    "tech",
+    "customer"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Chat message"
+  },
+  {
+   "type": "CHAT_STATUS",
+   "roles": [
+    "owner",
+    "admin",
+    "field",
+    "sales",
+    "finance",
+    "qc",
+    "supplier",
+    "partner",
+    "tech",
+    "customer"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Chat item updated"
+  },
+  {
+   "type": "CHAT_DECISION",
+   "roles": [
+    "owner",
+    "admin"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Chat approval decision"
+  },
+  {
+   "type": "TEMPLATE_SET",
+   "roles": [
+    "owner",
+    "admin"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Message template saved"
+  },
+  {
+   "type": "TEMPLATE_DELETED",
+   "roles": [
+    "owner",
+    "admin"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Message template removed"
+  },
+  {
+   "type": "MSG_LOGGED",
+   "roles": [
+    "owner",
+    "admin",
+    "sales",
+    "finance"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "WhatsApp message sent"
+  },
+  {
+   "type": "MSG_STATUS",
+   "roles": [
+    "owner",
+    "admin",
+    "sales",
+    "finance"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Message reply recorded"
+  },
+  {
+   "type": "SERVICE_DONE",
+   "roles": [
+    "tech"
+   ],
+   "stages": [
+    "amc"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Service visit done"
+  },
+  {
+   "type": "TICKET_OPENED",
+   "roles": [
+    "customer",
+    "sales",
+    "admin",
+    "owner",
+    "tech"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": true,
+   "label": "Problem reported"
+  },
+  {
+   "type": "TICKET_SEVERITY",
+   "roles": [
+    "admin",
+    "owner",
+    "sales",
+    "qc",
+    "tech"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": true,
+   "label": "Ticket urgency changed"
+  },
+  {
+   "type": "LIFT_QR_SET",
+   "roles": [
+    "admin",
+    "owner"
+   ],
+   "stages": [
+    "amc"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Lift QR label changed"
+  },
+  {
+   "type": "TICKET_ASSIGNED",
+   "roles": [
+    "admin",
+    "owner",
+    "sales",
+    "qc",
+    "tech"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": true,
+   "label": "Problem given to a person"
+  },
+  {
+   "type": "TICKET_ACCEPTED",
+   "roles": [
+    "tech",
+    "sales",
+    "admin",
+    "owner",
+    "qc"
+   ],
+   "stages": null,
+   "project": true,
+   "open": true,
+   "gate": false,
+   "label": "Breakdown accepted"
+  },
+  {
+   "type": "TICKET_UPDATED",
+   "roles": [
+    "tech",
+    "sales",
+    "admin",
+    "owner",
+    "qc"
+   ],
+   "stages": null,
+   "project": true,
+   "open": true,
+   "gate": false,
+   "label": "Problem work update"
+  },
+  {
+   "type": "TICKET_CLOSED",
+   "roles": [
+    "customer",
+    "admin",
+    "owner"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Problem checked"
+  },
+  {
+   "type": "WARRANTY_CALLED",
+   "roles": [
+    "sales",
+    "admin",
+    "owner"
+   ],
+   "stages": [
+    "amc"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Warranty-end call made"
+  },
+  {
+   "type": "LIFT_OWNER_CHANGED",
+   "roles": [
+    "admin",
+    "owner"
+   ],
+   "stages": [
+    "amc"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Lift owner changed"
+  },
+  {
+   "type": "AMC_ENDED",
+   "roles": [
+    "sales",
+    "admin",
+    "owner"
+   ],
+   "stages": [
+    "amc"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Maintenance contract ended"
+  },
+  {
+   "type": "AMC_RENEWED",
+   "roles": [
+    "sales",
+    "admin",
+    "owner"
+   ],
+   "stages": [
+    "amc"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Maintenance contract renewed"
+  },
+  {
+   "type": "ESC_ACTED",
+   "roles": [
+    "admin",
+    "owner"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Office acted on stuck work"
+  },
+  {
+   "type": "JOB_POSTED",
+   "roles": [
+    "admin",
+    "owner"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Job posted"
+  },
+  {
+   "type": "JOB_APPLIED",
+   "roles": [
+    "partner",
+    "qc"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Applied for job"
+  },
+  {
+   "type": "JOB_WITHDRAWN",
+   "roles": [
+    "partner",
+    "qc"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Application withdrawn"
+  },
+  {
+   "type": "JOB_CONFIRMED",
+   "roles": [
+    "admin",
+    "owner"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Job given"
+  },
+  {
+   "type": "JOB_CLOSED",
+   "roles": [
+    "admin",
+    "owner"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Job post closed"
+  },
+  {
+   "type": "CREW_ADDED",
+   "roles": [
+    "admin",
+    "owner",
+    "tech",
+    "partner"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": true,
+   "label": "Crew member added"
+  },
+  {
+   "type": "CREW_REMOVED",
+   "roles": [
+    "admin",
+    "owner",
+    "tech",
+    "partner"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": true,
+   "label": "Crew member removed"
+  },
+  {
+   "type": "CUSTOMER_RATED",
+   "roles": [
+    "customer",
+    "sales"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": true,
+   "label": "Customer rating"
+  },
+  {
+   "type": "CREW_RATED",
+   "roles": [
+    "tech"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": true,
+   "label": "Crew rating"
+  },
+  {
+   "type": "PROMOTED",
+   "roles": [
+    "admin",
+    "owner"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Promoted"
+  },
+  {
+   "type": "DEMOTED",
+   "roles": [
+    "admin",
+    "owner"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Level lowered"
+  },
+  {
+   "type": "SKILL_CHECKED",
+   "roles": [
+    "owner",
+    "qc",
+    "tech"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Practical test"
+  },
+  {
+   "type": "STRIKE_APPEALED",
+   "roles": [
+    "owner",
+    "admin",
+    "field",
+    "sales",
+    "finance",
+    "qc",
+    "supplier",
+    "partner",
+    "tech"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Strike appeal"
+  },
+  {
+   "type": "STRIKE_DECIDED",
+   "roles": [
+    "admin",
+    "owner"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Strike appeal decided"
+  },
+  {
+   "type": "SPOT_CHECKED",
+   "roles": [
+    "qc",
+    "admin",
+    "owner"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Photo spot check"
+  },
+  {
+   "type": "REVIEW_HELD",
+   "roles": [
+    "admin",
+    "owner"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Worker review meeting"
+  },
+  {
+   "type": "APPROVAL_REQUESTED",
+   "roles": [
+    "owner",
+    "admin",
+    "field",
+    "sales",
+    "finance",
+    "qc",
+    "supplier",
+    "partner",
+    "tech"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Second approval asked"
+  },
+  {
+   "type": "APPROVAL_DECIDED",
+   "roles": [
+    "owner",
+    "admin",
+    "sales",
+    "finance",
+    "qc"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": true,
+   "label": "Second approval decided"
+  },
+  {
+   "type": "BACKUP_SET",
+   "roles": [
+    "owner"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Backup approver named"
+  },
+  {
+   "type": "BACKUP_ENDED",
+   "roles": [
+    "owner"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Backup approver ended"
+  },
+  {
+   "type": "DAILY_REPORT",
+   "roles": [
+    "tech"
+   ],
+   "stages": [
+    "arrived",
+    "installing",
+    "install_fix"
+   ],
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Daily report sent"
+  },
+  {
+   "type": "DATA_EXPORTED",
+   "roles": [
+    "owner"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Spreadsheet saved"
+  },
+  {
+   "type": "UNDONE",
+   "roles": [
+    "owner",
+    "admin",
+    "field",
+    "sales",
+    "finance",
+    "qc",
+    "supplier",
+    "partner",
+    "tech",
+    "customer"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Taken back"
+  },
+  {
+   "type": "DAY_CLOSED",
+   "roles": [
+    "owner",
+    "admin",
+    "sales",
+    "finance",
+    "qc"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": true,
+   "label": "Day closed"
+  },
+  {
+   "type": "CLOCK_REVIEWED",
+   "roles": [
+    "owner",
+    "admin"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Clock jump decided"
+  },
+  {
+   "type": "TRIAL_RESULT",
+   "roles": [
+    "qc",
+    "admin",
+    "owner",
+    "tech"
+   ],
+   "stages": null,
+   "project": true,
+   "open": false,
+   "gate": false,
+   "label": "Trial job result"
+  },
+  {
+   "type": "PRIVACY_ACCEPTED",
+   "roles": [
+    "owner",
+    "admin",
+    "field",
+    "sales",
+    "finance",
+    "qc",
+    "supplier",
+    "partner",
+    "tech",
+    "customer"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Privacy notice read"
+  },
+  {
+   "type": "STAT_LEAD_SET",
+   "roles": [
+    "owner",
+    "admin"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Statutory liaison chosen"
+  },
+  {
+   "type": "SERVICE_LEAD_SET",
+   "roles": [
+    "owner",
+    "admin"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Service lead chosen"
+  },
+  {
+   "type": "BUDDY_SET",
+   "roles": [
+    "owner",
+    "admin"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Buddy chosen for a new person"
+  },
+  {
+   "type": "COMPANY_SHARE_SET",
+   "roles": [
+    "partner",
+    "owner",
+    "admin"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Pay share set"
+  },
+  {
+   "type": "PARTNER_STATUS_SET",
+   "roles": [
+    "owner",
+    "admin"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Company status changed"
+  },
+  {
+   "type": "PARTNER_DD_SET",
+   "roles": [
+    "owner",
+    "admin"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Company check recorded"
+  },
+  {
+   "type": "WORKER_PROFILE",
+   "roles": [
+    "owner",
+    "admin",
+    "field",
+    "sales",
+    "finance",
+    "qc",
+    "supplier",
+    "partner",
+    "tech"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Worker profile saved"
+  },
+  {
+   "type": "DOC_VERIFIED",
+   "roles": [
+    "owner",
+    "admin"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Worker document checked"
+  },
+  {
+   "type": "LEGAL_SET",
+   "roles": [
+    "owner",
+    "admin"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Legal paper recorded"
+  },
+  {
+   "type": "TRAINING_PASSED",
+   "roles": [
+    "owner",
+    "admin",
+    "field",
+    "sales",
+    "finance",
+    "qc",
+    "supplier",
+    "partner",
+    "tech"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Training passed"
+  },
+  {
+   "type": "PAY_APPROVED",
+   "roles": [
+    "owner",
+    "admin"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Technician pay approved"
+  },
+  {
+   "type": "RESERVE_SETTLED",
+   "roles": [
+    "finance"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Reserve paid in final settlement"
+  },
+  {
+   "type": "CONTRACT_ACCEPTED",
+   "roles": [
+    "tech",
+    "partner",
+    "qc",
+    "field",
+    "supplier"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Contractor agreement accepted"
+  },
+  {
+   "type": "TRAINING_VIDEO_SET",
+   "roles": [
+    "owner",
+    "admin"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Training video set"
+  },
+  {
+   "type": "RATING_APPEALED",
+   "roles": [
+    "tech",
+    "partner",
+    "qc",
+    "field",
+    "sales"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Rating appealed"
+  },
+  {
+   "type": "RATING_APPEAL_DECIDED",
+   "roles": [
+    "owner",
+    "admin"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Rating appeal decided"
+  },
+  {
+   "type": "PAY_PAID",
+   "roles": [
+    "finance"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Technician paid"
+  },
+  {
+   "type": "PAY_DISPUTED",
+   "roles": [
+    "tech",
+    "qc",
+    "partner",
+    "field"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Pay question asked"
+  },
+  {
+   "type": "PAY_DISPUTE_ANSWERED",
+   "roles": [
+    "owner",
+    "admin"
+   ],
+   "stages": null,
+   "project": false,
+   "open": false,
+   "gate": false,
+   "label": "Pay question answered"
+  }
+ ],
+ "screens": [
+  "wiz",
+  "risk",
+  "lifts",
+  "stock",
+  "ageing",
+  "faults",
+  "supbills",
+  "recon",
+  "receipt",
+  "drawings",
+  "stattracker",
+  "logbook",
+  "safetylog",
+  "install",
+  "boot",
+  "splash",
+  "gate",
+  "door",
+  "codeLogin",
+  "joinReq",
+  "myReq",
+  "priceGuess",
+  "enquiry",
+  "reqSent",
+  "shareApp",
+  "closed",
+  "sharePoster",
+  "joinlink",
+  "paste",
+  "enquiries",
+  "welcome",
+  "lang",
+  "intro",
+  "setup",
+  "newOrg",
+  "join",
+  "login",
+  "pin",
+  "pinRecover",
+  "privacy",
+  "perms",
+  "connections",
+  "waits",
+  "home",
+  "pay",
+  "kpi",
+  "finList",
+  "mktCompare",
+  "commLedger",
+  "drill",
+  "projects",
+  "project",
+  "docs",
+  "cl",
+  "done",
+  "map",
+  "chat",
+  "ev",
+  "group",
+  "doc",
+  "me",
+  "report",
+  "perm",
+  "about",
+  "users",
+  "restore",
+  "joins",
+  "joinCheck",
+  "reports",
+  "server",
+  "rules",
+  "audit",
+  "problems",
+  "data",
+  "access",
+  "templates",
+  "liftqr",
+  "qr",
+  "workers",
+  "worker",
+  "training",
+  "escalations",
+  "weekly",
+  "auto",
+  "exceptions",
+  "clock",
+  "notify",
+  "ladder",
+  "reviews",
+  "jobs",
+  "posts",
+  "earn",
+  "contract",
+  "leaders",
+  "steps",
+  "damage",
+  "mywork",
+  "mypay",
+  "callnext",
+  "helper"
+ ],
+ "wiz": [
+  "lead",
+  "custLead",
+  "review",
+  "fixlead",
+  "call",
+  "needs",
+  "quote",
+  "approve",
+  "send",
+  "decision",
+  "counter",
+  "agreeprep",
+  "sign",
+  "paynew",
+  "payverify",
+  "payreverse",
+  "prepitem",
+  "fixitem",
+  "qcsite",
+  "finish",
+  "dreport",
+  "survey",
+  "dmgReport",
+  "dmgDecide",
+  "chargeSettle",
+  "gad",
+  "liftMode",
+  "devAlert",
+  "shareSet",
+  "pinAlert",
+  "ticketAccept",
+  "warrantyCall",
+  "liftOwner",
+  "infeasible",
+  "sitefixv",
+  "stockItem",
+  "stockMove",
+  "release",
+  "dispatch",
+  "arrival",
+  "mhand",
+  "serialFix",
+  "legal",
+  "custLink",
+  "chatAct",
+  "mhandCust",
+  "poAccept",
+  "rep",
+  "claim",
+  "claimDecide",
+  "claimSend",
+  "claimReceive",
+  "supInvoice",
+  "invDecide",
+  "invPay",
+  "sopstep",
+  "blocker",
+  "resolve",
+  "incident",
+  "incidentNew",
+  "refund",
+  "refundDecide",
+  "refundPay",
+  "optOut",
+  "variation",
+  "variationSign",
+  "peer",
+  "surpriseSet",
+  "surprise",
+  "drawingAdd",
+  "countersign",
+  "recheck",
+  "recheckReview",
+  "accReport",
+  "statutory",
+  "hold",
+  "holdDecide",
+  "holdEnd",
+  "stageBack",
+  "dispute",
+  "disputeClear",
+  "checkin",
+  "checkinReview",
+  "techEnd",
+  "safety",
+  "safetyReview",
+  "sosClose",
+  "qcfinal",
+  "hsign",
+  "correct",
+  "assign",
+  "cancelProject",
+  "amcEnd",
+  "svcTech",
+  "custAccess",
+  "lost",
+  "reopen",
+  "followup",
+  "addinfo",
+  "custPaid",
+  "capCheck",
+  "finInterest",
+  "finRefer",
+  "mktRfq",
+  "mktQuote",
+  "mktAnswer",
+  "mktHold",
+  "mktBack",
+  "mktIntro",
+  "mktPay",
+  "mktVerify",
+  "mktReady",
+  "mktInspect",
+  "mktDone",
+  "cmlStatus",
+  "cmlCredit",
+  "mktModel",
+  "expAdd",
+  "expDecide",
+  "supCompare",
+  "copyLift",
+  "refSet",
+  "refReward",
+  "socVote",
+  "socSet",
+  "socApprove",
+  "wa",
+  "service",
+  "ticket",
+  "ticketSev",
+  "liftLabel",
+  "ticketAssign",
+  "ticketUpdate",
+  "ticketClose",
+  "renew",
+  "approve2",
+  "trial",
+  "wprofile",
+  "train",
+  "escalate",
+  "dayClose",
+  "backup",
+  "clockReview",
+  "rate",
+  "rateCrew",
+  "promote",
+  "demote",
+  "skill",
+  "appeal",
+  "decide",
+  "spot",
+  "reviewMeet",
+  "crewAdd",
+  "pStatus",
+  "ddCheck",
+  "team",
+  "partnerLic",
+  "memberRemove",
+  "apply",
+  "post",
+  "pick",
+  "closePost",
+  "settle",
+  "contract",
+  "rateAppeal",
+  "rateAppealDecide",
+  "payApprove",
+  "payPaid",
+  "payDispute",
+  "payAnswer"
+ ],
+ "nav": {
+  "field": [
+   [
+    "home",
+    "🏠",
+    "nav_home"
+   ],
+   [
+    "projects",
+    "📍",
+    "nav_sites"
+   ],
+   [
+    "chat",
+    "💬",
+    "chat"
+   ],
+   [
+    "me",
+    "👤",
+    "me"
+   ]
+  ],
+  "sales": [
+   [
+    "home",
+    "🏠",
+    "nav_today"
+   ],
+   [
+    "projects",
+    "📋",
+    "nav_leads"
+   ],
+   [
+    "callnext",
+    "📞",
+    "nav_callnext"
+   ],
+   [
+    "chat",
+    "💬",
+    "chat"
+   ],
+   [
+    "me",
+    "👤",
+    "me"
+   ]
+  ],
+  "tech": [
+   [
+    "home",
+    "🏠",
+    "nav_today"
+   ],
+   [
+    "stock",
+    "📦",
+    "nav_material"
+   ],
+   [
+    "steps",
+    "🪜",
+    "nav_steps"
+   ],
+   [
+    "damage",
+    "💥",
+    "nav_damage"
+   ],
+   [
+    "mywork",
+    "💰",
+    "nav_pay"
+   ],
+   [
+    "me",
+    "👤",
+    "me"
+   ]
+  ],
+  "finance": [
+   [
+    "home",
+    "🏠",
+    "nav_home"
+   ],
+   [
+    "projects",
+    "📋",
+    "projects"
+   ],
+   [
+    "chat",
+    "💬",
+    "chat"
+   ],
+   [
+    "me",
+    "👤",
+    "me"
+   ]
+  ],
+  "supplier": [
+   [
+    "home",
+    "🏠",
+    "nav_home"
+   ],
+   [
+    "projects",
+    "📦",
+    "nav_orders"
+   ],
+   [
+    "chat",
+    "💬",
+    "chat"
+   ],
+   [
+    "me",
+    "👤",
+    "me"
+   ]
+  ],
+  "customer": [
+   [
+    "home",
+    "🏠",
+    "nav_mylift"
+   ],
+   [
+    "mypay",
+    "💳",
+    "nav_pay"
+   ],
+   [
+    "docs",
+    "📄",
+    "nav_docs"
+   ],
+   [
+    "chat",
+    "💬",
+    "nav_help"
+   ],
+   [
+    "me",
+    "👤",
+    "me"
+   ]
+  ],
+  "default": [
+   [
+    "home",
+    "🏠",
+    "nav_home"
+   ],
+   [
+    "projects",
+    "📋",
+    "projects"
+   ],
+   [
+    "chat",
+    "💬",
+    "chat"
+   ],
+   [
+    "me",
+    "👤",
+    "me"
+   ]
+  ]
+ },
+ "config": {
+  "costAuto": 300000,
+  "costManual": 220000,
+  "costPerStop": 40000,
+  "costSS": 50000,
+  "costDismantle": 30000,
+  "cap4": 0,
+  "cap6": 20000,
+  "cap8": 40000,
+  "cap10": 60000,
+  "cap13": 90000,
+  "install": 60000,
+  "transport": 15000,
+  "gst": 18,
+  "targetMargin": 60,
+  "salesDiscountLimit": 8,
+  "adminDiscountLimit": 18,
+  "minMargin": 20,
+  "negStep": 5,
+  "token": 10000,
+  "tokenMode": 0,
+  "arrivalPct": 90,
+  "cabinPct": 0,
+  "payLeadValid": 0,
+  "leadWonPct": 0,
+  "installDays": 14,
+  "installDaysComplex": 28,
+  "warrantyMonths": 12,
+  "amcVisits": 4,
+  "validityDays": 30,
+  "reservePct": 0,
+  "reserveRelease": 10,
+  "agreeVersion": 1,
+  "refReward": 0,
+  "poAnswerHours": 24,
+  "acceptMins": 15,
+  "amcCompPrice": 0,
+  "dbgTol": 1,
+  "balLo": 45,
+  "balHi": 50,
+  "earthMax": 2,
+  "costArd": 35000,
+  "costCurtain": 12000,
+  "costPremium": 150000,
+  "lowPit": 1400,
+  "lowHead": 3900,
+  "costSpecial": 0,
+  "firstContactHours": 2,
+  "idleDays": 90,
+  "amcYearly": 0,
+  "powerYearly": 0,
+  "retentionPct": 0,
+  "retentionDays": 90,
+  "civilMin": 60000,
+  "civilMax": 150000,
+  "cancelBefore": 0,
+  "cancelAfter": 0,
+  "dupCommission": 10,
+  "lvHelperJobs": 3,
+  "lvHelperStars": 3.5,
+  "lvHelperReviews": 3,
+  "lvHelperDays": 30,
+  "lvTechJobs": 8,
+  "lvTechStars": 4,
+  "lvTechReviews": 8,
+  "lvTechTrust": 60,
+  "lvTechDays": 90,
+  "lvSeniorJobs": 10,
+  "lvSeniorPass": 80,
+  "lvSeniorStars": 4.2,
+  "lvSeniorReviews": 15,
+  "lvSeniorTrust": 75,
+  "lvSeniorDays": 180,
+  "lvQcJobs": 20,
+  "lvQcPass": 90,
+  "lvQcStars": 4.5,
+  "lvQcReviews": 30,
+  "lvQcTrust": 85,
+  "strikeDays": 90,
+  "rateTrainee": 60,
+  "rateHelper": 80,
+  "rateTech": 100,
+  "rateSenior": 120,
+  "payCrewJob": 3000,
+  "payQcInspection": 1500,
+  "qcRecheckPct": 10,
+  "spotTrainee": 50,
+  "spotTech": 20,
+  "spotSenior": 5,
+  "postWarnDays": 2,
+  "maxOpenApps": 5,
+  "maxActiveJobs": 3,
+  "pinDigits": 4,
+  "partnerBigJobs": 2,
+  "partnerBigStars": 3.8,
+  "partnerMaxStrikes": 5,
+  "licWarnDays": 60,
+  "dailySafety": 1,
+  "sosNumber": "",
+  "licenceGate": 1,
+  "permitGate": 1,
+  "tolWidth": 1500,
+  "tolDepth": 1500,
+  "tolPit": 1200,
+  "tolHead": 3800,
+  "peerCheck": 1,
+  "officeNumber": "",
+  "cityCode": "PUN",
+  "serveAreas": "Pune",
+  "salesWonPct": 0,
+  "pilotCap": 5,
+  "commRate": 2,
+  "payPlan": 2,
+  "p1RailsPct": 30,
+  "p1DoorsPct": 40,
+  "p1DrivePct": 20,
+  "accessAlert": 15,
+  "poDays": 7,
+  "geoRadius": 150,
+  "checkinGate": 1,
+  "payUpi": "",
+  "payName": "",
+  "payBank": "",
+  "payAcc": "",
+  "payIfsc": "",
+  "safetyRetest": 12,
+  "slaUnsafe": 4,
+  "slaBreakdown": 24,
+  "slaRepeat": 24,
+  "slaRoutine": 72,
+  "remindDays": 1,
+  "escalateDays": 3,
+  "escOwnerDays": 7,
+  "onbDays": 7,
+  "sundayWork": 0,
+  "holidays": "",
+  "dualControl": 0,
+  "requireTraining": 0,
+  "paySopStep": 1000,
+  "payQcBonus": 2000,
+  "payAmcVisit": 500,
+  "amcPrice": 15000
+ },
+ "groups": {
+  "pricing": [
+   "costAuto",
+   "costManual",
+   "costPerStop",
+   "costSS",
+   "costDismantle",
+   "costSpecial",
+   "costArd",
+   "costCurtain",
+   "costPremium",
+   "cap4",
+   "cap6",
+   "cap8",
+   "cap10",
+   "cap13",
+   "install",
+   "transport",
+   "gst"
+  ],
+  "margins": [
+   "targetMargin",
+   "salesDiscountLimit",
+   "adminDiscountLimit",
+   "minMargin",
+   "negStep"
+  ],
+  "token": [
+   "token"
+  ],
+  "milestones": [
+   "payPlan",
+   "p1RailsPct",
+   "p1DoorsPct",
+   "p1DrivePct",
+   "tokenMode",
+   "arrivalPct",
+   "cabinPct",
+   "retentionPct",
+   "retentionDays"
+  ],
+  "paydetails": [
+   "payUpi",
+   "payName",
+   "payBank",
+   "payAcc",
+   "payIfsc"
+  ],
+  "fieldpay": [
+   "payLeadValid",
+   "leadWonPct",
+   "salesWonPct"
+  ],
+  "install": [
+   "installDays",
+   "installDaysComplex",
+   "poDays",
+   "poAnswerHours",
+   "geoRadius",
+   "checkinGate"
+  ],
+  "service": [
+   "acceptMins",
+   "amcYearly",
+   "powerYearly",
+   "warrantyMonths",
+   "amcVisits",
+   "validityDays",
+   "civilMin",
+   "civilMax",
+   "cancelBefore",
+   "cancelAfter"
+  ],
+  "dup": [
+   "dupCommission",
+   "refReward",
+   "firstContactHours",
+   "idleDays"
+  ],
+  "contract": [
+   "agreeVersion",
+   "reservePct",
+   "reserveRelease"
+  ],
+  "control": [
+   "remindDays",
+   "escalateDays",
+   "escOwnerDays",
+   "onbDays",
+   "sundayWork",
+   "holidays",
+   "dualControl",
+   "requireTraining"
+  ],
+  "ladder": [
+   "lvHelperJobs",
+   "lvHelperStars",
+   "lvHelperReviews",
+   "lvHelperDays",
+   "lvTechJobs",
+   "lvTechStars",
+   "lvTechReviews",
+   "lvTechTrust",
+   "lvTechDays",
+   "lvSeniorJobs",
+   "lvSeniorPass",
+   "lvSeniorStars",
+   "lvSeniorReviews",
+   "lvSeniorTrust",
+   "lvSeniorDays",
+   "lvQcJobs",
+   "lvQcPass",
+   "lvQcStars",
+   "lvQcReviews",
+   "lvQcTrust",
+   "strikeDays"
+  ],
+  "market": [
+   "postWarnDays",
+   "maxOpenApps",
+   "maxActiveJobs",
+   "pilotCap",
+   "commRate"
+  ],
+  "partner": [
+   "partnerBigJobs",
+   "partnerBigStars",
+   "partnerMaxStrikes",
+   "licWarnDays"
+  ],
+  "security": [
+   "pinDigits"
+  ],
+  "safety": [
+   "dailySafety",
+   "sosNumber",
+   "safetyRetest"
+  ],
+  "statutory": [
+   "licenceGate",
+   "permitGate"
+  ],
+  "quality": [
+   "tolWidth",
+   "tolDepth",
+   "tolPit",
+   "tolHead",
+   "peerCheck",
+   "lowPit",
+   "lowHead",
+   "dbgTol",
+   "balLo",
+   "balHi",
+   "earthMax"
+  ],
+  "privacy": [
+   "officeNumber",
+   "cityCode",
+   "serveAreas",
+   "accessAlert"
+  ],
+  "ladderpay": [
+   "rateTrainee",
+   "rateHelper",
+   "rateTech",
+   "rateSenior",
+   "payCrewJob",
+   "payQcInspection",
+   "spotTrainee",
+   "spotTech",
+   "spotSenior"
+  ],
+  "techpay": [
+   "paySopStep",
+   "payQcBonus",
+   "payAmcVisit"
+  ],
+  "amc": [
+   "amcPrice",
+   "amcCompPrice"
+  ],
+  "tickets": [
+   "slaUnsafe",
+   "slaBreakdown",
+   "slaRepeat",
+   "slaRoutine"
+  ]
+ },
+ "stages": {
+  "new": [
+   0,
+   "🆕"
+  ],
+  "returned": [
+   0,
+   "↩️"
+  ],
+  "accepted": [
+   1,
+   "✅"
+  ],
+  "contacted": [
+   1,
+   "📞"
+  ],
+  "requirements": [
+   1,
+   "📝"
+  ],
+  "quote_approval": [
+   1,
+   "⏳"
+  ],
+  "quote_ready": [
+   1,
+   "📄"
+  ],
+  "quoted": [
+   1,
+   "💬"
+  ],
+  "won": [
+   2,
+   "🎉"
+  ],
+  "agreement": [
+   2,
+   "✍️"
+  ],
+  "signed": [
+   2,
+   "💰"
+  ],
+  "site_prep": [
+   3,
+   "🧱"
+  ],
+  "qc_site": [
+   3,
+   "🔍"
+  ],
+  "site_fix": [
+   3,
+   "🛠️"
+  ],
+  "site_ok": [
+   3,
+   "✅"
+  ],
+  "material_order": [
+   4,
+   "📦"
+  ],
+  "dispatched": [
+   4,
+   "🚚"
+  ],
+  "arrived": [
+   4,
+   "📍"
+  ],
+  "installing": [
+   5,
+   "🔧"
+  ],
+  "qc_final": [
+   5,
+   "🔍"
+  ],
+  "install_fix": [
+   5,
+   "🛠️"
+  ],
+  "final_pay": [
+   6,
+   "💰"
+  ],
+  "handover": [
+   6,
+   "✍️"
+  ],
+  "amc": [
+   6,
+   "🔑"
+  ],
+  "lost": [
+   -1,
+   "❌"
+  ]
+ },
+ "phases": [
+  [
+   "lead",
+   "📍"
+  ],
+  [
+   "sales",
+   "🤝"
+  ],
+  [
+   "agree",
+   "✍️"
+  ],
+  [
+   "site",
+   "🏗️"
+  ],
+  [
+   "material",
+   "🚚"
+  ],
+  [
+   "install",
+   "🔧"
+  ],
+  [
+   "handover",
+   "🔑"
+  ]
+ ],
+ "highRisk": [
+  "QUOTE_DECISION",
+  "PAYMENT_STATUS",
+  "INCIDENT_RESOLVED",
+  "DEAL_REOPENED",
+  "USER_UPDATED",
+  "PAY_APPROVED",
+  "CAPACITY_CHECKED"
+ ],
+ "live": [
+  "material_order",
+  "dispatched",
+  "arrived",
+  "installing",
+  "qc_final",
+  "install_fix",
+  "final_pay",
+  "handover"
+ ],
+ "roles": [
+  "owner",
+  "admin",
+  "field",
+  "sales",
+  "finance",
+  "qc",
+  "supplier",
+  "partner",
+  "tech",
+  "customer",
+  "system"
+ ],
+ "outsiders": [
+  "partner",
+  "tech",
+  "supplier"
+ ],
+ "kv": "idb",
+ "evCount": 370,
+ "users": [
+  [
+   "POWNER",
+   "HEAD QUARTER",
+   "owner"
+  ],
+  [
+   "PADMIN",
+   "Sunita Patil",
+   "admin"
+  ],
+  [
+   "PFIELD",
+   "Ramesh Jadhav",
+   "field"
+  ],
+  [
+   "PFIELD2",
+   "Sachin More",
+   "field"
+  ],
+  [
+   "PSALES",
+   "Priya Kulkarni",
+   "sales"
+  ],
+  [
+   "PFIN",
+   "Meena Joshi",
+   "finance"
+  ],
+  [
+   "PQC",
+   "Vijay Shinde",
+   "qc"
+  ],
+  [
+   "PSUP",
+   "Kaveri Lift Supply",
+   "supplier"
+  ],
+  [
+   "PPART1",
+   "Shree Lift Works",
+   "partner"
+  ],
+  [
+   "PPART2",
+   "Om Elevator Services",
+   "partner"
+  ],
+  [
+   "PTECH",
+   "Raju Pawar",
+   "tech"
+  ],
+  [
+   "PSENIOR",
+   "Mahesh Shinde",
+   "tech"
+  ],
+  [
+   "PHELP",
+   "Sunil Gaikwad",
+   "tech"
+  ],
+  [
+   "PTRAIN",
+   "Ganesh Kale",
+   "tech"
+  ],
+  [
+   "PCUST",
+   "Mrs. Kale",
+   "customer"
+  ]
+ ],
+ "projects": [
+  [
+   "AIEC-P001",
+   "amc",
+   "aiec",
+   "normal"
+  ],
+  [
+   "AIEC-P002",
+   "handover",
+   "aiec",
+   "normal"
+  ],
+  [
+   "AIEC-P003",
+   "installing",
+   "aiec",
+   "big"
+  ],
+  [
+   "AIEC-P004",
+   "arrived",
+   "aiec",
+   "normal"
+  ],
+  [
+   "AIEC-P005",
+   "material_order",
+   "aiec",
+   "normal"
+  ],
+  [
+   "AIEC-P006",
+   "qc_site",
+   "aiec",
+   "normal"
+  ],
+  [
+   "AIEC-P007",
+   "signed",
+   "aiec",
+   "small"
+  ],
+  [
+   "AIEC-P008",
+   "quote_approval",
+   "aiec",
+   "normal"
+  ],
+  [
+   "AIEC-P009",
+   "lost",
+   "aiec",
+   "normal"
+  ],
+  [
+   "AIEC-P010",
+   "new",
+   "aiec",
+   "normal"
+  ],
+  [
+   "AIEC-P011",
+   "returned",
+   "aiec",
+   "normal"
+  ],
+  [
+   "AIEC-P012",
+   "signed",
+   "aiec",
+   "normal"
+  ],
+  [
+   "AIEC-P013",
+   "requirements",
+   "market",
+   "normal"
+  ]
+ ],
+ "words": 4913
+}
