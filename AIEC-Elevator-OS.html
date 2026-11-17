@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-24SDTGSTvVenir2ypxdVnpWeFPnKaRgZmaNX18kgyq8=' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' data: blob: https://tile.openstreetmap.org https://unpkg.com; media-src 'self' data: blob:; connect-src 'self' https: http://127.0.0.1:* http://localhost:* data: blob:; font-src 'self' data:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="theme-color" content="#102341">
 <meta name="description" content="AIEC Elevator OS - lead to handover work manager for All India Elevators Company">
 <title>AIEC Elevator OS</title>
@@ -377,10 +377,12 @@ body.front main.center>h1{font-weight:800;letter-spacing:.01em}
 .fback{background:var(--navy-g)}
 /* sync status chip (top of home): words, not colour alone */
 .sync-st{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:.86rem;font-weight:700;padding:8px 12px;border-radius:14px;margin:0 0 12px;border:1px solid var(--line2);background:var(--card);box-shadow:var(--shadow)}
+.sync-st{flex-wrap:nowrap}.sync-st .grow{flex:1;min-width:0;overflow-wrap:anywhere}
 .sync-st .dot{width:10px;height:10px;border-radius:50%;flex:none;background:var(--muted)}
 .hero .sync-st{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:#eef2f8;box-shadow:none;margin:12px 0 0;font-weight:600}
 .hero .sync-st .pidlink{color:#ffd88a}
 .sync-st.s-ok .dot{background:var(--ok)}.sync-st.s-wait .dot{background:var(--warn)}.sync-st.s-bad .dot{background:var(--bad)}.sync-st.s-local .dot{background:var(--info)}
+.kpid{border-bottom:1px solid var(--line2)}.kpid:last-child{border-bottom:0}.kpid>summary{list-style:none;display:flex;gap:10px;align-items:center;min-height:48px;cursor:pointer}.kpid>summary::-webkit-details-marker{display:none}.kpid>summary .grow{flex:1;min-width:0;overflow-wrap:anywhere}.kpid>summary b{font-variant-numeric:tabular-nums;font-size:1.05rem}.kpid>summary .chev{color:var(--gold);font-size:1.1rem}.kpid[open]>summary .chev{color:var(--graph)}.kpid p{margin:0 0 10px}
 .integ td,.integ th{padding:8px 6px;border-bottom:1px solid var(--line2);text-align:left;vertical-align:top;font-size:.9rem}.integ{width:100%;border-collapse:collapse}
 </style>
 </head>
@@ -2688,6 +2690,29 @@ const L = {
   cx_ai_d: ['None. Automatic checks are simple written rules and only warn; people decide.', 'कोई नहीं। स्वचालित जाँच सरल लिखित नियम हैं और सिर्फ़ चेतावनी देते हैं; फ़ैसला लोग करते हैं।', 'काहीही नाही. स्वयंचलित तपासण्या साधे लिखित नियम आहेत आणि फक्त इशारा देतात; निर्णय माणसे घेतात.'],
   cx_gov: ['Government registries (licence, GST)', 'सरकारी रजिस्टर (लाइसेंस, GST)', 'सरकारी नोंदवही (परवाना, GST)'],
   cx_gov_d: ['The office checks each document by hand and records who checked it.', 'ऑफ़िस हर दस्तावेज़ हाथ से जाँचता है और जाँचने वाले का नाम दर्ज करता है।', 'ऑफिस प्रत्येक कागदपत्र हाताने तपासते आणि कोणी तपासले ते नोंदवते.'],
+  kf_leads: ['Jobs whose first record (new lead) falls in the period.', 'वे काम जिनका पहला रिकॉर्ड (नई लीड) इस अवधि में है।', 'ज्या कामांची पहिली नोंद (नवीन लीड) या कालावधीत आहे.'],
+  kf_qual: ['New leads in the period that Sales accepted ÷ new leads in the period.', 'इस अवधि की नई लीड जिन्हें सेल्स ने स्वीकार किया ÷ इस अवधि की नई लीड।', 'या कालावधीतील विक्रीने स्वीकारलेल्या नवीन लीड ÷ या कालावधीतील नवीन लीड.'],
+  kf_survey_conv: ['Deals won in the period whose job had a survey ÷ jobs surveyed in the period.', 'इस अवधि में जीते सौदे जिनके काम का सर्वे हुआ ÷ इस अवधि में सर्वे हुए काम।', 'या कालावधीत जिंकलेले सौदे ज्यांच्या कामाचा सर्व्हे झाला ÷ या कालावधीत सर्व्हे झालेली कामे.'],
+  kf_quote_cov: ['Jobs with a quotation sent in the period ÷ qualified leads in the period.', 'इस अवधि में भेजे कोटेशन वाले काम ÷ इस अवधि की योग्य लीड।', 'या कालावधीत कोटेशन पाठवलेली कामे ÷ या कालावधीतील पात्र लीड.'],
+  kf_lead_order: ['Deals won in the period ÷ new leads in the period.', 'इस अवधि में जीते सौदे ÷ इस अवधि की नई लीड।', 'या कालावधीत जिंकलेले सौदे ÷ या कालावधीतील नवीन लीड.'],
+  kf_aov: ['Average total (with tax) of the accepted quotation of AIEC-contract deals won in the period.', 'इस अवधि में जीते AIEC-कॉन्ट्रैक्ट सौदों के स्वीकृत कोटेशन का औसत कुल (टैक्स सहित)।', 'या कालावधीत जिंकलेल्या AIEC-करार सौद्यांच्या स्वीकारलेल्या कोटेशनची सरासरी एकूण रक्कम (करासह).'],
+  kf_pay_conf: ['Payments marked confirmed by Finance (with a bank reference) in the period. Recorded but unconfirmed payments are not counted.', 'इस अवधि में फ़ाइनेंस द्वारा (बैंक रेफ़रेंस के साथ) पक्के किए भुगतान। दर्ज पर पक्के नहीं हुए भुगतान नहीं गिने जाते।', 'या कालावधीत फायनान्सने (बँक संदर्भासह) पक्की केलेली पेमेंट्स. नोंदवलेली पण पक्की न झालेली पेमेंट्स मोजली जात नाहीत.'],
+  kf_cov2: ['Marketplace jobs with quotes asked in the period that received 2 or more company quotes ÷ those jobs.', 'इस अवधि में कोटेशन माँगे गए मार्केटप्लेस काम जिन्हें 2+ कंपनी कोटेशन मिले ÷ वे काम।', 'या कालावधीत कोटेशन मागवलेली मार्केटप्लेस कामे ज्यांना 2+ कंपनी कोटेशन मिळाले ÷ ती कामे.'],
+  kf_comm: ['Sum of commission lines created in the period. A line is created only once per partner payment that was confirmed.', 'इस अवधि में बनी कमीशन लाइनों का जोड़। हर पक्के पार्टनर भुगतान पर सिर्फ़ एक लाइन बनती है।', 'या कालावधीत तयार झालेल्या कमिशन ओळींची बेरीज. प्रत्येक पक्क्या पार्टनर पेमेंटवर फक्त एक ओळ तयार होते.'],
+  kf_comm_paid: ['Sum of those commission lines marked paid by the partner and checked.', 'उन कमीशन लाइनों का जोड़ जो पार्टनर ने चुकाईं और जाँची गईं।', 'पार्टनरने भरलेल्या आणि तपासलेल्या त्या कमिशन ओळींची बेरीज.'],
+  kf_comm_days: ['Average days from a commission line being created to it being marked paid.', 'कमीशन लाइन बनने से चुकाए जाने तक औसत दिन।', 'कमिशन ओळ तयार झाल्यापासून भरेपर्यंतचे सरासरी दिवस.'],
+  kf_accept: ['Jobs posted to the job board in the period that got at least one application ÷ jobs posted.', 'इस अवधि में जॉब बोर्ड पर पोस्ट हुए काम जिन पर कम से कम एक आवेदन आया ÷ पोस्ट हुए काम।', 'या कालावधीत जॉब बोर्डवर पोस्ट केलेली कामे ज्यांना किमान एक अर्ज आला ÷ पोस्ट केलेली कामे.'],
+  kf_ontime: ['Open jobs not marked delayed (moved on within 7 days) ÷ open jobs, right now.', 'अभी खुले काम जो देरी में नहीं (7 दिन में आगे बढ़े) ÷ खुले काम।', 'आत्ता उघडी कामे जी उशिरा नाहीत (7 दिवसांत पुढे गेली) ÷ उघडी कामे.'],
+  kf_rework: ['Site and final inspections in the period that did not pass ÷ all those inspections.', 'इस अवधि की साइट और अंतिम जाँचें जो पास नहीं हुईं ÷ सभी जाँचें।', 'या कालावधीतील साइट आणि अंतिम तपासण्या ज्या पास झाल्या नाहीत ÷ सर्व तपासण्या.'],
+  kf_complaints: ['Tickets opened in the period (breakdowns, complaints, requests).', 'इस अवधि में खुले टिकट (खराबी, शिकायत, अनुरोध)।', 'या कालावधीत उघडलेली तिकिटे (बिघाड, तक्रार, विनंती).'],
+  kf_safety: ['Incidents raised plus SOS alarms in the period.', 'इस अवधि में दर्ज घटनाएँ और SOS अलार्म।', 'या कालावधीत नोंदवलेल्या घटना आणि SOS अलार्म.'],
+  kf_load: ['Jobs released to material and not yet handed over, right now, against the pilot limit.', 'अभी सामान के लिए जारी और अभी न सौंपे गए काम, पायलट सीमा के सामने।', 'आत्ता साहित्यासाठी सोडलेली आणि अजून न सोपवलेली कामे, पायलट मर्यादेसमोर.'],
+  kf_fin_int: ['Customers who recorded finance interest with consent in the period.', 'इस अवधि में सहमति के साथ फ़ाइनेंस रुचि दर्ज करने वाले ग्राहक।', 'या कालावधीत संमतीसह फायनान्स रस नोंदवलेले ग्राहक.'],
+  kf_fin_ref: ['Of those, referrals recorded by the office with an outcome.', 'उनमें से, ऑफ़िस द्वारा नतीजे के साथ दर्ज रेफ़रल।', 'त्यापैकी, ऑफिसने निकालासह नोंदवलेले रेफरल.'],
+  kf_fin_conv: ['Referrals whose recorded outcome is \'loan paid\' ÷ referrals. Lenders are not connected: outcomes are typed by the office.', 'रेफ़रल जिनका दर्ज नतीजा \'लोन मिला\' है ÷ रेफ़रल। ऋणदाता जुड़े नहीं हैं: नतीजे ऑफ़िस लिखता है।', 'रेफरल ज्यांचा नोंदवलेला निकाल \'कर्ज मिळाले\' आहे ÷ रेफरल. कर्जदाते जोडलेले नाहीत: निकाल ऑफिस लिहिते.'],
+  kpi_asof: ['As of {d} · counted from the records on this phone · {s}', '{d} तक · इस फ़ोन के रिकॉर्ड से गिना · {s}', '{d} पर्यंत · या फोनवरील नोंदींवरून मोजले · {s}'],
+  kpi_how: ['Tap a number to see how it is worked out.', 'कोई संख्या दबाकर देखें कि वह कैसे निकाली गई।', 'एखादी संख्या दाबून ती कशी काढली ते पाहा.'],
+  kpi_none: ['— means there are no records for it yet (not zero).', '— का मतलब अभी कोई रिकॉर्ड नहीं (शून्य नहीं)।', '— म्हणजे अजून नोंदी नाहीत (शून्य नाही).'],
   tb_pct: ['{p}% done', '{p}% पूरा', '{p}% पूर्ण'],
   tb_on_pace: ['on time', 'समय पर', 'वेळेवर'],
   tb_behind: ['behind time', 'समय से पीछे', 'वेळेपेक्षा मागे'],
@@ -3840,7 +3865,7 @@ const L = {
   ev_PARTNER_DD_SET: ['Company check recorded', 'कंपनी जाँच दर्ज', 'कंपनी तपासणी नोंदवली'],
   cfg_pilotCap: ['Pilot limit: most jobs live at once (released to material, not handed over). 0 = no limit', 'पायलट सीमा: एक साथ अधिकतम चालू काम (मटेरियल जारी, हैंडओवर बाकी)। 0 = कोई सीमा नहीं', 'पायलट मर्यादा: एकाच वेळी जास्तीत जास्त चालू कामे (मटेरियल जारी, हस्तांतरण बाकी). 0 = मर्यादा नाही'],
   pil_live: ['{n} of {cap} live jobs', '{cap} में से {n} चालू काम', '{cap} पैकी {n} चालू कामे'],
-  pil_room: ['Room for more. The blueprint pilot keeps Pune + PCMC to a few jobs so each one is done well.', 'और जगह है। ब्लूप्रिंट पायलट में पुणे + PCMC में कुछ ही काम, ताकि हर काम अच्छा हो।', 'अजून जागा आहे. ब्लूप्रिंट पायलटमध्ये पुणे + PCMC मध्ये थोडीच कामे, म्हणजे प्रत्येक काम नीट होईल.'],
+  pil_room: ['Room for more. The pilot keeps Pune to a few jobs so each one is done well.', 'और जगह है। पायलट में पुणे में कुछ ही काम, ताकि हर काम अच्छा हो।', 'अजून जागा आहे. पायलटमध्ये पुण्यात थोडीच कामे, म्हणजे प्रत्येक काम नीट होईल.'],
   pil_full: ['Limit reached: the next job is released to material only after a capacity check is recorded.', 'सीमा पूरी: अगला काम क्षमता जाँच दर्ज होने के बाद ही मटेरियल के लिए जारी होगा।', 'मर्यादा पूर्ण: पुढचे काम क्षमता तपासणी नोंदवल्यावरच मटेरियलसाठी जारी होईल.'],
   pil_ask: ['Who will do this job, and what frees up their time? (team, supplier, QC)', 'यह काम कौन करेगा, और उनका समय कैसे खाली होगा? (टीम, सप्लायर, QC)', 'हे काम कोण करेल, आणि त्यांचा वेळ कसा मोकळा होईल? (टीम, सप्लायर, QC)'],
   s_capcheck: ['Write why the team can take one more job now.', 'लिखें कि टीम अभी एक और काम क्यों ले सकती है।', 'टीम आता आणखी एक काम का घेऊ शकते ते लिहा.'],
@@ -9510,7 +9535,7 @@ async function getMedia(key) {
    older phones answer "update the app" for them instead of guessing */
 const EV_V = 2, ACT_V = 2;
 /* shown on Me; the same number as the cache name in sw.js (checked by the tests), so anyone can tell which version a phone runs */
-const APP_BUILD = 106;
+const APP_BUILD = 107;
 const evV = ev => ev.v || 1;
 /* money going out, forgiving money, who-can-do-what and taking data off the phone need the PIN again (2-minute grace) */
 const RECHECK = (type, d) => ['REFUND_DECIDED', 'REFUND_PAID', 'CONFIG_SET', 'DATA_EXPORTED'].includes(type) || (type === 'CHARGE_SETTLED' && d.how === 'waived') || (type === 'USER_UPDATED' && d.role != null);
@@ -13247,7 +13272,8 @@ SCREENS.kpi = ({ days } = {}) => {
   const u = App.me; if (!['owner', 'admin'].includes(u.role)) return SCREENS.home();
   const d = +days || 7; App.pageSay = t('kpi_title');
   return topBar(t('kpi_title'), { back: true }) + `<main class="wrap"><div class="row wrapw" style="margin-bottom:8px">${[7, 30].map(n => `<button class="btn btn-sm ${n === d ? 'btn-p' : ''}" data-a="kpiDays" data-v="${n}">${t(n === 7 ? 'kpi_week' : 'kpi_month')}</button>`).join('')}</div>
-    ${pilotLine()}${kpiData(d).map(([g, rows]) => `<div class="card"><h3>${t('kpi_g_' + g)}</h3>${kv(rows.map(([k, v]) => [k, esc(String(v))]))}</div>`).join('')}
+    <div class="sync-st ${syncStatus().cls}" role="status"><span class="dot" aria-hidden="true"></span><span class="grow">${t('kpi_asof', { d: fmtD(nowISO(), true), s: t(syncStatus().k, syncStatus().v) })}</span></div><p class="small muted" style="margin:0 2px 10px">ℹ️ ${t('kpi_how')} ${t('kpi_none')}</p>
+    ${pilotLine()}${kpiData(d).map(([g, rows]) => `<div class="card"><h3>${t('kpi_g_' + g)}</h3>${rows.map(([k, v]) => `<details class="kpid"><summary><span class="grow">${t(k)}</span><b>${esc(String(v))}</b><span class="chev" aria-hidden="true">ⓘ</span></summary><p class="small muted">${t('kf_' + k.slice(4))}</p></details>`).join('')}</div>`).join('')}
     <p class="small muted">${t('kpi_note')}</p></main>` + nav('home');
 };
 /* ---------- blueprint B4: finance interest (consent only; no rates, EMI, approval or lending in the app) ---------- */
@@ -13933,8 +13959,8 @@ let leafletP = null;
 function loadLeaflet() {
   if (window.leaflet) return Promise.resolve(window.leaflet);
   if (!leafletP) leafletP = new Promise((res, rej) => {
-    const css = document.createElement('link'); css.rel = 'stylesheet'; css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'; document.head.appendChild(css);
-    const js = document.createElement('script'); js.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+    const css = document.createElement('link'); css.rel = 'stylesheet'; css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'; css.integrity = 'sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY='; css.crossOrigin = 'anonymous'; document.head.appendChild(css);
+    const js = document.createElement('script'); js.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'; js.integrity = 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo='; js.crossOrigin = 'anonymous';
     js.onload = () => window.leaflet ? res(window.leaflet) : rej(new Error('leaflet'));
     js.onerror = () => { leafletP = null; rej(new Error('leaflet')); };
     document.head.appendChild(js);

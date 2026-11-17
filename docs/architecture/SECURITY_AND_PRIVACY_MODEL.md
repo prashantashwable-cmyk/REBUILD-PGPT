@@ -9,7 +9,7 @@
 | Data minimisation | person files carry only their projects; other PINs stripped; supplier/partner/tech masked fields; marketplace cards area-only | — |
 | Outside companies | access log, copy/print block, blur in app switcher, name watermark | Screenshots cannot be blocked in a browser |
 | Transport/server | AES-GCM per box, server stores ciphertext; tokens derived per box | Server must be operated securely |
-| Injection | all values escaped (`esc`, `hx`); restrictive `object-src`, `base-uri`, `form-action` | No `script-src` CSP yet (R-7) |
+| Injection | all values escaped (`esc`, `hx`); CSP: `default-src 'self'`, `script-src` = SHA-256 of the app script + unpkg (Leaflet with SRI), `object-src`/`frame-src`/`base-uri`/`form-action` none (`tools/csp.js`) | `style-src 'unsafe-inline'` (inline styles); `connect-src https:` for the office's server |
 | Consent | privacy notice (DPDP Act 2023 wording, lawyer to confirm); finance consent separate with version; contact sharing with partner only after consent | Retention/deletion policy to be set by HQ |
 | Honesty | Connections screen shows every outside service as Not connected / by hand; practice banner on every screen | — |
 

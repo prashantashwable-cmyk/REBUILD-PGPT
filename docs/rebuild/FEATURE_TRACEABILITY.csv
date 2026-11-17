@@ -27,20 +27,20 @@ MP-7.6,Site readiness; procurement; serials; custody,site_prep; material; serial
 MP-7.7,Installation evidence; safety gates; blockers; peer check,steps; safety; check-in; blockers,tech/partner,install,Working,safety.test.js; checkin.test.js; operations.test.js,KEEP
 MP-7.8,QC; inspection; licence; handover gates; AMC after eligibility,QC_FINAL_RESULT; statutory; HANDOVER_*,qc/admin,handover,Working,finish.test.js; statutory.test.js; qcrecheck.test.js,KEEP
 MP-7.9,AMC; tickets by severity; trapped-person to humans; QR,tickets; SLA config; liftqr,customer/admin/tech,service,Working,tickets.test.js; service.test.js; custtrust.test.js,KEEP
-MP-8.1,LPC onboarding; documents; states; tiers not licence,PARTNER_PROFILE; PARTNER_STATUS_SET; partnerTier(),admin/partner,partner,Partial (states Paused/Rejected/Expired/Offboarded not separate),bp2partners.test.js,IMPROVE later
+MP-8.1,LPC onboarding; documents; states; tiers not licence,PARTNER_PROFILE; PARTNER_STATUS_SET; partnerTier(),admin/partner,partner,Working (Paused/Rejected/Offboarded added; Expired worked out; build 107),bp2partners.test.js; rebuild.test.js,IMPROVED
 MP-8.2,Technician membership under LPC,company membership; member approval,partner/admin/tech,partner,Working,partner.test.js; workers.test.js,KEEP
 MP-8.3,Career ladder; explainable trust; appeals; no fines,ladder; strikes; appeals,admin/tech,workforce,Working,ladder.test.js; fairness.test.js,KEEP
 MP-8.4,Contractor earnings; verified before paid; approver != payer,settle; PAY_APPROVED; payouts,finance/admin/partner,pay,Working,workers.test.js; smallteam.test.js,KEEP
 MP-9,Marketplace RFQ; structured comparison; selection recorded; commission ledger,bp5 flow,admin/customer/partner,marketplace,Working (comparison by record; price lines limited),bp5market.test.js,KEEP
 MP-10,Deterministic automation; SLA; escalation ladder; no duplicates,needs(); escalation levels; notifications once per level,all,all,Working,escalation.test.js; notifications.test.js,KEEP
-MP-11.1,Owner command center KPIs with freshness,hq dashboard; KPI board,owner,dashboard,Partial (formula/freshness per KPI not shown),bp3kpi.test.js; reports.test.js,IMPROVE (phase 5)
+MP-11.1,Owner command center KPIs with freshness,hq dashboard; KPI board with kf_* formulas and as-of line,owner,dashboard,Working (build 107),bp3kpi.test.js; rebuild.test.js,IMPROVED
 MP-11.2,Admin queue; filters; day close,office queue; day close,admin,office,Working,office.test.js,KEEP
 MP-12,Event model; idempotency; corrections by new records,perform(); validate(); apply(); event ids,all,data,Working,golden.test.js; snapshot.test.js,KEEP
 MP-13.1,Local first; drafts; media separate; quota warning,KV; putMedia; storage note,all,offline,Working,sync.test.js; extras.test.js,KEEP
 MP-13.2,Sync states visible; stale state; rejected visible,syncStatus(); syncStrip(),staff,offline,Working (added in rebuild),rebuild.test.js; server-sync.test.js,IMPROVED
 MP-13.3,In-app camera only; GPS accuracy; no hidden tracking,camera overlay; evidence metadata,field/tech,evidence,Working,fieldev.test.js; lead-to-handover.e2e.test.js,KEEP
-MP-14,Security: PIN hashing; signatures; injection escape; consent,Sign; pinHash; esc/hx; privacy notice,all,security,Partial (no server enforcement; no script-src CSP),security.test.js; security2.test.js; privacy.test.js,IMPROVE (phase 6)
+MP-14,Security: PIN hashing; signatures; injection escape; consent,Sign; pinHash; esc/hx; privacy notice,all,security,Partial (no server enforcement; hash CSP + SRI added in build 107),security.test.js; security2.test.js; privacy.test.js; access.test.js; static.test.js,IMPROVED (server later)
 MP-15,AI advisory only; never decides,no AI; Connections 'AI assistant Not connected',—,—,Working (none present),rebuild.test.js,KEEP
-MP-16,KPI dictionary,KPI board list; docs,owner/admin,reports,Partial,bp3kpi.test.js,IMPROVE (phase 5)
+MP-16,KPI dictionary,kf_* formula per KPI on the board,owner/admin,reports,Working (build 107),rebuild.test.js,IMPROVED
 MP-17.1-29,Demo payments/WhatsApp never reach providers,practice mode guards,all,practice,Working,finish.test.js ('practice mode records nothing'),KEEP
 MP-19.5,Integration connection status list,SCREENS.connections,staff,me,Working (added in rebuild),rebuild.test.js,NEW

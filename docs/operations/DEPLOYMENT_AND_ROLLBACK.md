@@ -7,7 +7,7 @@ Audience: whoever publishes the app (developer or technically able Admin). Head 
 
 | File | Purpose |
 |---|---|
-| `AIEC-Elevator-OS.html` | The whole app. Contains `APP_BUILD` (currently 106). |
+| `AIEC-Elevator-OS.html` | The whole app. Contains `APP_BUILD` (currently 107). |
 | `sw.js` | Offline support. Contains the cache name `aiec-os-vNNN` (currently `aiec-os-v106`). |
 | `manifest.webmanifest`, `icon.svg`, `icon-192.png`, `icon-512.png` | "Add to Home screen". |
 | `index.html` | Redirects to the app. |
@@ -23,6 +23,7 @@ Audience: whoever publishes the app (developer or technically able Admin). Head 
 2. Set `APP_BUILD = N` in `AIEC-Elevator-OS.html`.
 3. Set `const CACHE = 'aiec-os-vN'` in `sw.js` to the **same N**.
 4. A static test (`tests/static.test.js`, run by `npm run check`) fails if the two differ. Do not work around it.
+5. **After any edit to the script (including the build number), run `npm run csp`.** The security policy allows only the script whose SHA-256 it names; a stale hash stops the app from starting. `npm run check` fails with "the security policy matches the app script" until you do. A rollback to build 105 needs no hash (105 had no `script-src`); a rollback to 106+ must keep its own matching meta tag.
 5. If `sw.js` does not change, phones keep the old cache and may not update.
 
 ## 3. Pre-release checks

@@ -14,6 +14,9 @@
 | D-8 | Marketplace commission stays **2 %** (`commRate`) on confirmed collections only, once per confirmed payment (already implemented). | §3.1 | **Owner + CA/legal** before invoicing |
 | D-9 | Connections screen shows every outside service as *Not connected* / *By hand* except the company server and the map. | §1.7, §19.5 | — |
 | D-10 | Sync status strip on staff homes (words + dot, never a green tick for phone-only work). | §6.2, §13.2 | — |
+| D-12 | KPI board: every number opens to show its written formula; the board shows when it was counted and the data source/sync state; "—" means no records (not zero). | §11.1, §16 | — |
+| D-13 | Content-Security-Policy by script hash + SRI on Leaflet (build 107). | §14 | — |
+| D-14 | Partner states added: Paused, Rejected, Offboarded; "Expired papers" is worked out automatically, never set by hand. | §8.1 | — |
 | D-11 | Section headings kept in normal case (not uppercase): `innerText` follows CSS `text-transform`, which would also change what screen readers announce. | Found by `waits.test.js` | — |
 
 ## 2. Confirmed risks
@@ -26,7 +29,7 @@
 | R-4 | Drawn signatures are not certified e-signatures. | Medium | Labelled on Connections screen and documents. |
 | R-5 | Media stored as data URLs in IndexedDB; large companies may hit quota. | Medium | Storage warning, photo archive, persistent-storage request. Future: Blob storage. |
 | R-6 | Client clock is the event time. | Medium | `clock_gap` flag; server receipt time when a server is used. |
-| R-7 | CSP has no `script-src` (single inline script). | Low–Medium | All values escaped (`esc`/`hx`); no `eval` of user data. Future: hash-based CSP in the release step. |
+| R-7 | ~~CSP had no `script-src`.~~ | Resolved (build 107) | Hash-based CSP: `script-src` allows only the app's own script (SHA-256) and the map library from unpkg, which now also carries an integrity hash (SRI). `npm run csp` rewrites the hash; `npm run check` fails if it is stale. `connect-src` still allows any https address (the office's own server). |
 | R-8 | `android/aiec-test.jks` test keystore is in the repository. | Low (test builds only) | Play Store builds use secrets; never ship the test key. |
 | R-9 | Background alerts limited on the web (no always-on push without server/native). | Medium | Documented; Android wrapper/push server optional. |
 | R-10 | Technician access after handover is rule-based, not a dated window. | Low | Deferred. |

@@ -14,6 +14,8 @@ try {
   const scripts = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(m => m[1]), app = scripts.sort((a, b) => b.length - a.length)[0];
   new vm.Script(app, { filename: 'app.js' });
   assert(true, 'the app script parses');
+  { const csp = require('../tools/csp'), cur = (html.match(csp.META) || [''])[0];
+    assert(scripts.length === 1 && cur === csp.expected(html), 'the security policy matches the app script (run npm run csp after editing the script)'); }
   /* a second top-level function or constant with the same name silently replaces the first */
   const fnames = [...html.matchAll(/^(?:async )?function ([A-Za-z0-9_$]+)\(/gm)].map(m => m[1]).concat([...html.matchAll(/^(?:const|let) ([A-Za-z0-9_$]+) =/gm)].map(m => m[1]));
   const fd = fnames.filter((n, i) => fnames.indexOf(n) !== i);

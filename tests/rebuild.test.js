@@ -57,6 +57,15 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert(/Company server \(sync\)\s*Not connected/.test(txt) && /nothing below is ever contacted/.test(txt), 'in practice even the company server is Not connected');
   assert(!/(Payment gateway|NBFC|e-Sign|WhatsApp Business)[^\n]*\n?\s*Connected/.test(txt), 'no outside service says Connected');
 
+  /* KPI dictionary: every number on the board explains its formula and says how fresh it is */
+  await page.evaluate(() => { loginAs(S.users.POWNER); ACT.permsDone(); Notify.hide(); go('kpi', { days: 30 }); }); await page.waitForTimeout(300);
+  const kp = await page.evaluate(() => { const keys = kpiData(30).flatMap(([g, r]) => r.map(x => x[0])); return { keys, missing: keys.filter(k => !L['kf_' + k.slice(4)]), rows: document.querySelectorAll('details.kpid').length, asof: /As of .* counted from the records on this phone/.test(document.querySelector('main').innerText) }; });
+  assert(kp.keys.length >= 18 && !kp.missing.length && kp.rows === kp.keys.length, `every KPI (${kp.keys.length}) has a written formula and opens to show it` + (kp.missing.length ? ': missing ' + kp.missing.join(',') : ''));
+  assert(kp.asof, 'the board says when it was counted and where the numbers come from');
+  await page.click('details.kpid >> nth=6'); await page.waitForTimeout(100);
+  assert(/Recorded but unconfirmed payments are not counted/.test(await page.innerText('main')), 'opening a number shows how it is worked out');
+  await page.evaluate(() => { loginAs(S.users.PADMIN); ACT.permsDone(); Notify.hide(); });
+
   /* three languages, v2 look */
   for (const l of ['hi', 'mr']) {
     await page.evaluate(l => { LANG = l; App.set.lang = l; go('connections'); }, l); await page.waitForTimeout(150);
