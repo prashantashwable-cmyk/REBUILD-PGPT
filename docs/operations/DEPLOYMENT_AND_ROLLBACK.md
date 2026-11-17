@@ -7,7 +7,7 @@ Audience: whoever publishes the app (developer or technically able Admin). Head 
 
 | File | Purpose |
 |---|---|
-| `AIEC-Elevator-OS.html` | The whole app. Contains `APP_BUILD` (currently 107). |
+| `AIEC-Elevator-OS.html` | The whole app. Contains `APP_BUILD` (currently 109). |
 | `sw.js` | Offline support. Contains the cache name `aiec-os-vNNN` (currently `aiec-os-v106`). |
 | `manifest.webmanifest`, `icon.svg`, `icon-192.png`, `icon-512.png` | "Add to Home screen". |
 | `index.html` | Redirects to the app. |

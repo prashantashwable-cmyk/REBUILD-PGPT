@@ -68,6 +68,15 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert((await pact('ACTIVE', 'Back after review')).ok && await ev(`partnerShown('${C}') === 'ACTIVE'`), 'the company can be made Active again with a reason');
   assert(await ev(`(() => { const l = licOf('${C}'), k = l.licExpiry; l.licExpiry = '2020-01-01'; const s = partnerShown('${C}'); l.licExpiry = k; return s === 'EXPIRED'; })()`), 'an Active company whose licence has ended shows "Expired papers"');
 
+  /* controlled hold: the company holding a job is re-checked at each licence-dependent step */
+  const IJ = await ev(`Object.values(S.projects).find(P => P.stage === 'installing' && P.partner === 'PPART1').id`), IT = await ev(`S.projects['${IJ}'].tech`);
+  const step = () => act('SOP_STEP_DONE', IJ, { step: 0 }, IT);
+  assert((await act('PARTNER_DD_SET', null, { uid: 'PPART1', item: 'insurance', ok: true, note: 'Policy NI-1 checked', expiry: '2026-01-01' }, 'PADMIN')).ok && await ev(`papersHold(S.projects['${IJ}'])`), 'an ended insurance puts the company\'s jobs on hold');
+  assert((await step()).err === 'err_partner_papers', 'the technician cannot record an installation step while the job is on hold');
+  assert(await ev(`needs(S.projects['${IJ}']).some(n => n.k === 'partner_papers' && n.roles.includes('admin') && n.urgent)`), 'the office gets an urgent "job on hold" task');
+  assert((await act('PARTNER_DD_SET', null, { uid: 'PPART1', item: 'insurance', ok: true, note: 'Renewed policy NI-2 checked', expiry: '2027-12-31' }, 'PADMIN')).ok && !(await ev(`papersHold(S.projects['${IJ}'])`)) && (await step()).err !== 'err_partner_papers', 'renewed papers checked by the office lift the hold');
+  assert(await ev(`!needs(S.projects['${IJ}']).some(n => n.k === 'partner_papers')`), 'the hold task closes by itself');
+
   /* KPI dictionary: every number on the board explains its formula and says how fresh it is */
   await page.evaluate(() => { loginAs(S.users.POWNER); ACT.permsDone(); Notify.hide(); go('kpi', { days: 30 }); }); await page.waitForTimeout(300);
   const kp = await page.evaluate(() => { const keys = kpiData(30).flatMap(([g, r]) => r.map(x => x[0])); return { keys, missing: keys.filter(k => !L['kf_' + k.slice(4)]), rows: document.querySelectorAll('details.kpid').length, asof: /As of .* counted from the records on this phone/.test(document.querySelector('main').innerText) }; });

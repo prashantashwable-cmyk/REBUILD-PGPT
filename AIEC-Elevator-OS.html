@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-Tw/JImTmxd23L3ZY2P6cA4W7bZMKF7ant7q8SucicHM=' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' data: blob: https://tile.openstreetmap.org https://unpkg.com; media-src 'self' data: blob:; connect-src 'self' https: http://127.0.0.1:* http://localhost:* data: blob:; font-src 'self' data:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-yZ9gkVp22C9sTYmRi4wdEdv7P+L6xZh3oIjtJoK2PM8=' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' data: blob: https://tile.openstreetmap.org https://unpkg.com; media-src 'self' data: blob:; connect-src 'self' https: http://127.0.0.1:* http://localhost:* data: blob:; font-src 'self' data:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="theme-color" content="#102341">
 <meta name="description" content="AIEC Elevator OS - lead to handover work manager for All India Elevators Company">
 <title>AIEC Elevator OS</title>
@@ -17,7 +17,7 @@
 }
 /* colour themes (Me → Settings): dark for night work, high contrast for bright sun or weak eyes */
 :root[data-theme="color"]{--ink:#111827;--muted:#4b5563;--bg:#f5f7fb;--card:#fff;--line:#e3e8f0;--graph:#2f5bea;--graph2:#4f46e5;--gold:#f59e0b;--gold-l:#fff4db;--gold-d:#9a5b00;
-  --ok:#0f8a4a;--ok-bg:#e3f7ec;--warn:#b45309;--warn-bg:#fff2dd;--bad:#c81e1e;--bad-bg:#fde8e8;--info:#2f5bea;--info-bg:#e8eeff;--r:20px;--shadow:0 2px 10px rgba(47,91,234,.08),0 1px 2px rgba(0,0,0,.05)}
+  --ok:#0b6b39;--ok-bg:#e3f7ec;--warn:#b45309;--warn-bg:#fff2dd;--bad:#c81e1e;--bad-bg:#fde8e8;--info:#2f5bea;--info-bg:#e8eeff;--r:20px;--shadow:0 2px 10px rgba(47,91,234,.08),0 1px 2px rgba(0,0,0,.05)}
 :root[data-theme="color"] .task,:root[data-theme="color"] .tile,:root[data-theme="color"] .card{border-color:transparent}
 :root[data-theme="color"] .btn-p{background:linear-gradient(135deg,#2f5bea,#7c3aed);border-color:transparent;color:#fff}
 :root[data-theme="color"] .tbar .tw>i{background:linear-gradient(90deg,#2f5bea,#06b6d4)}
@@ -333,7 +333,7 @@ h2.sec{font-size:.98rem;font-weight:800;letter-spacing:.01em;color:var(--graph2)
 .hero::after{content:"";position:absolute;right:-40px;top:-40px;width:150px;height:150px;border-radius:50%;border:18px solid rgba(226,194,122,.10);pointer-events:none}
 .hero .muted{color:#c9d2e0}
 .nav{background:rgba(255,255,255,.97);border-top:1px solid var(--line2);box-shadow:0 -4px 18px rgba(16,35,65,.08)}
-.nav button{position:relative;border-top:0;padding:6px 2px 4px;color:#5b6678}
+.nav button{position:relative;border-top:0;padding:6px 2px 4px;color:var(--muted)}
 .nav button .i{display:flex;align-items:center;justify-content:center;min-width:52px;height:30px;border-radius:999px;transition:background .15s}
 .nav button.on{background:none;color:var(--graph)}
 .nav button.on .i{background:var(--gold-l);box-shadow:inset 0 0 0 1.5px var(--gold)}
@@ -3868,7 +3868,9 @@ const L = {
   dd_agreement: ['Partner agreement signed', 'पार्टनर एग्रीमेंट साइन', 'भागीदार करारावर सही'],
   why_pstatus: ['Your company is not active for new jobs yet. The office will update your status.', 'आपकी कंपनी अभी नए कामों के लिए सक्रिय नहीं। ऑफिस स्थिति अपडेट करेगा।', 'तुमची कंपनी अजून नवीन कामांसाठी सक्रिय नाही. ऑफिस स्थिती अपडेट करेल.'],
   why_insurance: ['The company insurance has ended. Renew it to get new jobs.', 'कंपनी का बीमा खत्म हो गया। नए काम के लिए नवीनीकरण करें।', 'कंपनीचा विमा संपला. नवीन कामांसाठी नूतनीकरण करा.'],
-  tk_partner_handover: ['Company suspended: plan who finishes this job', 'कंपनी निलंबित: यह काम कौन पूरा करेगा तय करें', 'कंपनी निलंबित: हे काम कोण पूर्ण करेल ते ठरवा'],
+  tk_partner_handover: ['Company can no longer work: plan who finishes this job', 'कंपनी अब काम नहीं कर सकती: यह काम कौन पूरा करेगा तय करें', 'कंपनी आता काम करू शकत नाही: हे काम कोण पूर्ण करेल ते ठरवा'],
+  tk_partner_papers: ['Job on hold: the company\'s licence or insurance has ended', 'काम रुका: कंपनी का लाइसेंस या बीमा खत्म', 'काम थांबले: कंपनीचा परवाना किंवा विमा संपला'],
+  err_partner_papers: ['On hold: the company holding this job has an ended lift licence or insurance. The office must check renewed papers first.', 'रुका हुआ: इस काम वाली कंपनी का लिफ्ट लाइसेंस या बीमा खत्म है। पहले ऑफ़िस नए कागज़ जाँचे।', 'थांबवले: हे काम असलेल्या कंपनीचा लिफ्ट परवाना किंवा विमा संपला आहे. आधी ऑफिसने नवीन कागदपत्रे तपासावीत.'],
   ev_PARTNER_STATUS_SET: ['Company status changed', 'कंपनी स्थिति बदली', 'कंपनी स्थिती बदलली'],
   ev_PARTNER_DD_SET: ['Company check recorded', 'कंपनी जाँच दर्ज', 'कंपनी तपासणी नोंदवली'],
   cfg_pilotCap: ['Pilot limit: most jobs live at once (released to material, not handed over). 0 = no limit', 'पायलट सीमा: एक साथ अधिकतम चालू काम (मटेरियल जारी, हैंडओवर बाकी)। 0 = कोई सीमा नहीं', 'पायलट मर्यादा: एकाच वेळी जास्तीत जास्त चालू कामे (मटेरियल जारी, हस्तांतरण बाकी). 0 = मर्यादा नाही'],
@@ -6418,6 +6420,11 @@ const statRoles = () => statLead() ? uniq([roleOf(statLead())]) : ['admin', 'own
 const isStatOwner = u => ['admin', 'owner'].includes(u.role) || u.uid === statLead();
 const TRADES = [['advance', '💰'], ['amc', '🛠️'], ['siteDate', '📅'], ['reference', '⭐'], ['none', '✏️']];
 const PERMIT_GATE_FROM = '2026-10-31T00:00:00.000Z';
+/* rebuild: the company holding a job is re-checked at each licence-dependent step (material handover, installation
+   steps, Marketplace inspection request and handover). Ended licence or insurance = controlled hold. Older records stay valid. */
+const PAPERS_FROM = '2026-11-17T00:00:00.000Z';
+const jobCompany = P => P ? (isMkt(P) ? ((P.mkt || {}).accepted || {}).by || null : P.partner || null) : null;
+const papersHold = (P, at) => { const c = jobCompany(P); return !!c && S.users[c] && S.users[c].role === 'partner' && (!licenceOk(c, at) || !partnerInsOk(c, at)); };
 const permitMissing = P => !!S.config.permitGate && !statOf(P).permit;
 const liftLicenceOk = (P, at) => { const l = statOf(P).licence; return !!(l && l.no && l.expiry >= (at ? safeDay(at) : todayStr())); };
 const liftLicenceDays = P => { const l = statOf(P).licence; return l && l.expiry ? Math.round((new Date(l.expiry + 'T12:00:00') - new Date(todayStr() + 'T12:00:00')) / 864e5) : null; };
@@ -7132,14 +7139,14 @@ const RULES = {
     if (p.by === ev.by || roleOf(p.by) === u.role) return 'err_self_verify';
     return ev.data.ok || (ev.data.note || '').trim() ? null : 'err_reason'; } },
   /* one AIEC inspection before handover: the company says the lift is ready, AIEC's QC passes it or lists what to fix */
-  MK_READY: { roles: ['partner'], project: true, gate: (S, u, P) => !isMkt(P) || !P.mkt.accepted || P.mkt.accepted.by !== u.uid || P.stage === 'amc' || P.mkt.ready || mktInspPassed(P) ? 'err_access' : null, check: (S, ev) => need((ev.data.note || '').trim(), 'err_fill') },
+  MK_READY: { roles: ['partner'], project: true, gate: (S, u, P) => !isMkt(P) || !P.mkt.accepted || P.mkt.accepted.by !== u.uid || P.stage === 'amc' || P.mkt.ready || mktInspPassed(P) ? 'err_access' : null, check: (S, ev, u, P) => ev.t >= PAPERS_FROM && papersHold(P, ev.t) ? 'err_partner_papers' : need((ev.data.note || '').trim(), 'err_fill') },
   MK_INSPECTED: { roles: ['qc'], project: true, gate: (S, u, P) => !isMkt(P) || !P.mkt.accepted || !P.mkt.ready ? 'err_access' : null, check: (S, ev) => {
     const d = ev.data;
     if (!['pass', 'fail'].includes(d.outcome)) return 'err_choose';
     if (d.outcome === 'fail' && !(d.points || '').trim()) return 'err_reason';
     return need(ev_(d).length >= 2, 'err_photos', { n: 2 }); } },
   MK_DONE: { roles: ['partner'], project: true, gate: (S, u, P) => !isMkt(P) || !P.mkt.accepted || P.mkt.accepted.by !== u.uid || P.stage === 'amc' ? 'err_access' : null,
-    check: (S, ev, u, P) => !mktAllPaid(P) ? 'err_mkt_unpaid' : !mktInspPassed(P) ? 'err_mkt_insp' : S.config.licenceGate && !liftLicenceOk(P, ev.t) ? 'err_lift_licence' : need((ev.data.note || '').trim(), 'err_fill') },
+    check: (S, ev, u, P) => ev.t >= PAPERS_FROM && papersHold(P, ev.t) ? 'err_partner_papers' : !mktAllPaid(P) ? 'err_mkt_unpaid' : !mktInspPassed(P) ? 'err_mkt_insp' : S.config.licenceGate && !liftLicenceOk(P, ev.t) ? 'err_lift_licence' : need((ev.data.note || '').trim(), 'err_fill') },
   COMM_STATUS: { roles: ['finance', 'admin', 'owner'], check: (S, ev) => { const d = ev.data, c = S.comm[d.cid];
     if (!c || c.credit) return 'err_choose';
     if (!(CML_NEXT[c.status] || []).includes(d.status)) return 'err_choose';
@@ -7674,6 +7681,7 @@ const RULES = {
   MATERIAL_HANDED: {
     roles: ['tech'], project: true, stages: ['arrived'], check: (S, ev, u, P) => {
       if (P.tech !== u.uid) return 'err_access';
+      if (ev.t >= PAPERS_FROM && papersHold(P, ev.t)) return 'err_partner_papers';
       if (!payConfirmed(P, isP1(P) ? 'rails' : 'arrival')) return 'err_payment_gate';
       if (openIncidents(P).length) return 'err_incident';
       if (!(ev.data.custName || '').trim()) return 'err_fill';
@@ -7703,6 +7711,7 @@ const RULES = {
   SOP_STEP_DONE: {
     roles: ['tech'], project: true, stages: ['installing'], check: (S, ev, u, P) => {
       if (P.tech !== u.uid) return 'err_access';
+      if (ev.t >= PAPERS_FROM && papersHold(P, ev.t)) return 'err_partner_papers';
       /* no installation without the recorded permission to erect (records made before this rule started stay valid) */
       if (ev.data.step === 0 && ev.t >= PERMIT_GATE_FROM && permitMissing(P)) return 'err_permit_first';
       if (!gradeMayLead(u.uid, P)) return 'err_cant_lead';
@@ -9194,6 +9203,7 @@ function needs0(P) {
   for (const b of P.blockers) if (b.open) add('resolve_blocker', uniq([b.role, 'admin']), { bid: b.id, urgent: true, since: b.t });
   for (const i of P.incidents) if (i.open) add('resolve_incident', ['admin', 'owner'], { iid: i.id, urgent: true, since: i.t, shared: i.type === 'injury' });
   if (P.partner && P_GONE.includes(partnerStatus(P.partner)) && OPEN_STAGES.includes(P.stage)) add('partner_handover', ['admin', 'owner'], { urgent: true, uid: P.partner });
+  else if (OPEN_STAGES.includes(P.stage) && !P.done && papersHold(P)) add('partner_papers', ['admin', 'owner'], { urgent: true, uid: jobCompany(P) });
   for (const i of P.incidents) if (reportDue(i) && i.t >= ACT_FROM) add('report_accident', ['admin', 'owner'], { iid: i.id, urgent: true, alarm: true, shared: true, since: i.t, overdue: Date.now() - Date.parse(i.t) > 24 * 3600e3 });
   { const ins = statOf(P).insurance; if (ins && P.stage !== 'lost') { const d = Math.round((new Date(ins.expiry + 'T12:00:00') - new Date(todayStr() + 'T12:00:00')) / 864e5); if (d <= (S.config.licWarnDays || 60)) add('insurance_due', statRoles(), { uids: statLead() ? [statLead()] : [], urgent: d <= 7, overdue: d < 0 }); } }
   /* statutory records, holds and disputes */
@@ -9543,7 +9553,7 @@ async function getMedia(key) {
    older phones answer "update the app" for them instead of guessing */
 const EV_V = 2, ACT_V = 2;
 /* shown on Me; the same number as the cache name in sw.js (checked by the tests), so anyone can tell which version a phone runs */
-const APP_BUILD = 108;
+const APP_BUILD = 109;
 const evV = ev => ev.v || 1;
 /* money going out, forgiving money, who-can-do-what and taking data off the phone need the PIN again (2-minute grace) */
 const RECHECK = (type, d) => ['REFUND_DECIDED', 'REFUND_PAID', 'CONFIG_SET', 'DATA_EXPORTED'].includes(type) || (type === 'CHARGE_SETTLED' && d.how === 'waived') || (type === 'USER_UPDATED' && d.role != null);
@@ -10108,6 +10118,7 @@ function nextLine(P) {
   return isMine(n, App.me) ? t('next_you', { task: t('tk_' + n.k) }) : t('next_who', { who: rolesTxt(n.roles), task: t('tk_' + n.k) });
 }
 const TASK_ICON = {
+  partner_papers: '⌛',
   qc_recheck: '🔁', recheck_failed: '⚠️',
   help_newbie: '🤝', wait_permit: '📜', wait_serial: '🔢', serial_mismatch: '🔢', legal_renew: '🪪', po_silent: '📑', inspection_rework: '🏛️', sign_contract: '📝', settle_reserve: '🏦', rating_appeal: '⚖️', referral_reward: '🎁', soc_approvals: '🏘️',
   review_lead: '🔍', fix_lead: '↩️', call_customer: '📞', follow_up: '⏰', write_needs: '📝', make_quote: '🧮', approve_quote: '✅', send_quote: '📤',
@@ -15466,7 +15477,7 @@ SCREENS.auto = () => {
 /* ---------- office queue (exceptions first) ---------- */
 const EXC_SEV = {
   sos: 'critical',
-  sla_breach: 'high', lift_licence_due: 'high', insurance_due: 'high', partner_handover: 'critical', mkt_hold: 'high', mkt_inspect: 'high', report_accident: 'critical', record_licence: 'high', licence_renew: 'high', record_permit: 'high', po_declined: 'high', access_alert: 'high', pay_dispute: 'high', resolve_incident: 'high', verify_payment: 'medium',
+  sla_breach: 'high', lift_licence_due: 'high', insurance_due: 'high', partner_handover: 'critical', partner_papers: 'critical', mkt_hold: 'high', mkt_inspect: 'high', report_accident: 'critical', record_licence: 'high', licence_renew: 'high', record_permit: 'high', po_declined: 'high', access_alert: 'high', pay_dispute: 'high', resolve_incident: 'high', verify_payment: 'medium',
   second_approval: 'medium', po_late: 'medium', decide_claim: 'medium', strike_appeal: 'medium', hold_request: 'medium', dispute_open: 'medium', resolve_blocker: 'medium', refund_decide: 'medium', approve_key: 'medium', approve_member: 'medium', assign_ticket: 'medium', suspend_review: 'medium',
   clock_gap: 'low', check_docs: 'low', onb_profile: 'low', review_meeting: 'low', post_nobody: 'low', review_lead: 'low'
 };
@@ -16287,7 +16298,7 @@ function openTask(n) {
     dispatch: () => wiz('dispatch', pid), arrival: () => wiz('arrival', pid), dispatch_lot: () => wiz('dispatch', pid, { lot: n.lot }), lot_arrival: () => wiz('arrival', pid, { lot: n.lot }), wait_lot: () => go('project', { pid }), material_handover: () => wiz('mhand', pid), mhand_cust_sign: () => wiz('mhandCust', pid), mhand_cust_wait: () => go('project', { pid }),
     install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), access_alert: () => go('access', { uid: n.uid }), record_permit: () => wiz('statutory', pid, { item: 'permit' }), requote: () => wiz('quote', pid), wait_cabin_pay: () => go('project', { pid, tab: 'money' }), accept_po: () => wiz('poAccept', pid), approve_invoice: () => wiz('invDecide', pid, { iid: n.iid }), pay_invoice: () => wiz('invPay', pid, { iid: n.iid }), site_checkin: () => wiz('checkin', pid), review_checkin: () => wiz('checkinReview', pid, { day: n.day, uid: n.uid }), pay_now: () => go('pay', { pid }), withdraw_quote: () => wiz('approve', pid), clock_gap: () => go('clock'), day_close: () => wiz('dayClose'), sla_breach: () => go('project', { pid, tab: 'info' }), po_declined: () => wiz('assign', pid), po_late: () => go('project', { pid }), decide_claim: () => wiz('claimDecide', pid, { cid: n.cid }), send_claim: () => wiz('claimSend', pid, { cid: n.cid }), receive_claim: () => wiz('claimReceive', pid, { cid: n.cid }), refund_calc: () => wiz('refund', pid), refund_decide: () => wiz('refundDecide', pid), refund_pay: () => wiz('refundPay', pid), peer_check: () => wiz('peer', pid, { step: n.step }), wait_peer: () => go('cl', { pid, kind: 'sop' }), surprise_qc: () => wiz('surprise', pid),
     make_variation: () => wiz('variation', pid), sign_variation: () => wiz('variationSign', pid), record_licence: () => wiz('statutory', pid, { item: n.item }),
-    lift_licence_due: () => wiz('statutory', pid, { item: 'licence' }), insurance_due: () => wiz('statutory', pid, { item: 'insurance' }), partner_handover: () => go('project', { pid, tab: 'info' }), capacity_check: () => wiz('capCheck', pid), mkt_send_rfq: () => wiz('mktRfq', pid), mkt_quote: () => wiz('mktQuote', pid), mkt_pick: () => go('mktCompare', { uid: pid }), mkt_confirm: () => wiz('mktAnswer', pid), mkt_record_pay: () => wiz('mktPay', pid, { ms: n.ms }), mkt_verify_pay: () => wiz('mktVerify', pid, { payId: n.payId }), mkt_handover: () => wiz('mktDone', pid), mkt_introduce: () => wiz('mktIntro', pid), mkt_inspect: () => wiz('mktInspect', pid), mkt_ready: () => wiz('mktReady', pid), mkt_fix: () => wiz('mktReady', pid), mkt_hold: () => wiz('mktHold', pid), mkt_followup: () => go('project', { pid, tab: 'info' }), report_accident: () => wiz('accReport', pid, { iid: n.iid }), hold_request: () => wiz('holdDecide', pid, { hid: n.hid }), hold_end: () => wiz('holdEnd', pid, { hid: n.hid }), dispute_open: () => go('project', { pid, tab: 'info' }), request_inspection: () => go('cl', { pid, kind: P.stage === 'install_fix' ? 'instfix' : 'sop' }),
+    lift_licence_due: () => wiz('statutory', pid, { item: 'licence' }), insurance_due: () => wiz('statutory', pid, { item: 'insurance' }), partner_papers: () => go('worker', { uid: n.uid }), partner_handover: () => go('project', { pid, tab: 'info' }), capacity_check: () => wiz('capCheck', pid), mkt_send_rfq: () => wiz('mktRfq', pid), mkt_quote: () => wiz('mktQuote', pid), mkt_pick: () => go('mktCompare', { uid: pid }), mkt_confirm: () => wiz('mktAnswer', pid), mkt_record_pay: () => wiz('mktPay', pid, { ms: n.ms }), mkt_verify_pay: () => wiz('mktVerify', pid, { payId: n.payId }), mkt_handover: () => wiz('mktDone', pid), mkt_introduce: () => wiz('mktIntro', pid), mkt_inspect: () => wiz('mktInspect', pid), mkt_ready: () => wiz('mktReady', pid), mkt_fix: () => wiz('mktReady', pid), mkt_hold: () => wiz('mktHold', pid), mkt_followup: () => go('project', { pid, tab: 'info' }), report_accident: () => wiz('accReport', pid, { iid: n.iid }), hold_request: () => wiz('holdDecide', pid, { hid: n.hid }), hold_end: () => wiz('holdEnd', pid, { hid: n.hid }), dispute_open: () => go('project', { pid, tab: 'info' }), request_inspection: () => go('cl', { pid, kind: P.stage === 'install_fix' ? 'instfix' : 'sop' }),
     final_inspect: () => wiz('qcfinal', pid), fix_install: () => go('cl', { pid, kind: 'instfix' }),
     sign_handover: () => go('cl', { pid, kind: 'handover' }), complete_handover: () => go('cl', { pid, kind: 'handover' }),
     resolve_blocker: () => wiz('resolve', pid, { bid: n.bid }), resolve_incident: () => wiz('incident', pid, { iid: n.iid }),

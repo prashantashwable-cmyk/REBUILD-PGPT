@@ -8,9 +8,9 @@ One downloadable HTML file (`AIEC-Elevator-OS.html`) that runs on any Android ph
 
 ---
 
-## Rebuild (builds 106–108, Nov 2026)
+## Rebuild (builds 106–109, Nov 2026)
 This repository is the controlled rebuild of the app above. The original build 105 is kept as tag `baseline-605575a`.
-What changed: new navy/brass design, honest milestone progress, installation target as an estimate per job size (big jobs 28 days, proposed), Pune-only pilot area, Head Quarter approval for a 6th live job, a sync status line on every staff home, and **Me → Connections** showing which outside services are really connected (none, except the optional company server and the map). Build 107 adds formulas behind every KPI and a strict script-hash security policy; build 108 adds the partner states Paused, Rejected, Offboarded and automatic "Expired papers".
+What changed: new navy/brass design, honest milestone progress, installation target as an estimate per job size (big jobs 28 days, proposed), Pune-only pilot area, Head Quarter approval for a 6th live job, a sync status line on every staff home, and **Me → Connections** showing which outside services are really connected (none, except the optional company server and the map). Build 107 adds formulas behind every KPI and a strict script-hash security policy; build 108 adds the partner states Paused, Rejected, Offboarded and automatic "Expired papers"; build 109 puts a job on hold when its company's licence or insurance ends mid-job, and adds automated accessibility checks.
 Read: `docs/rebuild/RELEASE_NOTES.md` · audit and plan in `docs/rebuild/` · architecture in `docs/architecture/` · business rules in `docs/business/` · operations in `docs/operations/` · tests in `docs/testing/`.
 
 ## Quick start

@@ -1,4 +1,8 @@
-# Release note — builds 106–108 (rebuild, 17 Nov 2026)
+# Release note — builds 106–109 (rebuild, 17 Nov 2026)
+
+## Build 109
+* **Controlled hold when a partner's papers end mid-job:** the company holding a job is re-checked at material handover, every installation step, and the Marketplace inspection request and handover. If its lift licence or insurance has ended, the step is refused with the reason, and the office gets an urgent "Job on hold" task that opens the company's page. When the office records renewed papers, the hold lifts by itself. Older records stay valid (rule from 17 Nov 2026).
+* **Accessibility:** automated WCAG 2.0/2.1 A/AA checks (axe-core) on the main screens of every kind of user in all themes and languages: 72 checks, no violations. Fixed on the way: inactive bottom-menu labels in the dark theme (2.8:1 → passes) and green status text in the optional colour theme (3.95:1 → passes).
 
 ## Build 108
 * Partner company states: **Paused**, **Rejected** and **Offboarded** added (reason required, Head Quarter/Admin); **Expired papers** shown automatically when a company's lift licence or insurance has ended. Paused companies get no new jobs but keep their open jobs; Rejected/Offboarded companies' open jobs get a handover task.

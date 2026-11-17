@@ -10,6 +10,7 @@
     "csp": "node tools/csp.js"
   },
   "devDependencies": {
+    "axe-core": "4.10.2",
     "playwright": "1.56.1"
   },
   "engines": {

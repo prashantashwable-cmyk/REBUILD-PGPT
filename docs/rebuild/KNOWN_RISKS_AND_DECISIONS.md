@@ -17,6 +17,8 @@
 | D-12 | KPI board: every number opens to show its written formula; the board shows when it was counted and the data source/sync state; "—" means no records (not zero). | §11.1, §16 | — |
 | D-13 | Content-Security-Policy by script hash + SRI on Leaflet (build 107). | §14 | — |
 | D-14 | Partner states added: Paused, Rejected, Offboarded; "Expired papers" is worked out automatically, never set by hand. | §8.1 | — |
+| D-15 | Partner papers re-checked at every licence-dependent step; ended licence/insurance = controlled hold with an urgent office task; never silently moves the job to another company. | §3.1, §9 | — |
+| D-16 | Automated accessibility test (axe-core, WCAG 2 A/AA) added to the suite; the decorative anti-leak watermark is excluded on purpose. | §6.4 | — |
 | D-11 | Section headings kept in normal case (not uppercase): `innerText` follows CSS `text-transform`, which would also change what screen readers announce. | Found by `waits.test.js` | — |
 
 ## 2. Confirmed risks

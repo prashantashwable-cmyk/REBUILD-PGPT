@@ -25,7 +25,7 @@ any open stage ─DEAL_LOST→ lost (DEAL_REOPENED is high-risk)
 | Payment | stage moves after token / arrival / final | only Finance `confirmed` with reference; recorder ≠ confirmer |
 | Site QC | `RELEASED` | QC approval, measurements within tolerances (`tolWidth` …) |
 | Statutory | release / handover | `permitGate`, `licenceGate` (records with who checked) |
-| Partner eligibility | assign / post / pick | licence valid, insurance valid, status Active/Conditional, strikes < max |
+| Partner eligibility | assign / post / pick; **re-checked** at material handover, every SOP step, `MK_READY`, `MK_DONE` | licence valid, insurance valid, status Active/Conditional, strikes < max; ended papers mid-job = controlled hold (`papersHold`, `err_partner_papers`) + urgent `partner_papers` task |
 | Safety | SOP steps | daily safety check (`dailySafety`), check-in gate (`checkinGate`), hazard/SOS stops work |
 | Independent QC | `QC_FINAL_RESULT` | inspector must not have worked on the job |
 | Material | `MATERIAL_HANDED` | payment confirmed, incidents closed, serial mismatch blocks |
