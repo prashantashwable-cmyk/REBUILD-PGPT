@@ -1,0 +1,43 @@
+name: pages
+# Publishes the app to GitHub Pages (https://<owner>.github.io/<repository>/) on every push to main, and on demand
+# (Actions → pages → Run workflow). Only the files a phone needs are published; tests, docs and server code are not.
+# The fast check (words, script, security policy, size) must pass first.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Fast check
+        run: node tools/csp.js --check && node tests/static.test.js
+      - name: Collect the app files
+        run: |
+          mkdir -p _site
+          cp AIEC-Elevator-OS.html index.html 404.html sw.js manifest.webmanifest icon.svg icon-192.png icon-512.png _site/
+          touch _site/.nojekyll
+          ls -la _site
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4

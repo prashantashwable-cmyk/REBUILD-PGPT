@@ -86,9 +86,9 @@ jobs:
         run: |
           want=$(grep -o 'aiec-os-v[0-9]*' sw.js | head -1)
           for i in $(seq 1 36); do
-            got=$(curl -fsS "https://prashantashwable-cmyk.github.io/UNLIT-GPT-HTML/sw.js?t=$(date +%s)" | grep -o 'aiec-os-v[0-9]*' | head -1 || true)
+            got=$(curl -fsS "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/sw.js?t=$(date +%s)" | grep -o 'aiec-os-v[0-9]*' | head -1 || true)
             if [ "$got" = "$want" ]; then echo "The public link serves $got"; exit 0; fi
             sleep 30
           done
-          echo "::error::The public link still serves '$got', not '$want'. GitHub Pages is not publishing. Repository Settings > Pages > Source: Deploy from a branch > main, / (root) > Save."
+          echo "::error::The public link still serves '$got', not '$want'. GitHub Pages is not publishing. Repository Settings > Pages > Source: GitHub Actions (workflow pages.yml)."
           exit 1

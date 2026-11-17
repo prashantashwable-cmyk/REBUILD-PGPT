@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-dn4sEi8yyS82hnxrDAKabYEgL4D1FfXR2SQKeenVo0E=' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' data: blob: https://tile.openstreetmap.org https://unpkg.com; media-src 'self' data: blob:; connect-src 'self' https: http://127.0.0.1:* http://localhost:* data: blob:; font-src 'self' data:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-OuxOXKg7FwOqVV08cNXyMV8LVrDS8TyUe++lzmDkCK8=' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' data: blob: https://tile.openstreetmap.org https://unpkg.com; media-src 'self' data: blob:; connect-src 'self' https: http://127.0.0.1:* http://localhost:* data: blob:; font-src 'self' data:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="theme-color" content="#102341">
 <meta name="description" content="AIEC Elevator OS - lead to handover work manager for All India Elevators Company">
 <title>AIEC Elevator OS</title>
@@ -9575,7 +9575,7 @@ async function getMedia(key) {
    older phones answer "update the app" for them instead of guessing */
 const EV_V = 2, ACT_V = 2;
 /* shown on Me; the same number as the cache name in sw.js (checked by the tests), so anyone can tell which version a phone runs */
-const APP_BUILD = 111;
+const APP_BUILD = 112;
 const evV = ev => ev.v || 1;
 /* money going out, forgiving money, who-can-do-what and taking data off the phone need the PIN again (2-minute grace) */
 const RECHECK = (type, d) => ['REFUND_DECIDED', 'REFUND_PAID', 'CONFIG_SET', 'DATA_EXPORTED'].includes(type) || (type === 'CHARGE_SETTLED' && d.how === 'waived') || (type === 'USER_UPDATED' && d.role != null);
@@ -9707,7 +9707,7 @@ window.addEventListener('popstate', () => {
 /* closing or reloading the browser tab while signed in: the browser's own "Leave site?" question */
 window.addEventListener('beforeunload', e => { if (App.me && !App.exiting && App.mode === 'real') { e.preventDefault(); e.returnValue = ''; } });
 /* real company use only inside the installed app; practice mode works anywhere */
-const APP_URL = 'https://prashantashwable-cmyk.github.io/UNLIT-GPT-HTML/';
+const APP_URL = /^https:\/\/[a-z0-9-]+\.github\.io\/[^/]+\//i.test(location.href) ? location.href.split(/[?#]/)[0].replace(/[^/]*$/, '') : 'https://prashantashwable-cmyk.github.io/UNLIT-GPT-HTML/'; /* rebuild: share links and QR codes point to the site the app was opened from (test site or live site) */
 /* inside the AIEC Android app (a WebView wrapper): it counts as installed, and files and printing go through the app */
 const inAndroidApp = () => /AIECAndroid\//.test(navigator.userAgent || '') && !!window.AIECAndroid;
 function androidSave(blob, name, type) {

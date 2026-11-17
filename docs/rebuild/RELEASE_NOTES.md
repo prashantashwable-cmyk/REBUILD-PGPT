@@ -1,4 +1,8 @@
-# Release note — builds 106–110 (rebuild, 17 Nov 2026)
+# Release note — builds 106–112 (rebuild, 17 Nov 2026)
+
+## Build 112
+* **Test site:** the app is published with GitHub Pages from this repository (`.github/workflows/pages.yml`, on every push to `main`): `https://prashantashwable-cmyk.github.io/REBUILD-PGPT/`. Only the files a phone needs are published (no tests, docs, server code or `server.json`).
+* Share links, QR codes and the "wrong address" page now follow the site the app was opened from, so the test site never sends people to the live site and the live site keeps working unchanged. The CI "live link" check follows the repository too.
 
 ## Build 111
 * The sync status on the home screen is now a small chip in the greeting card (dot + one word; tap for the full sentence) instead of a full-width line. The home screen is back to its original height, which the "home stays short" test requires on CI's fonts. Card spacing returned to the original values.
