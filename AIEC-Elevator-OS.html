@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'none'; form-action 'none'">
-<meta name="theme-color" content="#23262f">
+<meta name="theme-color" content="#102341">
 <meta name="description" content="AIEC Elevator OS - lead to handover work manager for All India Elevators Company">
 <title>AIEC Elevator OS</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2323262f'/%3E%3Crect x='19' y='12' width='26' height='40' rx='3' fill='none' stroke='%23c9a227' stroke-width='4'/%3E%3Cpath d='M32 12v40' stroke='%23c9a227' stroke-width='3'/%3E%3Cpath d='M24 26l4-5 4 5M32 38l4 5 4-5' fill='none' stroke='%23fff' stroke-width='3'/%3E%3C/svg%3E">
@@ -283,6 +283,105 @@ body.veil #app{filter:blur(14px)}.sos.hold{transform:scale(1.15);background:#8e0
 .scale-reset{position:fixed;left:max(10px,env(safe-area-inset-left,0px));bottom:calc(80px + env(safe-area-inset-bottom,0px));z-index:300;zoom:calc(1 / var(--z));background:var(--bad);color:#fff;border:3px solid #fff;border-radius:999px;font-size:17px;font-weight:800;padding:12px 18px;min-height:56px;box-shadow:0 4px 14px rgba(0,0,0,.35)}
 .scale-out{font-size:2.4rem;font-weight:800;min-width:110px;text-align:center}
 input[type=range].scale{width:100%;height:44px;accent-color:var(--graph)}
+/* ===== AIEC design system v2 (rebuild, Nov 2026) =====
+   Deep navy foundation, warm brass accent, clean neutral surfaces. Only tokens and look change here: every class name,
+   size floor (48 px touch targets, 56 px buttons) and theme switch from v1 stays, so behaviour and tests are unchanged.
+   Roll back by deleting this block. */
+:root{
+  --ink:#0f1a2b;--muted:#4f5b6e;--bg:#f2f3f6;--card:#fff;--line:#d9dde5;--line2:#e8ebf0;
+  --graph:#102341;--graph2:#1c3456;--gold:#c0953a;--gold-l:#f6efdf;--gold-d:#74560f;--brass2:#e2c27a;
+  --navy-g:linear-gradient(155deg,#17325a 0%,#102341 55%,#0b1a31 100%);
+  --brass-g:linear-gradient(90deg,#a87c25,#e2c27a 50%,#b88a2c);
+  --r:18px;--r-sm:12px;
+  --shadow:0 1px 2px rgba(16,35,65,.05),0 3px 12px rgba(16,35,65,.06);
+  --shadow-lg:0 10px 30px rgba(16,35,65,.16);
+}
+:root[data-theme="dark"]{--bg:#0d1420;--card:#172131;--line:#2c3a50;--line2:#223047;--graph:#0a1424;--muted:#a9b4c5;--gold:#d2aa55;--gold-l:#2f2818;--shadow:none;--shadow-lg:0 10px 30px rgba(0,0,0,.4)}
+:root[data-theme="contrast"]{--line2:#000;--shadow-lg:none}
+body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-family:"Inter","Noto Sans","Noto Sans Devanagari",system-ui,-apple-system,"Segoe UI",Roboto,Mangal,sans-serif}
+/* headings are focused after each screen change for screen readers; the ring is only for keyboard moves between controls */
+[tabindex="-1"]:focus{outline:none}
+h1,h2,h3{letter-spacing:-.01em}
+.top{background:var(--navy-g);box-shadow:inset 0 -2px 0 var(--gold),0 2px 12px rgba(8,18,34,.25);padding:6px 8px 8px}
+.top h1{font-weight:800;font-size:1.06rem;letter-spacing:.01em}
+.ib{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:12px;transition:background .15s}
+.ib:hover{background:rgba(255,255,255,.14)}
+.brand{display:inline-flex;margin:0 2px;flex:none}
+.ib-out{background:rgba(198,40,40,.92);border-color:rgba(255,255,255,.35)}
+.badge{background:var(--brass-g);color:#1a1200;box-shadow:0 0 0 2px #102341}
+.practice{background:repeating-linear-gradient(45deg,#ffe39a,#ffe39a 10px,#ffd560 10px,#ffd560 20px);border-bottom:1px solid #d9a91f;letter-spacing:.02em;font-size:.86rem;padding:5px 10px}
+.wrap{padding:14px 14px}
+.card{border:1px solid var(--line2);border-radius:var(--r);box-shadow:var(--shadow);padding:15px}
+.card h2,.card h3{font-weight:800}
+h2.sec{font-size:.98rem;font-weight:800;letter-spacing:.01em;color:var(--graph2);margin:20px 4px 8px}
+:root[data-theme="dark"] h2.sec{color:var(--muted)}
+.btn{border:1.5px solid var(--line);border-radius:14px;background:var(--card);box-shadow:0 1px 1px rgba(16,35,65,.04);transition:transform .08s,background .15s,border-color .15s}
+.btn:hover{border-color:#b9c0cc}
+.btn-p{background:var(--navy-g);border-color:#0b1a31;color:#fff;box-shadow:inset 0 -3px 0 var(--gold),0 2px 8px rgba(16,35,65,.18)}
+.btn-p:hover{border-color:var(--gold)}
+.btn-ok{background:linear-gradient(160deg,#1b8045,#13652f);border-color:#13652f;color:#fff}
+.btn-bad{background:var(--card);border-color:var(--bad)}
+.btn-big{border-radius:18px}
+.tile{border:1.5px solid var(--line);border-radius:16px;background:var(--card);box-shadow:var(--shadow)}
+.tile.on{border-color:var(--gold);background:var(--gold-l);box-shadow:inset 0 0 0 1.5px var(--gold),var(--shadow)}
+.tile.on::after{background:var(--gold);color:#1a1200;font-weight:900}
+.task{border:1px solid var(--line2);border-radius:18px;background:var(--card);box-shadow:var(--shadow);padding:12px 12px 12px 10px}
+.task .ti{background:var(--gold-l);box-shadow:inset 0 0 0 1px rgba(192,149,58,.35);border-radius:16px}
+.task.urgent{border-color:#e9aaa3;box-shadow:inset 4px 0 0 var(--bad),var(--shadow)}
+.task .go{color:var(--gold)}
+.hero{background:var(--navy-g);border-radius:20px;padding:18px 16px;box-shadow:inset 0 -3px 0 var(--gold),var(--shadow-lg);position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-40px;top:-40px;width:150px;height:150px;border-radius:50%;border:18px solid rgba(226,194,122,.10);pointer-events:none}
+.hero .muted{color:#c9d2e0}
+.nav{background:rgba(255,255,255,.97);border-top:1px solid var(--line2);box-shadow:0 -4px 18px rgba(16,35,65,.08)}
+.nav button{position:relative;border-top:0;padding:6px 2px 4px;color:#5b6678}
+.nav button .i{display:flex;align-items:center;justify-content:center;min-width:52px;height:30px;border-radius:999px;transition:background .15s}
+.nav button.on{background:none;color:var(--graph)}
+.nav button.on .i{background:var(--gold-l);box-shadow:inset 0 0 0 1.5px var(--gold)}
+.nav button.on::before{content:"";position:absolute;top:0;left:30%;right:30%;height:3px;border-radius:0 0 3px 3px;background:var(--gold)}
+:root[data-theme="dark"] .nav{background:#121b2a}
+:root[data-theme="dark"] .nav button.on{color:var(--ink)}
+.chip{font-weight:700;letter-spacing:.01em}
+.c-mute{background:#eef0f4;color:#465063;border-color:#dde1e8}
+.in{border:1.5px solid var(--line);border-radius:12px;background:var(--card);transition:border-color .15s,box-shadow .15s}
+.in:focus{border-color:var(--graph);box-shadow:0 0 0 3px rgba(192,149,58,.28)}
+.mic,.stepper button,.pinpad button,.yn button,.cl-item{border-width:1.5px;background:var(--card)}
+.pinpad button{border-radius:18px;box-shadow:var(--shadow)}
+.dots i{border-color:var(--graph)}.dots i.f{background:var(--gold);border-color:var(--gold)}
+.tabs button{border:1.5px solid var(--line);background:var(--card)}
+.tabs button.on{background:var(--navy-g);border-color:var(--graph);box-shadow:inset 0 -2px 0 var(--gold)}
+details.fold{border:1px solid var(--line2);border-radius:18px;box-shadow:var(--shadow);background:var(--card)}
+details.fold>summary{font-weight:700}
+.kpi{border:1px solid var(--line2);border-left:5px solid var(--gold);border-radius:14px;box-shadow:var(--shadow);background:var(--card)}
+.kpi b{font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.prog{background:#e4e7ed}.prog>i{background:var(--brass-g)}
+.ph{background:#eef0f4;color:#4a5466}
+.ph.now{background:var(--gold-l);color:#3d2f00;outline:2px solid var(--gold)}
+.bar .b{background:#e6e9ef}.bar .b i{background:var(--navy-g)}
+.door{border:1.5px solid var(--line);border-radius:20px;box-shadow:var(--shadow);background:var(--card);position:relative;overflow:hidden}
+.door::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--line)}
+.door.d1::before{background:var(--gold)}.door.d2::before{background:var(--ok)}.door.d3::before{background:var(--graph)}
+.door.d1,.door.d2,.door.d3{border-color:var(--line)}
+.sheet-in{border-radius:22px 22px 0 0;box-shadow:0 -8px 30px rgba(8,18,34,.25)}
+.sheet-in::before{content:"";display:block;width:44px;height:5px;border-radius:3px;background:var(--line);margin:-6px auto 10px}
+.toast{background:var(--graph);border:1px solid rgba(226,194,122,.4);box-shadow:var(--shadow-lg)}
+.note{border:1px solid #c9dbf2}.warnbox,.okbox,.note,.err{border-radius:14px}
+.ntf{border-radius:18px;box-shadow:var(--shadow-lg)}
+.splash{background:radial-gradient(120% 80% at 50% 20%,#1d3a63 0%,#102341 55%,#081325 100%)}
+.splash p{color:var(--brass2)}
+/* front door (welcome, language, gate, sign-in): a quiet brass glow behind the logo */
+body.front{background-color:var(--bg);background-image:radial-gradient(90% 46vh at 50% 0%,rgba(192,149,58,.16),rgba(192,149,58,0) 70%),radial-gradient(140% 60vh at 50% -10%,#e6eaf2,rgba(242,243,246,0) 70%);background-repeat:no-repeat}
+:root[data-theme="dark"] body.front{background-image:radial-gradient(90% 46vh at 50% 0%,rgba(210,170,85,.14),rgba(0,0,0,0) 70%)}
+body.front .logo{filter:drop-shadow(0 8px 18px rgba(16,35,65,.28))}
+body.front main.center>h1{font-weight:800;letter-spacing:.01em}
+.sos{background:radial-gradient(circle at 35% 30%,#e53935,#b71c1c);box-shadow:0 4px 14px rgba(183,28,28,.45),0 0 0 4px rgba(255,255,255,.7)}
+.fback{background:var(--navy-g)}
+/* sync status chip (top of home): words, not colour alone */
+.sync-st{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:.86rem;font-weight:700;padding:8px 12px;border-radius:14px;margin:0 0 12px;border:1px solid var(--line2);background:var(--card);box-shadow:var(--shadow)}
+.sync-st .dot{width:10px;height:10px;border-radius:50%;flex:none;background:var(--muted)}
+.hero .sync-st{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:#eef2f8;box-shadow:none;margin:12px 0 0;font-weight:600}
+.hero .sync-st .pidlink{color:#ffd88a}
+.sync-st.s-ok .dot{background:var(--ok)}.sync-st.s-wait .dot{background:var(--warn)}.sync-st.s-bad .dot{background:var(--bad)}.sync-st.s-local .dot{background:var(--info)}
+.integ td,.integ th{padding:8px 6px;border-bottom:1px solid var(--line2);text-align:left;vertical-align:top;font-size:.9rem}.integ{width:100%;border-collapse:collapse}
 </style>
 </head>
 <body>
@@ -2473,7 +2572,7 @@ const L = {
   tb_paused: ['Paused: waiting for {who}', 'रुका: {who} का इंतज़ार', 'थांबले: {who} ची प्रतीक्षा'],
   tb_hold: ['Paused: the job is on hold', 'रुका: काम होल्ड पर है', 'थांबले: काम होल्डवर आहे'],
   tb_plan: ['installation plan', 'इंस्टॉलेशन योजना', 'इन्स्टॉलेशन योजना'],
-  tb_job: ['Job {p}% done', 'काम {p}% पूरा', 'काम {p}% पूर्ण'],
+  tb_job: ['Milestones verified: {d} of {t}', 'पक्के पड़ाव: {t} में से {d}', 'पक्के टप्पे: {t} पैकी {d}'],
   tb_in_step: ['In this step: {d}', 'इस कदम में: {d}', 'या टप्प्यात: {d}'],
   stl_title: ['Statutory liaison (permits and licences)', 'कानूनी संपर्क (अनुमति और लाइसेंस)', 'कायदेशीर संपर्क (परवानगी आणि परवाने)'],
   stl_say: ['One person owns every permit, lift licence and renewal. Without one, Admin does it.', 'हर अनुमति, लिफ्ट लाइसेंस और नवीनीकरण एक व्यक्ति संभालता है। कोई न हो तो एडमिन।', 'प्रत्येक परवानगी, लिफ्ट परवाना आणि नूतनीकरण एक व्यक्ती सांभाळते. कोणी नसेल तर ॲडमिन.'],
@@ -2547,6 +2646,48 @@ const L = {
   q_job: ['Job', 'काम', 'काम'],
   job_soc_note: ['For a housing society, keep the committee\'s written approval with the agreement. The old lift\'s licence and the new permission must both be in order.', 'हाउसिंग सोसाइटी के लिए कमेटी की लिखित मंज़ूरी करार के साथ रखें। पुरानी लिफ्ट का लाइसेंस और नई अनुमति दोनों ठीक हों।', 'हाउसिंग सोसायटीसाठी समितीची लेखी मंजुरी करारासोबत ठेवा. जुन्या लिफ्टचा परवाना आणि नवी परवानगी दोन्ही व्यवस्थित असावे.'],
   tb_one: ['Not started (1 step)', 'शुरू नहीं (1 कदम)', 'सुरू नाही (1 टप्पा)'],
+  cfg_installDaysComplex: ['Installation target days for big / complex jobs (an estimate, never a promise)', 'बड़े / जटिल काम के लिए इंस्टॉलेशन लक्ष्य दिन (अनुमान, वादा नहीं)', 'मोठ्या / गुंतागुंतीच्या कामासाठी इन्स्टॉलेशन लक्ष्य दिवस (अंदाज, वचन नाही)'],
+  target_std: ['Standard job: planning estimate about {n} days.', 'सामान्य काम: योजना अनुमान लगभग {n} दिन।', 'साधे काम: नियोजन अंदाज सुमारे {n} दिवस.'],
+  target_big: ['Big or complex job: planning estimate about {n} days (the standard target does not apply).', 'बड़ा या जटिल काम: योजना अनुमान लगभग {n} दिन (सामान्य लक्ष्य लागू नहीं)।', 'मोठे किंवा गुंतागुंतीचे काम: नियोजन अंदाज सुमारे {n} दिवस (साधे लक्ष्य लागू नाही).'],
+  target_cond: ['This is an estimate, not a guaranteed date. The count starts only when the site is ready, drawings and permits are approved, material has arrived and the payment step is confirmed; it pauses for recorded waits.', 'यह अनुमान है, पक्की तारीख नहीं। गिनती तभी शुरू होती है जब साइट तैयार हो, ड्रॉइंग और परमिट मंज़ूर हों, सामान पहुँच गया हो और भुगतान का चरण पक्का हो; दर्ज रुकावटों में यह रुकती है।', 'हा अंदाज आहे, पक्की तारीख नाही. साइट तयार असेल, ड्रॉइंग व परवाने मंजूर असतील, साहित्य पोहोचले असेल आणि पेमेंटचा टप्पा पक्का असेल तेव्हाच मोजणी सुरू होते; नोंदवलेल्या अडथळ्यांत ती थांबते.'],
+  ss_practice: ['Practice: saved on this phone only. Nothing is sent anywhere.', 'अभ्यास: सिर्फ़ इस फ़ोन में सेव। कहीं कुछ नहीं भेजा जाता।', 'सराव: फक्त या फोनवर जतन. कुठेही काही पाठवले जात नाही.'],
+  ss_local: ['Saved on this phone · no company server connected (send files to share)', 'इस फ़ोन में सेव · कंपनी सर्वर नहीं जुड़ा (शेयर करने के लिए फ़ाइल भेजें)', 'या फोनवर जतन · कंपनी सर्व्हर जोडलेला नाही (शेअरसाठी फाइल पाठवा)'],
+  ss_wait: ['Saved on this phone · waiting to sync', 'इस फ़ोन में सेव · सिंक का इंतज़ार', 'या फोनवर जतन · सिंकची वाट पाहत आहे'],
+  ss_ok: ['Received by server · last sync {d}', 'सर्वर को मिला · आख़िरी सिंक {d}', 'सर्व्हरला मिळाले · शेवटचा सिंक {d}'],
+  ss_never: ['Saved on this phone · not synced yet', 'इस फ़ोन में सेव · अभी सिंक नहीं हुआ', 'या फोनवर जतन · अजून सिंक झाले नाही'],
+  ss_err: ['Saved on this phone · sync failed, will try again', 'इस फ़ोन में सेव · सिंक नहीं हुआ, फिर कोशिश होगी', 'या फोनवर जतन · सिंक झाले नाही, पुन्हा प्रयत्न होईल'],
+  ss_revoked: ['The server refused this phone · ask the office', 'सर्वर ने इस फ़ोन को मना किया · ऑफ़िस से पूछें', 'सर्व्हरने हा फोन नाकारला · ऑफिसला विचारा'],
+  ss_stale: ['Last sync was {n} day(s) ago', 'आख़िरी सिंक {n} दिन पहले', 'शेवटचा सिंक {n} दिवसांपूर्वी'],
+  ss_rej: ['{n} entries rejected', '{n} एंट्री नामंज़ूर', '{n} नोंदी नाकारल्या'],
+  cx_title: ['Connections: what is real', 'कनेक्शन: क्या असली है', 'जोडण्या: काय खरे आहे'],
+  cx_intro: ['Each outside service and its true status. "Not connected" means the app never sends to it and never shows its result as done; a person does that step and records it.', 'हर बाहरी सेवा और उसकी असली स्थिति। "जुड़ा नहीं" का मतलब है कि ऐप उसे कुछ नहीं भेजता और उसका नतीजा पूरा नहीं दिखाता; यह कदम कोई व्यक्ति करता और दर्ज करता है।', 'प्रत्येक बाहेरील सेवा आणि तिची खरी स्थिती. "जोडलेले नाही" म्हणजे ॲप तिला काहीही पाठवत नाही आणि तिचा निकाल पूर्ण दाखवत नाही; ती पायरी एखादी व्यक्ती करते आणि नोंदवते.'],
+  cx_not: ['Not connected', 'जुड़ा नहीं', 'जोडलेले नाही'],
+  cx_on: ['Connected', 'जुड़ा है', 'जोडलेले'],
+  cx_manual: ['By hand (a person does it)', 'हाथ से (कोई व्यक्ति करता है)', 'हाताने (व्यक्ती करते)'],
+  cx_net: ['Needs internet, no account', 'इंटरनेट चाहिए, खाता नहीं', 'इंटरनेट लागते, खाते नाही'],
+  cx_practice: ['Practice mode: nothing below is ever contacted, even when a real company is connected.', 'अभ्यास मोड: नीचे की किसी सेवा से कभी संपर्क नहीं होता, भले असली कंपनी जुड़ी हो।', 'सराव मोड: खालीलपैकी कोणत्याही सेवेशी कधीही संपर्क होत नाही, खरी कंपनी जोडली असली तरी.'],
+  cx_pay: ['Payment gateway', 'पेमेंट गेटवे', 'पेमेंट गेटवे'],
+  cx_pay_d: ['Money moves through the bank. Finance confirms each payment with the bank reference; a screenshot is never proof.', 'पैसा बैंक से जाता है। फ़ाइनेंस हर भुगतान बैंक रेफ़रेंस से पक्का करता है; स्क्रीनशॉट कभी सबूत नहीं।', 'पैसे बँकेतून जातात. फायनान्स प्रत्येक पेमेंट बँक संदर्भाने पक्के करते; स्क्रीनशॉट कधीही पुरावा नाही.'],
+  cx_wa: ['WhatsApp Business (delivery and read reports)', 'WhatsApp Business (पहुँच और पढ़ने की रिपोर्ट)', 'WhatsApp Business (पोहोच व वाचल्याचा अहवाल)'],
+  cx_wa_d: ['The app opens WhatsApp with a filled message; the person presses send. The app records "opened", never "delivered".', 'ऐप भरा हुआ संदेश WhatsApp में खोलता है; व्यक्ति भेजें दबाता है। ऐप "खोला" दर्ज करता है, "पहुँचा" कभी नहीं।', 'ॲप भरलेला संदेश WhatsApp मध्ये उघडते; व्यक्ती पाठवा दाबते. ॲप "उघडला" नोंदवते, "पोहोचला" कधीच नाही.'],
+  cx_sms: ['SMS provider', 'SMS प्रदाता', 'SMS प्रदाता'],
+  cx_sms_d: ['SMS opens the phone\'s own messages app.', 'SMS फ़ोन का अपना मैसेज ऐप खोलता है।', 'SMS फोनचे स्वतःचे मेसेज ॲप उघडते.'],
+  cx_nbfc: ['Banks / NBFCs for finance', 'फ़ाइनेंस के लिए बैंक / NBFC', 'फायनान्ससाठी बँका / NBFC'],
+  cx_nbfc_d: ['Referral only, after the customer\'s consent. AIEC is not the lender and shows no rates or approvals.', 'सिर्फ़ रेफ़रल, ग्राहक की सहमति के बाद। AIEC ऋणदाता नहीं है और कोई दर या मंज़ूरी नहीं दिखाता।', 'फक्त रेफरल, ग्राहकाच्या संमतीनंतर. AIEC कर्जदाता नाही आणि दर किंवा मंजुरी दाखवत नाही.'],
+  cx_esign: ['e-Sign provider', 'ई-साइन प्रदाता', 'ई-साइन प्रदाता'],
+  cx_esign_d: ['Signatures are drawn on the phone and fingerprinted. They are not a certified digital signature.', 'हस्ताक्षर फ़ोन पर बनाए जाते हैं और फ़िंगरप्रिंट रखा जाता है। ये प्रमाणित डिजिटल हस्ताक्षर नहीं हैं।', 'सह्या फोनवर काढल्या जातात आणि फिंगरप्रिंट ठेवला जातो. त्या प्रमाणित डिजिटल सह्या नाहीत.'],
+  cx_maps: ['Street map and address lookup (OpenStreetMap)', 'नक्शा और पता खोज (OpenStreetMap)', 'नकाशा आणि पत्ता शोध (OpenStreetMap)'],
+  cx_maps_d: ['Without internet the app shows its own simple map and the person types a landmark.', 'इंटरनेट के बिना ऐप अपना सादा नक्शा दिखाता है और व्यक्ति पहचान-स्थान लिखता है।', 'इंटरनेटशिवाय ॲप स्वतःचा साधा नकाशा दाखवते आणि व्यक्ती खूण लिहिते.'],
+  cx_srv: ['Company server (sync)', 'कंपनी सर्वर (सिंक)', 'कंपनी सर्व्हर (सिंक)'],
+  cx_srv_d: ['Set in Me → Company server. Without it, phones share files.', 'मैं → कंपनी सर्वर में सेट करें। इसके बिना फ़ोन फ़ाइलें शेयर करते हैं।', 'मी → कंपनी सर्व्हर मध्ये सेट करा. त्याशिवाय फोन फाइल्स शेअर करतात.'],
+  cx_tel: ['Masked calling (virtual number)', 'छिपा नंबर कॉलिंग (वर्चुअल नंबर)', 'लपवलेला नंबर कॉलिंग (व्हर्च्युअल नंबर)'],
+  cx_tel_d: ['Calls go through the AIEC office number until a telephone provider is added.', 'टेलीफ़ोन प्रदाता जुड़ने तक कॉल AIEC ऑफ़िस नंबर से होते हैं।', 'टेलिफोन प्रदाता जोडेपर्यंत कॉल AIEC ऑफिस नंबरवरून होतात.'],
+  cx_bank: ['Bank statement feed', 'बैंक स्टेटमेंट फ़ीड', 'बँक स्टेटमेंट फीड'],
+  cx_bank_d: ['Finance loads the bank\'s CSV file by hand; matches are suggestions until a person confirms.', 'फ़ाइनेंस बैंक की CSV फ़ाइल हाथ से लोड करता है; मिलान सुझाव हैं जब तक कोई पक्का न करे।', 'फायनान्स बँकेची CSV फाइल हाताने लोड करते; जुळणी व्यक्ती पक्की करेपर्यंत सूचना आहेत.'],
+  cx_ai: ['AI assistant', 'AI सहायक', 'AI सहाय्यक'],
+  cx_ai_d: ['None. Automatic checks are simple written rules and only warn; people decide.', 'कोई नहीं। स्वचालित जाँच सरल लिखित नियम हैं और सिर्फ़ चेतावनी देते हैं; फ़ैसला लोग करते हैं।', 'काहीही नाही. स्वयंचलित तपासण्या साधे लिखित नियम आहेत आणि फक्त इशारा देतात; निर्णय माणसे घेतात.'],
+  cx_gov: ['Government registries (licence, GST)', 'सरकारी रजिस्टर (लाइसेंस, GST)', 'सरकारी नोंदवही (परवाना, GST)'],
+  cx_gov_d: ['The office checks each document by hand and records who checked it.', 'ऑफ़िस हर दस्तावेज़ हाथ से जाँचता है और जाँचने वाले का नाम दर्ज करता है।', 'ऑफिस प्रत्येक कागदपत्र हाताने तपासते आणि कोणी तपासले ते नोंदवते.'],
   tb_pct: ['{p}% done', '{p}% पूरा', '{p}% पूर्ण'],
   tb_on_pace: ['on time', 'समय पर', 'वेळेवर'],
   tb_behind: ['behind time', 'समय से पीछे', 'वेळेपेक्षा मागे'],
@@ -3436,7 +3577,7 @@ const L = {
   pg_unserved_leave: ['Leave my number', 'मेरा नंबर छोड़ें', 'माझा नंबर द्या'],
   pg_note_line: ['Rough price seen: {k}, {n} stops, {p} people, {c} cabin, {lo} – {hi}', 'देखी गई अनुमानित कीमत: {k}, {n} स्टॉप, {p} लोग, {c} केबिन, {lo} – {hi}', 'पाहिलेली अंदाजे किंमत: {k}, {n} थांबे, {p} लोक, {c} केबिन, {lo} – {hi}'],
   pg_out_line: ['Outside our service area: {a}', 'हमारे सेवा क्षेत्र से बाहर: {a}', 'आमच्या सेवा क्षेत्राबाहेर: {a}'],
-  cfg_serveAreas: ['Areas we serve (comma list, e.g. Pune, PCMC, Hinjewadi). Empty = all areas', 'हम जिन इलाकों में काम करते हैं (कॉमा से, जैसे Pune, PCMC)। खाली = सभी', 'आम्ही काम करतो ते भाग (स्वल्पविरामाने, उदा. Pune, PCMC). रिकामे = सर्व'],
+  cfg_serveAreas: ['Areas we serve (comma list). Pilot: Pune only; add PCMC or other areas only after Head Quarter approval. Empty = all areas', 'हम जिन इलाकों में काम करते हैं (कॉमा से)। पायलट: सिर्फ़ पुणे; PCMC या दूसरे इलाके हेड क्वार्टर की मंज़ूरी के बाद ही जोड़ें। खाली = सभी', 'आम्ही काम करतो ते भाग (स्वल्पविरामाने). पायलट: फक्त पुणे; PCMC किंवा इतर भाग हेड क्वार्टरच्या मंजुरीनंतरच जोडा. रिकामे = सर्व'],
   pinag_title: ['Enter your PIN again', 'अपना PIN फिर डालें', 'तुमचा PIN पुन्हा टाका'],
   pinag_why: ['This changes money, rules or who can do what, or takes data off the phone. Your PIN makes sure it is really you.', 'यह पैसे, नियम या कौन क्या कर सकता है बदलता है, या डेटा फ़ोन से बाहर ले जाता है। PIN से पक्का होता है कि यह आप ही हैं।', 'हे पैसे, नियम किंवा कोण काय करू शकतो ते बदलते, किंवा डेटा फोनबाहेर नेते. PIN मुळे खात्री होते की हे तुम्हीच आहात.'],
   pinag_locked: ['Wrong PIN three times: the app is locked. Sign in again.', 'तीन बार गलत PIN: ऐप लॉक हो गया। फिर से साइन इन करें।', 'तीनदा चुकीचा PIN: अ‍ॅप लॉक झाले. पुन्हा साइन इन करा.'],
@@ -5864,7 +6005,7 @@ const CFG_LIMITS = (() => {
   set(['tokenMode', 'dailySafety', 'licenceGate', 'permitGate', 'peerCheck', 'checkinGate', 'dualControl', 'requireTraining', 'sundayWork'], 0, 1);
   set(['payLeadValid', 'refReward', 'payCrewJob', 'payQcInspection', 'paySopStep', 'payQcBonus', 'payAmcVisit'], 0, 200000); set(['amcPrice', 'amcCompPrice', 'civilMin', 'civilMax'], 0, 2000000);
   set(['reservePct'], 0, 90); set(['reserveRelease'], 1, 100); set(['agreeVersion'], 1, 99);
-  set(['installDays'], 1, 180); set(['warrantyMonths'], 0, 120); set(['amcVisits'], 0, 24); set(['validityDays'], 1, 365); set(['poAnswerHours'], 1, 168); set(['dbgTol'], 0.1, 5); set(['balLo', 'balHi'], 30, 70); set(['earthMax'], 0.1, 10); set(['costArd', 'costCurtain', 'costPremium'], 0, 5000000); set(['lowPit'], 300, 3000); set(['lowHead'], 2000, 6000); set(['costSpecial'], 0, 5000000); set(['firstContactHours'], 1, 48); set(['idleDays'], 14, 365); set(['amcYearly'], 0, 500000); set(['powerYearly'], 0, 200000); set(['retentionPct'], 0, 20); set(['retentionDays'], 0, 365); set(['acceptMins'], 2, 240); set(['poDays'], 1, 120);
+  set(['installDays'], 1, 180); set(['installDaysComplex'], 1, 365); set(['warrantyMonths'], 0, 120); set(['amcVisits'], 0, 24); set(['validityDays'], 1, 365); set(['poAnswerHours'], 1, 168); set(['dbgTol'], 0.1, 5); set(['balLo', 'balHi'], 30, 70); set(['earthMax'], 0.1, 10); set(['costArd', 'costCurtain', 'costPremium'], 0, 5000000); set(['lowPit'], 300, 3000); set(['lowHead'], 2000, 6000); set(['costSpecial'], 0, 5000000); set(['firstContactHours'], 1, 48); set(['idleDays'], 14, 365); set(['amcYearly'], 0, 500000); set(['powerYearly'], 0, 200000); set(['retentionPct'], 0, 20); set(['retentionDays'], 0, 365); set(['acceptMins'], 2, 240); set(['poDays'], 1, 120);
   set(['lvHelperJobs', 'lvTechJobs', 'lvSeniorJobs', 'lvQcJobs', 'lvHelperReviews', 'lvTechReviews', 'lvSeniorReviews', 'lvQcReviews', 'partnerBigJobs'], 0, 500);
   set(['lvHelperStars', 'lvTechStars', 'lvSeniorStars', 'lvQcStars', 'partnerBigStars'], 0, 5); set(['lvTechTrust', 'lvSeniorTrust', 'lvQcTrust', 'lvSeniorPass', 'lvQcPass'], 0, 100);
   set(['lvHelperDays', 'lvTechDays', 'lvSeniorDays'], 0, 3650); set(['strikeDays'], 1, 3650); set(['rateTrainee', 'rateHelper', 'rateTech', 'rateSenior'], 0, 300);
@@ -6028,13 +6169,13 @@ const DEFAULT_CONFIG = {
   cap4: 0, cap6: 20000, cap8: 40000, cap10: 60000, cap13: 90000,
   install: 60000, transport: 15000, gst: 18,
   targetMargin: 60, salesDiscountLimit: 8, adminDiscountLimit: 18, minMargin: 20, negStep: 5,
-  token: 10000, tokenMode: 0, arrivalPct: 90, cabinPct: 0, payLeadValid: 0, leadWonPct: 0, installDays: 14, warrantyMonths: 12, amcVisits: 4, validityDays: 30, reservePct: 0, reserveRelease: 10, agreeVersion: 1, refReward: 0, poAnswerHours: 24, acceptMins: 15, amcCompPrice: 0, dbgTol: 1, balLo: 45, balHi: 50, earthMax: 2, costArd: 35000, costCurtain: 12000, costPremium: 150000, lowPit: 1400, lowHead: 3900, costSpecial: 0, firstContactHours: 2, idleDays: 90, amcYearly: 0, powerYearly: 0, retentionPct: 0, retentionDays: 90, civilMin: 60000, civilMax: 150000, cancelBefore: 0, cancelAfter: 0, dupCommission: 10,
+  token: 10000, tokenMode: 0, arrivalPct: 90, cabinPct: 0, payLeadValid: 0, leadWonPct: 0, installDays: 14, installDaysComplex: 28, warrantyMonths: 12, amcVisits: 4, validityDays: 30, reservePct: 0, reserveRelease: 10, agreeVersion: 1, refReward: 0, poAnswerHours: 24, acceptMins: 15, amcCompPrice: 0, dbgTol: 1, balLo: 45, balHi: 50, earthMax: 2, costArd: 35000, costCurtain: 12000, costPremium: 150000, lowPit: 1400, lowHead: 3900, costSpecial: 0, firstContactHours: 2, idleDays: 90, amcYearly: 0, powerYearly: 0, retentionPct: 0, retentionDays: 90, civilMin: 60000, civilMax: 150000, cancelBefore: 0, cancelAfter: 0, dupCommission: 10,
   lvHelperJobs: 3, lvHelperStars: 3.5, lvHelperReviews: 3, lvHelperDays: 30,
   lvTechJobs: 8, lvTechStars: 4, lvTechReviews: 8, lvTechTrust: 60, lvTechDays: 90,
   lvSeniorJobs: 10, lvSeniorPass: 80, lvSeniorStars: 4.2, lvSeniorReviews: 15, lvSeniorTrust: 75, lvSeniorDays: 180,
   lvQcJobs: 20, lvQcPass: 90, lvQcStars: 4.5, lvQcReviews: 30, lvQcTrust: 85, strikeDays: 90,
   rateTrainee: 60, rateHelper: 80, rateTech: 100, rateSenior: 120, payCrewJob: 3000, payQcInspection: 1500, qcRecheckPct: 10, spotTrainee: 50, spotTech: 20, spotSenior: 5,
-  postWarnDays: 2, maxOpenApps: 5, maxActiveJobs: 3, pinDigits: 4, partnerBigJobs: 2, partnerBigStars: 3.8, partnerMaxStrikes: 5, licWarnDays: 60, dailySafety: 1, sosNumber: '', licenceGate: 1, permitGate: 1, tolWidth: 1500, tolDepth: 1500, tolPit: 1200, tolHead: 3800, peerCheck: 1, officeNumber: '', cityCode: 'PUN', serveAreas: '', salesWonPct: 0, pilotCap: 5, commRate: 2, payPlan: 2, p1RailsPct: 30, p1DoorsPct: 40, p1DrivePct: 20, accessAlert: 15, poDays: 7, geoRadius: 150, checkinGate: 1, payUpi: '', payName: '', payBank: '', payAcc: '', payIfsc: '', safetyRetest: 12, slaUnsafe: 4, slaBreakdown: 24, slaRepeat: 24, slaRoutine: 72,
+  postWarnDays: 2, maxOpenApps: 5, maxActiveJobs: 3, pinDigits: 4, partnerBigJobs: 2, partnerBigStars: 3.8, partnerMaxStrikes: 5, licWarnDays: 60, dailySafety: 1, sosNumber: '', licenceGate: 1, permitGate: 1, tolWidth: 1500, tolDepth: 1500, tolPit: 1200, tolHead: 3800, peerCheck: 1, officeNumber: '', cityCode: 'PUN', serveAreas: 'Pune', salesWonPct: 0, pilotCap: 5, commRate: 2, payPlan: 2, p1RailsPct: 30, p1DoorsPct: 40, p1DrivePct: 20, accessAlert: 15, poDays: 7, geoRadius: 150, checkinGate: 1, payUpi: '', payName: '', payBank: '', payAcc: '', payIfsc: '', safetyRetest: 12, slaUnsafe: 4, slaBreakdown: 24, slaRepeat: 24, slaRoutine: 72,
   remindDays: 1, escalateDays: 3, escOwnerDays: 7, onbDays: 7, sundayWork: 0, holidays: '', dualControl: 0, requireTraining: 0, paySopStep: 1000, payQcBonus: 2000, payAmcVisit: 500, amcPrice: 15000
 };
 /* every number belongs to a rule group that the Owner must approve */
@@ -6045,7 +6186,7 @@ const RULE_GROUPS = {
   milestones: ['payPlan', 'p1RailsPct', 'p1DoorsPct', 'p1DrivePct', 'tokenMode', 'arrivalPct', 'cabinPct', 'retentionPct', 'retentionDays'],
   paydetails: ['payUpi', 'payName', 'payBank', 'payAcc', 'payIfsc'],
   fieldpay: ['payLeadValid', 'leadWonPct', 'salesWonPct'],
-  install: ['installDays', 'poDays', 'poAnswerHours', 'geoRadius', 'checkinGate'],
+  install: ['installDays', 'installDaysComplex', 'poDays', 'poAnswerHours', 'geoRadius', 'checkinGate'],
   service: ['acceptMins', 'amcYearly', 'powerYearly', 'warrantyMonths', 'amcVisits', 'validityDays', 'civilMin', 'civilMax', 'cancelBefore', 'cancelAfter'],
   dup: ['dupCommission', 'refReward', 'firstContactHours', 'idleDays'],
   contract: ['agreeVersion', 'reservePct', 'reserveRelease'],
@@ -6370,7 +6511,7 @@ function companyStrikes(p, at) { return membersOf(p, true).reduce((a, m) => a + 
 function companyTrust(p, at) {
   const jobs = companyJobs(p), st = companyStars(p);
   if (!jobs.length && st.count < 3) return null;
-  const ontime = jobs.filter(P => { const x = passEntry(P); return P.mhand && x && installUsed(P, x.t) <= S.config.installDays; }).length;
+  const ontime = jobs.filter(P => { const x = passEntry(P); return P.mhand && x && installUsed(P, x.t) <= targetDays(P); }).length;
   const parts = [st.count ? (st.fair - 1) / 4 * 100 : null, jobs.length ? 100 * (0.6 * jobs.filter(firstPass).length + 0.4 * ontime) / jobs.length : null].filter(x => x != null);
   return Math.max(0, Math.min(100, Math.round(parts.reduce((a, x) => a + x, 0) / parts.length - 5 * companyStrikes(p, at))));
 }
@@ -6457,6 +6598,8 @@ function gradeAt(uid, iso) {
   return g || gradeOf(uid);
 }
 /* job size from the lift needs: small house lifts, normal, big (hospital, commercial, tall or large car) */
+/* rebuild: the installation target is an estimate per job size: big / complex jobs never inherit the standard target */
+const targetDays = P => P && jobSize(P) === 'big' ? (+S.config.installDaysComplex || +S.config.installDays) : +S.config.installDays;
 function jobSize(P) {
   const r = P.req || {}, use = r.use || P.lead.use || (P._use || '');
   if (['hospital', 'commercial'].includes(use) || +r.stops >= 10 || +r.capacity >= 13) return 'big';
@@ -6526,7 +6669,7 @@ const activeStrikes = (uid, at) => strikesOf(uid, at).filter(x => x.active).redu
 function trustOf(uid, at) {
   const part = src => { const s = starsOf(uid, src); return s.count ? Math.round((s.fair - 1) / 4 * 100) : null; };
   const { lead } = jobsOf(uid);
-  const ontime = lead.filter(P => { const pass = P.qcFinal.find(x => x.outcome === 'pass'); return P.mhand && pass && installUsed(P, pass.t) <= S.config.installDays; }).length;
+  const ontime = lead.filter(P => { const pass = P.qcFinal.find(x => x.outcome === 'pass'); return P.mhand && pass && installUsed(P, pass.t) <= targetDays(P); }).length;
   const facts = lead.length ? Math.round(100 * (0.6 * lead.filter(firstPass).length / lead.length + 0.4 * ontime / lead.length)) : null;
   const parts = { qc: part('qc'), customer: part('customer'), lead: part('lead'), facts }, W = { qc: 35, customer: 25, lead: 15, facts: 25 };
   const keys = Object.keys(parts).filter(k => parts[k] != null);
@@ -9520,7 +9663,7 @@ document.addEventListener('pointerdown', () => { try { if (wantFull() && !docume
 function applyTheme() {
   const th = App.set.theme || 'auto', dark = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches;
   document.documentElement.dataset.theme = th === 'auto' ? (dark ? 'dark' : 'light') : th;
-  const m = document.querySelector('meta[name="theme-color"]'); if (m) m.content = document.documentElement.dataset.theme === 'dark' ? '#14161b' : '#23262f';
+  const m = document.querySelector('meta[name="theme-color"]'); if (m) m.content = document.documentElement.dataset.theme === 'dark' ? '#0d1420' : '#102341';
 }
 function applyScale() {
   const z = getScale(), root = document.documentElement;
@@ -9543,6 +9686,7 @@ function render() {
   const sos = App.me && SOS_ROLES.includes(App.me.role) && !App.locked && !gated && S.org ? `<button id="sosBtn" class="sos noprint" aria-label="SOS">🆘<small>${t('sos_hold_short')}</small></button>` : '';
   const guard = !!(App.me && (OUTSIDERS.includes(App.me.role) || App.me.role === 'customer' && r.name === 'drawings') && S.org);
   document.body.classList.toggle('guard', guard);
+  document.body.classList.toggle('front', !App.me);
   const wm = guard ? `<div class="wm" aria-hidden="true">${Array.from({ length: 24 }, () => `<span>${esc(App.me.name)} · ${esc(App.me.uid.slice(-4))} · ${todayStr()}</span>`).join('')}</div>` : '';
   const cr = App.me && (App.critOpen || []).length && !gated ? `<div class="critbar noprint" role="alert"><span style="font-size:1.4rem">🚨</span><b class="grow">${t('crit_title', { n: App.critOpen.length })}: ${esc(t('tk_' + App.critOpen[0].k))}${App.critOpen[0].pid ? ' · ' + esc(App.critOpen[0].pid) : ''}</b><button class="btn btn-sm" data-a="critGo">▶ ${t('open')}</button><button class="btn btn-sm" data-a="critAck">✋ ${t('crit_ack')}</button></div>` : '';
   const fb = isFullNow() && canGoBack() && !gated ? `<button class="fback noprint" data-a="back" aria-label="${t('back')}">←</button>` : '';
@@ -9877,7 +10021,7 @@ function setPath(o, path, v) {
 const fid = k => 'f_' + String(k).replace(/\W/g, '_');
 function topBar(title, o = {}) {
   const n = App.me && !App.locked ? myTasks(App.me).filter(x => x.k !== 'escalated' || !['owner', 'admin'].includes(App.me.role)).length : 0;
-  return `<header class="top">${o.back ? `<button class="ib" data-a="back" aria-label="${t('back')}">←</button>` : `<span aria-hidden="true" style="font-size:1.7rem;margin:0 2px">🛗</span>`}
+  return `<header class="top">${o.back ? `<button class="ib" data-a="back" aria-label="${t('back')}">←</button>` : `<span class="brand" aria-hidden="true">${MARK}</span>`}
   <h1>${esc(title)}</h1>
   ${App.installEvt && !isInstalled() && App.route && App.route.name !== 'install' ? `<button class="ib" data-a="install" aria-label="${t('install_app')}" title="${t('install_app')}">📲</button>` : ''}
   ${!o.noBell && App.route && !['shareApp', 'sharePoster'].includes(App.route.name) ? `<button class="ib" data-a="nav" data-v="shareApp" aria-label="${t('sha_title')}" title="${t('sha_title')}">📤</button>` : ''}
@@ -9963,7 +10107,7 @@ function timeOf(n, P) {
   if (tk && ticketDue(tk)) { const a = Date.parse(tk.t), b = ticketDue(tk), used = (now - a) / (b - a);
     return { pct: used * 100, label: used >= 1 ? t('tb_over_h') : t('tb_hours', { d: Math.floor((now - a) / 3600e3), m: Math.round((b - a) / 3600e3) }) }; }
   /* installation: the plan in days */
-  if (P && STEP_TASKS.includes(n.k) && n.k !== 'fix_install') { const h = (P.hist || []).find(x => x.s === 'installing'); if (h && S.config.installDays) { const d = (now - Date.parse(h.t)) / 864e5, m = +S.config.installDays;
+  if (P && STEP_TASKS.includes(n.k) && n.k !== 'fix_install') { const h = (P.hist || []).find(x => x.s === 'installing'); if (h && S.config.installDays) { const d = (now - Date.parse(h.t)) / 864e5, m = targetDays(P);
     return { pct: d / m * 100, label: t('tb_day', { d: Math.min(Math.floor(d) + 1, 999), m }) + ' · ' + t('tb_plan') }; } }
   /* a licence running out: the bar fills as the expiry comes closer */
   if (['licence_renew', 'legal_renew'].includes(n.k) && n.n != null) { const lg = n.k === 'legal_renew', m = lg ? 30 : +S.config.licWarnDays || 60; return { pct: (m - n.n) / m * 100, label: n.n < 0 ? t(lg ? 'lg_gone' : 'lic_expired') : t(lg ? 'lg_days' : 'lic_days', { n: n.n }) }; }
@@ -10008,10 +10152,12 @@ function taskBars(n, P) {
 }
 /* the whole job: how far along it is (stage order) */
 const jobPct = P => P.stage === 'lost' ? 0 : P.stage === 'amc' || P.done ? 100 : Math.max(0, Math.round(stageIdx(P.stage) / stageIdx('amc') * 100));
+/* rebuild: the label counts verified milestones (phases fully done), never a percentage made from stage counts */
+const msDone = P => P.stage === 'amc' || P.done ? PHASES.length : Math.max(0, (STAGES[P.stage] || [0])[0]);
 function jobBars(P) {
   if (isMkt(P) && !P.done) return '';
   const p = jobPct(P), n = !P.done && P.stage !== 'lost' ? mainNeed(P) : null;
-  return paceBar(p, t('tb_job', { p }), n ? timeOf(n, P) : P.stage === 'lost' ? { fin: t('st_lost') } : P.done || P.stage === 'amc' ? { fin: '✅ ' + t('tb_finished') } : null);
+  return paceBar(p, t('tb_job', { d: msDone(P), t: PHASES.length }), n ? timeOf(n, P) : P.stage === 'lost' ? { fin: t('st_lost') } : P.done || P.stage === 'amc' ? { fin: '✅ ' + t('tb_finished') } : null);
 }
 /* a person's first steps: steps done against the first-week limit */
 function onbBars(uid) {
@@ -12021,7 +12167,9 @@ WIZ.addinfo = {
 /* =====================================================================
    Screens
    ===================================================================== */
-const LOGO = `<svg class="logo" viewBox="0 0 120 120" role="img" aria-label="AIEC"><rect width="120" height="120" rx="26" fill="#23262f"/><rect x="34" y="16" width="52" height="70" rx="6" fill="none" stroke="#c9a227" stroke-width="6"/><line x1="60" y1="16" x2="60" y2="86" stroke="#c9a227" stroke-width="4"/><path d="M42 40l7-8 7 8M64 64l7 8 7-8" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><text x="60" y="108" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="800" font-size="17" fill="#fff" letter-spacing="3">AIEC</text></svg>`;
+/* small brand mark for the top bar (same drawing as the logo, no tile) */
+const MARK = `<svg viewBox="0 0 40 40" width="34" height="34"><rect x="1" y="1" width="38" height="38" rx="10" fill="rgba(255,255,255,.06)" stroke="rgba(226,194,122,.55)"/><rect x="11" y="6" width="18" height="26" rx="2.5" fill="none" stroke="#e2c27a" stroke-width="2.6"/><line x1="20" y1="6" x2="20" y2="32" stroke="#e2c27a" stroke-width="1.8"/><path d="M13.5 15l2.8-3 2.8 3M21 23l2.8 3 2.8-3" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const LOGO = `<svg class="logo" viewBox="0 0 120 120" role="img" aria-label="AIEC"><rect width="120" height="120" rx="26" fill="#102341"/><rect x="34" y="16" width="52" height="70" rx="6" fill="none" stroke="#c9a04a" stroke-width="6"/><line x1="60" y1="16" x2="60" y2="86" stroke="#c9a04a" stroke-width="4"/><path d="M42 40l7-8 7 8M64 64l7 8 7-8" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><text x="60" y="108" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="800" font-size="17" fill="#fff" letter-spacing="3">AIEC</text></svg>`;
 SCREENS.install = () => {
   const ua = navigator.userAgent, ios = /iPhone|iPad|iPod/.test(ua), web = location.protocol === 'https:';
   App.pageSay = t('inst_say');
@@ -12477,8 +12625,36 @@ SCREENS.perms = () => {
 };
 
 /* ---------- home ---------- */
+/* rebuild: where this phone's work is right now, in words (never a green tick for work that only sits on the phone) */
+function syncStatus() {
+  if (App.mode === 'practice') return { cls: 's-local', k: 'ss_practice' };
+  const c = Sync.cfg(), st = (Sync.state || {}).st;
+  if (!c) return { cls: 's-local', k: 'ss_local' };
+  if (st === 'revoked') return { cls: 's-bad', k: 'ss_revoked' };
+  if (st === 'err') return { cls: 's-bad', k: 'ss_err' };
+  if (navigator.onLine === false || st === 'wait') return { cls: 's-wait', k: 'ss_wait' };
+  if (!c.last) return { cls: 's-wait', k: 'ss_never' };
+  const d = daysSince(c.last);
+  return { cls: d >= 3 ? 's-wait' : 's-ok', k: 'ss_ok', v: { d: fmtD(c.last, true) }, stale: d >= 3 ? d : 0 };
+}
+function syncStrip(u) {
+  if (!u || u.role === 'customer') return '';
+  const x = syncStatus(), rej = ['owner', 'admin'].includes(u.role) ? S.rejected.length : 0;
+  return `<div class="sync-st ${x.cls}" role="status"><span class="dot" aria-hidden="true"></span><span class="grow">${t(x.k, x.v)}${x.stale ? ' · ⏰ ' + t('ss_stale', { n: x.stale }) : ''}</span>${rej ? `<button class="pidlink" data-a="nav" data-v="problems">⚠️ ${t('ss_rej', { n: rej })}</button>` : ''}</div>`;
+}
+/* rebuild: every outside service with its true connection status (master prompt: never invent integrations) */
+SCREENS.connections = () => {
+  const c = Sync.cfg(), ok = (Sync.state || {}).st === 'ok';
+  const row = (i, k, st, cls) => `<div class="list-item" style="display:block"><div class="row"><span style="font-size:1.4rem" aria-hidden="true">${i}</span><b class="grow">${t('cx_' + k)}</b><span class="chip ${cls}">${st}</span></div><div class="small muted" style="margin-top:4px">${t('cx_' + k + '_d')}</div></div>`;
+  const NOT = t('cx_not'), MAN = t('cx_manual');
+  return topBar(t('cx_title'), { back: true }) + `<main class="wrap"><div class="note">🔌 ${t('cx_intro')}</div>${App.mode === 'practice' ? `<div class="warnbox">🎓 ${t('cx_practice')}</div>` : ''}<div class="card">
+    ${row('☁️', 'srv', App.mode === 'practice' || !c ? NOT : t('cx_on') + (ok && c.last ? ' · ' + fmtD(c.last, true) : ''), App.mode !== 'practice' && c ? (ok ? 'c-ok' : 'c-warn') : 'c-mute')}
+    ${row('💳', 'pay', NOT + ' · ' + MAN, 'c-mute')}${row('💬', 'wa', NOT + ' · ' + MAN, 'c-mute')}${row('✉️', 'sms', NOT + ' · ' + MAN, 'c-mute')}
+    ${row('🏦', 'nbfc', NOT + ' · ' + MAN, 'c-mute')}${row('✍️', 'esign', NOT, 'c-mute')}${row('🏦', 'bank', MAN, 'c-mute')}${row('📞', 'tel', NOT, 'c-mute')}
+    ${row('🗺️', 'maps', t('cx_net'), 'c-info')}${row('🏛️', 'gov', NOT + ' · ' + MAN, 'c-mute')}${row('🤖', 'ai', NOT, 'c-mute')}</div></main>`;
+};
 function hero(u) {
-  return `<div class="hero"><div class="row"><span style="font-size:2.2rem" aria-hidden="true">${ROLE_ICON[u.role]}</span><div class="grow"><b style="font-size:1.15rem">${esc(t('hello', { name: u.name }))}</b><br><span class="muted">${t('r_' + u.role)} · ${esc(S.org.name)}</span></div></div>${u.role === 'tech' && u.company ? `<div style="margin-top:6px">${memberChip(u.uid)}</div>` : ''}</div>`;
+  return `<div class="hero"><div class="row"><span style="font-size:2.2rem" aria-hidden="true">${ROLE_ICON[u.role]}</span><div class="grow"><b style="font-size:1.15rem">${esc(t('hello', { name: u.name }))}</b><br><span class="muted">${t('r_' + u.role)} · ${esc(S.org.name)}</span></div></div>${u.role === 'tech' && u.company ? `<div style="margin-top:6px">${memberChip(u.uid)}</div>` : ''}${syncStrip(u)}</div>`;
 }
 /* ---------- where jobs wait: every stage change is dated and signed, so the days each step took, and whose action moved
    the job on, can be added up. Head Quarter and Admin fix the slowest step instead of the loudest. ---------- */
@@ -12904,7 +13080,7 @@ function warrantyLine(P) {
 /* a late job tells the customer why and with whom, before they have to ask */
 function lateCard(P) {
   if (P.done || P.stage === 'lost' || custPause(P) || onHold(P)) return '';
-  const inst = installUsed(P), planLate = inst != null && S.config.installDays ? inst - +S.config.installDays : 0;
+  const inst = installUsed(P), planLate = inst != null && S.config.installDays ? inst - targetDays(P) : 0;
   const n = mainNeed(P), tm = n ? timeOf(n, P) : null, lim = +S.config.escalateDays || 3;
   const stepLate = tm && !tm.paused && tm.pct >= 100 && n.since ? Math.floor((Date.now() - Date.parse(n.since)) / 864e5) - lim : 0;
   const late = Math.max(planLate, stepLate); if (late < 3 || !n) return '';
@@ -13418,7 +13594,7 @@ function projInfo(P) {
       ['arrived', P.arrival ? fmtD(P.arrival.t, true) + (P.arrival.sealMatch ? ' · ✅ ' + t('seal_match') : ' · ❌ ' + t('seal_mismatch')) : ''], ['handed_over', P.mhand ? fmtD(P.mhand.t, true) : '']])}
       <div class="note">📡 ${t('no_tracker')}</div></div>` : ''}
     ${['installing', 'qc_final', 'install_fix', 'final_pay', 'handover', 'amc'].includes(P.stage) ? `<div class="card"><h3>🔧 ${t('installation')}</h3><div class="prog"><i style="width:${sopN / SOP.length * 100}%"></i></div><p>${sopN} / ${SOP.length} ${t('steps_done')}</p>
-      ${target != null ? `<span class="chip ${target > S.config.installDays ? 'c-bad' : 'c-info'}">🎯 ${t('target_days', { n: target, m: S.config.installDays })}</span> ${ruleChip('install')}` : ''}</div>` : ''}
+      ${target != null ? `<span class="chip ${target > targetDays(P) ? 'c-bad' : 'c-info'}">🎯 ${t('target_days', { n: target, m: targetDays(P) })}</span> ${ruleChip('install')}<p class="small muted" style="margin:6px 0 0">ℹ️ ${t(jobSize(P) === 'big' ? 'target_big' : 'target_std', { n: targetDays(P) })} ${t('target_cond')}</p>` : ''}</div>` : ''}
     ${P.qcSite.length || P.qcFinal.length ? `<div class="card"><h3>🔍 ${t('inspections')}</h3>${[...P.qcSite.map(x => [t('tk_inspect_site'), x]), ...P.qcFinal.map(x => [t('tk_final_inspect'), x])].map(([l, x]) => `<div class="list-item"><span class="grow">${l} · ${fmtD(x.t)} · ${userTag(x.by)}${x.v > 1 ? ` <span class="chip c-info">${t('qs_version', { n: x.v })}</span>` : ''}${x.why ? ` · ${t('qs_' + x.why)}` : ''}</span><b>${t('qo_' + x.outcome)}</b></div>`
         + (x.vals ? `<p class="small muted" style="margin:0 0 6px;overflow-wrap:anywhere">📏 ${TEST_VALS.map(([k]) => t('tv_' + k) + ' ' + x.vals[k]).join(' · ')}</p>` : '')
         + (x.door || x.fix ? `<p class="small muted" style="margin:0 0 6px;overflow-wrap:anywhere">${x.meas ? QC_SITE_MEAS.map(m => t('meas_' + m) + ' ' + x.meas[m]).join(' · ') : ''}${x.door ? ' · ' + t('qs_door') + ' ' + x.door.w + '×' + x.door.h : ''}${x.floors ? ' · ' + t('qs_floors') + ' ' + x.floors.join('/') : ''} mm${x.fix ? '<br>✏️ ' + esc(x.note) : ''}</p>` : '')).join('')}
@@ -13879,7 +14055,7 @@ function docQuote(P, v) {
     <h3>${t('pay_schedule')}</h3>${payRowsHtml(s)}
     ${s.retention ? `<p class="small">${t('pay_retention')}: ${money(s.retention)} · ${t('q_ret_d', { n: s.retDays })}</p>` : ''}${tcoBlock(q)}
     <h3>${t('q_assume')}</h3><ul style="padding-left:20px">${quoteAssumptions(P, q).map(x => `<li>${esc(x)}</li>`).join('')}</ul>
-    <h3>${t('scope')}</h3><p>${t('scope_text')}</p><h3>${t('exclusions')}</h3><p>${t('exclusions_text')}</p>${civilLine()}<h3>${t('delivery')}</h3><p>${t('delivery_text', { n: S.config.installDays })}</p>
+    <h3>${t('scope')}</h3><p>${t('scope_text')}</p><h3>${t('exclusions')}</h3><p>${t('exclusions_text')}</p>${civilLine()}<h3>${t('delivery')}</h3><p>${t('delivery_text', { n: targetDays(P) })} ${t('target_cond')}</p>
     <p class="small">${t('approval_status')}: <b>${t('qs_' + q.status)}</b>${q.decision ? ' · ' + userName(q.decision.by) + ' · ' + fmtD(q.decision.t) : ''} · ${t('version')} ${q.v} · ${userName(q.by)} · ${fmtD(q.t, true)}</p>
     ${Object.keys(RULE_GROUPS).some(gk => ['pricing', 'token', 'milestones'].includes(gk) && !S.config.approved[gk]) ? `<p class="small" style="color:var(--warn)">⚠️ ${t('doc_rules_proposed')}</p>` : ''}`;
 }
@@ -14113,7 +14289,7 @@ function docCommittee(P) {
     <h3>${t('cm_options')}</h3><table><tr><th>${t('cm_ver')}</th><th>${t('q_total')}</th>${P.society && P.society.flats ? `<th>${t('cm_flat')}</th>` : ''}<th>${t('sv_title')}</th></tr>${sent.map(x => `<tr><td>${x.v}</td><td>${money(x.total)}</td>${P.society && P.society.flats ? `<td>${money(perFlat(P, x.total))}</td>` : ''}<td>${vt[x.v] || 0}</td></tr>`).join('')}</table>
     ${P.society && P.society.flats ? `<p class="small">${t('sv_flats', { n: P.society.flats, f: P.society.free || 0 })}</p>` : ''}
     <h3>${t('pay_schedule')}</h3>${kv(PURPOSES.filter(k => sch[k]).map(k => ['pay_' + k, money(sch[k])]))}
-    <h3>${t('cm_time')}</h3><p>${t('cm_time_d', { d: +S.config.installDays || 14, w: +S.config.warrantyMonths || 12, v: +S.config.amcVisits || 4 })}</p>
+    <h3>${t('cm_time')}</h3><p>${t('cm_time_d', { d: targetDays(P) || 14, w: +S.config.warrantyMonths || 12, v: +S.config.amcVisits || 4 })}</p>
     <p class="small">${t('cm_valid', { d: fmtD(quoteValidTill(q)) })}</p><p class="small muted">${t('cm_note')}</p>`;
 }
 function docNotice(P) {
@@ -14184,7 +14360,7 @@ SCREENS.me = () => {
       <button class="btn" style="margin-top:10px" data-a="testVoice">▶ ${t('voice_test')}</button>
       ${'speechSynthesis' in window ? (Voice.has('mr') ? `<div class="okbox">✅ ${t('voice_mr_ok')}</div>` : `<div class="warnbox">⚠️ ${t('voice_mr_missing')}</div>`) : `<div class="warnbox">⚠️ ${t('no_tts')}</div>`}</div>
     <div class="tiles one">${`<button class="tile" data-a="nav" data-v="notify"><span class="i">🔔</span><span>${t('ntf_title')}<br><small>${t(Notify.set().sound ? 'ntf_sound_on' : 'ntf_sound_off')}</small></span></button>`}</div>`, { icon: '⚙️', sub: t('me_settings_d') })}
-    ${group('📱', 'me_app', tile('nav', 'shareApp', '📣', 'sha_title') + tile('nav', 'data', '📤', 'share_data') + tile('nav', 'perm', '🔐', 'what_can_i_do') + tile('nav', 'supbills', '🧾', 'inv_title', r === 'supplier') + tile('nav', 'server', '☁️', 'srv_title') + tile('nav', 'recon', '🏦', 'recon_title', ['finance', 'owner', 'admin'].includes(r)) + tile('nav', 'waits', '⏳', 'wj_title', ['owner', 'admin'].includes(r)) + tile('nav', 'stattracker', '📜', 'stat_tracker', ['owner', 'admin', 'qc'].includes(r) || App.me.uid === statLead()) + tile('nav', 'privacy', '🔏', 'pn_title') + tile('intro', '', '🎬', 'watch_intro') + tile('nav', 'about', 'ℹ️', 'about_privacy')
+    ${group('📱', 'me_app', tile('nav', 'shareApp', '📣', 'sha_title') + tile('nav', 'data', '📤', 'share_data') + tile('nav', 'perm', '🔐', 'what_can_i_do') + tile('nav', 'supbills', '🧾', 'inv_title', r === 'supplier') + tile('nav', 'server', '☁️', 'srv_title') + tile('nav', 'connections', '🔌', 'cx_title', u.role !== 'customer') + tile('nav', 'recon', '🏦', 'recon_title', ['finance', 'owner', 'admin'].includes(r)) + tile('nav', 'waits', '⏳', 'wj_title', ['owner', 'admin'].includes(r)) + tile('nav', 'stattracker', '📜', 'stat_tracker', ['owner', 'admin', 'qc'].includes(r) || App.me.uid === statLead()) + tile('nav', 'privacy', '🔏', 'pn_title') + tile('intro', '', '🎬', 'watch_intro') + tile('nav', 'about', 'ℹ️', 'about_privacy')
       + (App.installEvt ? tile('install', '', '📲', 'install_app') : '') + (App.mode === 'practice' ? tile('resetPractice', '', '♻️', 'reset_practice') + tile('exitPractice', '', '🚪', 'exit_practice') : ''))}
     ${!App.installEvt ? (standalone ? `<div class="okbox" style="margin-top:10px">📲 ${t('installed_ok')}</div>` : `<p class="small muted">📲 ${t('install_hint')}</p>`) : ''}
     <button class="btn btn-bad" style="margin-top:14px" data-a="logout">🚪 ${t('logout')}</button>
@@ -15173,7 +15349,7 @@ function weekSummary(end) {
 function keyNumbers() {
   const ps = Object.values(S.projects), pct = (a, b) => b ? Math.round(a / b * 100) + '%' : '—';
   const qc = ps.filter(P => P.qcFinal.length), insp = ps.filter(P => P.mhand && P.hist.some(h => h.s === 'qc_final'));
-  const onTime = insp.filter(P => installUsed(P, P.hist.find(h => h.s === 'qc_final').t) <= +S.config.installDays);
+  const onTime = insp.filter(P => installUsed(P, P.hist.find(h => h.s === 'qc_final').t) <= targetDays(P));
   const tk = ps.flatMap(P => P.tickets).filter(x => x.resolvedT && ticketDue(x) != null);
   const won = ps.filter(DRILL.won), wonDays = won.map(P => { const a = P.hist.find(h => h.s === 'won'); return a ? (Date.parse(a.t) - Date.parse(P.t)) / 864e5 : null; }).filter(x => x != null);
   const contract = sum(won.map(P => (P.quotes.find(q => q.accepted) || { total: 0 }).total)), paid = sum(won.map(paidTotal));
@@ -15947,7 +16123,7 @@ SCREENS.leaders = ({ m }) => {
     const acc = P.hist.find(h => h.s === 'accepted'); if (acc && inM(acc.t)) add(P.createdBy, 10, 'lb_valid_lead');
     const won = P.hist.find(h => h.s === 'won'); if (won && inM(won.t)) add(P.sales, 20, 'lb_deal_won');
     const pass = P.qcFinal.find(x => x.outcome === 'pass');
-    if (pass && inM(pass.t) && P.tech) { if (P.qcFinal[0].outcome === 'pass') add(P.tech, 15, 'lb_first_pass'); if (P.mhand && installUsed(P, pass.t) <= S.config.installDays) add(P.tech, 10, 'lb_on_target'); }
+    if (pass && inM(pass.t) && P.tech) { if (P.qcFinal[0].outcome === 'pass') add(P.tech, 15, 'lb_first_pass'); if (P.mhand && installUsed(P, pass.t) <= targetDays(P)) add(P.tech, 10, 'lb_on_target'); }
     Object.values(P.service).forEach(x => { if (inM(x.t)) add(x.by, 5, 'lb_amc_visit'); });
   }
   const table = (role, icon) => { const rows = Object.values(score).filter(x => roleOf(x.uid) === role).sort((a, b) => b.pts - a.pts).slice(0, 10);
