@@ -13,7 +13,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert(await page.$('[data-a="setTheme"][data-v="dark"]'), 'settings offer colour themes');
   await page.evaluate(() => ACT.setTheme('dark')); await page.waitForTimeout(150);
   const bg = await ev('getComputedStyle(document.body).backgroundColor');
-  assert(await ev('document.documentElement.dataset.theme') === 'dark' && bg === 'rgb(20, 22, 27)', 'dark theme for night work: ' + bg);
+  assert(await ev('document.documentElement.dataset.theme') === 'dark' && bg === 'rgb(13, 20, 32)', 'dark theme for night work (v2 deep navy): ' + bg);
   await page.evaluate(() => ACT.setTheme('contrast')); await page.waitForTimeout(100);
   assert(await ev('getComputedStyle(document.body).backgroundColor') === 'rgb(255, 255, 255)' && await ev('App.set.theme') === 'contrast', 'strong contrast for bright sun, remembered');
   await page.evaluate(() => ACT.setTheme('auto')); await page.waitForTimeout(100);

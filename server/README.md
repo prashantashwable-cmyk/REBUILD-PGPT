@@ -1,3 +1,5 @@
+> **Security review 17 Nov 2026 (build 110):** see `docs/architecture/SERVER_SIDE_REVIEW.md`. Use a long random `ADMIN_SECRET` (32+ characters). On Supabase or Node, run behind a proxy that sets `X-Forwarded-For`.
+
 # AIEC company server (automatic sync, login codes, alerts, backups)
 
 The company server is a locked mailbox. Phones lock (encrypt) every update before sending it, so the server never sees names, prices or photos. It decides only who may put into and take from each box:

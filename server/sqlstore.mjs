@@ -38,6 +38,7 @@ export function sqlStore(sql) {
     async putSub(ep, box) { sql.exec('INSERT INTO subs (endpoint, box, t) VALUES (?, ?, ?) ON CONFLICT(endpoint) DO UPDATE SET box = excluded.box, t = excluded.t', ep, box, new Date().toISOString()); },
     async delSub(ep) { sql.exec('DELETE FROM subs WHERE endpoint = ?', ep); },
     async listSubs(box) { return rows('SELECT endpoint FROM subs WHERE box = ?', box); },
+    async getSub(ep) { const r = one('SELECT box FROM subs WHERE endpoint = ?', ep); return r ? r.box : null; },
     async putObj(k, v) { sql.exec('DELETE FROM objs WHERE k = ?', k); for (let i = 0; i * PIECE < v.length; i++) sql.exec('INSERT INTO objs (k, i, v) VALUES (?, ?, ?)', k, i, v.slice(i * PIECE, (i + 1) * PIECE)); },
     async getObj(k) { const r = rows('SELECT v FROM objs WHERE k = ? ORDER BY i', k); return r.length ? r.map(x => x.v).join('') : null; },
     async listObj(prefix) { return rows('SELECT DISTINCT k FROM objs WHERE k >= ? AND k < ? ORDER BY k', prefix, prefix + '￿').map(x => x.k); },

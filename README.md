@@ -8,6 +8,11 @@ One downloadable HTML file (`AIEC-Elevator-OS.html`) that runs on any Android ph
 
 ---
 
+## Rebuild (builds 106–109, Nov 2026)
+This repository is the controlled rebuild of the app above. The original build 105 is kept as tag `baseline-605575a`.
+What changed: new navy/brass design, honest milestone progress, installation target as an estimate per job size (big jobs 28 days, proposed), Pune-only pilot area, Head Quarter approval for a 6th live job, a sync status line on every staff home, and **Me → Connections** showing which outside services are really connected (none, except the optional company server and the map). Build 107 adds formulas behind every KPI and a strict script-hash security policy; build 108 adds the partner states Paused, Rejected, Offboarded and automatic "Expired papers"; build 109 puts a job on hold when its company's licence or insurance ends mid-job, and adds automated accessibility checks.
+Read: `docs/rebuild/RELEASE_NOTES.md` · audit and plan in `docs/rebuild/` · architecture in `docs/architecture/` · business rules in `docs/business/` · operations in `docs/operations/` · tests in `docs/testing/`.
+
 ## Quick start
 
 | | |
@@ -481,7 +486,7 @@ These numbers come from the original brainstorm and are marked **"Proposed — n
 | Rule | Default |
 |---|---|
 | Prices per component | sample numbers only — enter real costs |
-| Margin: start / Sales discount limit / minimum without approval | 60% / 30% / 20% (margin = (price before tax − cost) ÷ price before tax) |
+| Margin: start / Sales discount limit / Admin discount limit / minimum without approval | 60% / 8% / 18% / 20% (margin = (price before tax − cost) ÷ price before tax) |
 | Token payment | ₹10,000 |
 | Payment milestones | 90% of total by material arrival, rest at handover |
 | Installation target | 14 days from material handover (planning target, not a penalty) |

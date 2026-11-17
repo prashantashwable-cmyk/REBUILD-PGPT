@@ -1,0 +1,46 @@
+req_id,requirement (master prompt section),implementation location (AIEC-Elevator-OS.html unless stated),roles,workflow,status,test reference,proposed action
+MP-3.1-A,Model A AIEC Contract per project,MODEL_SET; STAGES; RULES stage guards,admin/owner/sales,all,Working,lead-to-handover.e2e.test.js,KEEP
+MP-3.1-B,Model B Marketplace: RFQ 2-3 partners; customer picks; contracts partner directly,RFQ_SENT; MK_PICKED; MK_ANSWER; mktBlocked(),admin/customer/partner,marketplace,Working,bp5market.test.js; market.test.js,KEEP
+MP-3.1-C,Customer pays partner directly; AIEC ledger not used for partner principal,MK_PAY_RECORDED; MK_PAY_VERIFIED,partner/customer/finance,marketplace,Working,bp5market.test.js,KEEP
+MP-3.1-D,Commission 2% on verified collections only; once per confirmed payment,config commRate=2; commission per MK_PAY_VERIFIED,finance/owner,marketplace,Working (rate needs legal/CA review),bp5market.test.js; rebuild.test.js,KEEP
+MP-3.1-E,Partner eligibility rechecked at RFQ; pick; release; ineligible -> hold,partnerStatus(); licenceOk(); jobWhyNot(),admin/partner,marketplace/assign,Working (also rechecked at material handover; every SOP step; MK_READY; MK_DONE -> controlled hold + urgent office task; build 109),bp2partners.test.js; partner.test.js; rebuild.test.js,IMPROVED
+MP-3.2,Finance referral with recorded consent; no rates; AIEC not lender,finance interest/consent/referral events; Connections screen,customer/finance,finance,Working,bp4finance.test.js; rebuild.test.js,KEEP
+MP-3.3-A,Pune pilot geography; PCMC disabled until owner approves,DEFAULT_CONFIG.serveAreas='Pune'; pgServed(),owner,lead,Working (changed in rebuild),rebuild.test.js; signinL1.test.js,IMPROVED
+MP-3.3-B,Pilot cap 5 live jobs; 6th only with owner-approved exception,pilotCap=5; capFull(); CAPACITY_CHECKED via APPROVAL_REQUESTED; CAPOWNER_FROM,owner/admin,release,Working (owner-only approval added in rebuild),bp3kpi.test.js,IMPROVED
+MP-3.3-C,Live capacity shown (active; available),dashboard 'n of 5 live jobs'; KPI board,owner/admin,dashboard,Working,bp3kpi.test.js,KEEP
+MP-3.4,14-day target conditional; complex projects separate estimate; shown as estimate,targetDays(); installDaysComplex=28; target_cond text,all,install,Working (added in rebuild; 28 proposed),rebuild.test.js; custtrust.test.js,IMPROVED
+MP-3.5,Owner policy/exception; Admin runs the day,splitOA(); SHARED_TASKS,owner/admin,all,Working,hq.test.js; office.test.js,KEEP
+MP-4,Audit docs before redesign,docs/rebuild/*,—,—,Done,—,—
+MP-5.1,Core roles incl. LPC and technician under LPC,ROLE_ICON; NAV; RULES roles,all,all,Working,practice-roles.test.js; partner.test.js,KEEP
+MP-5.2,Capabilities enforced at action/data level,validate(); canSee(); seeF(),all,all,Working (phone-enforced; no server),permissions-denied.test.js; security2.test.js; access.test.js,KEEP (server option later)
+MP-5.2-B,Why-you-cannot explanation names who can,errText() err_role,all,all,Working,signinL2.test.js,KEEP
+MP-6.1,Premium navy/brass visual system; tokens,CSS 'design system v2' block; MARK; LOGO,all,UI,Working (rebuild),rebuild.test.js; tests/shots-roles.js,IMPROVED
+MP-6.2,Field UX: big targets; one primary action; offline state visible,.btn 56px; tiles; sync strip,field roles,UI,Working (sync strip added),layout.test.js; easeuse.test.js; rebuild.test.js,IMPROVED
+MP-6.3,Customer view: contracting party; no false % progress,jobBars() 'Milestones verified X of 7',customer,UI,Working (changed in rebuild),bars.test.js; rebuild.test.js,IMPROVED
+MP-6.4,Marathi/Hindi/English everywhere; accessibility,L table; static checks; focus; reduced motion,all,UI,Working (human review pending; WCAG 2 A/AA automated: 72 checks; build 109),static.test.js; layout.test.js; a11y.test.js,IMPROVED + human review
+MP-7.1,Lead capture; GPS; photo provenance; duplicates; scoring; assignment,lead wizard; dup check; scoring,field/sales,lead,Working,custlead.test.js; statlead.test.js; growth.test.js,KEEP
+MP-7.2,Survey with measurement states; infeasible escalation,survey; qcSite; decide_infeasible,qc/sales,site,Working,survey.test.js; sitequality.test.js,KEEP
+MP-7.3,Versioned rate card; margin floor approval; immutable quote versions,config pricing; quotes[]; QUOTE_DECISION 2P,sales/owner/admin,sales,Working,sales.test.js; discount.test.js; money.test.js,KEEP
+MP-7.4,Agreements; signer authority; signatures not certified e-sign,AGREEMENT_*; signature evidence; Connections esign Not connected,sales/customer,agree,Working (drawn signature),lead-to-handover.e2e.test.js; rebuild.test.js,KEEP
+MP-7.5,Payments separate concepts; manual = pending until verified; gates,PAYMENT_RECORDED/STATUS; recon; payment gates,finance/sales,money,Working (single-entry records),money.test.js; recon.test.js; moneyline.test.js,KEEP (double-entry with server later)
+MP-7.6,Site readiness; procurement; serials; custody,site_prep; material; serials; MATERIAL_HANDED,supplier/tech/qc,material,Working,material.test.js; supply.test.js,KEEP
+MP-7.7,Installation evidence; safety gates; blockers; peer check,steps; safety; check-in; blockers,tech/partner,install,Working,safety.test.js; checkin.test.js; operations.test.js,KEEP
+MP-7.8,QC; inspection; licence; handover gates; AMC after eligibility,QC_FINAL_RESULT; statutory; HANDOVER_*,qc/admin,handover,Working,finish.test.js; statutory.test.js; qcrecheck.test.js,KEEP
+MP-7.9,AMC; tickets by severity; trapped-person to humans; QR,tickets; SLA config; liftqr,customer/admin/tech,service,Working,tickets.test.js; service.test.js; custtrust.test.js,KEEP
+MP-8.1,LPC onboarding; documents; states; tiers not licence,PARTNER_PROFILE; PARTNER_STATUS_SET; partnerTier(),admin/partner,partner,Working (Paused/Rejected/Offboarded added; Expired worked out; build 107),bp2partners.test.js; rebuild.test.js,IMPROVED
+MP-8.2,Technician membership under LPC,company membership; member approval,partner/admin/tech,partner,Working,partner.test.js; workers.test.js,KEEP
+MP-8.3,Career ladder; explainable trust; appeals; no fines,ladder; strikes; appeals,admin/tech,workforce,Working,ladder.test.js; fairness.test.js,KEEP
+MP-8.4,Contractor earnings; verified before paid; approver != payer,settle; PAY_APPROVED; payouts,finance/admin/partner,pay,Working,workers.test.js; smallteam.test.js,KEEP
+MP-9,Marketplace RFQ; structured comparison; selection recorded; commission ledger,bp5 flow,admin/customer/partner,marketplace,Working (comparison by record; price lines limited),bp5market.test.js,KEEP
+MP-10,Deterministic automation; SLA; escalation ladder; no duplicates,needs(); escalation levels; notifications once per level,all,all,Working,escalation.test.js; notifications.test.js,KEEP
+MP-11.1,Owner command center KPIs with freshness,hq dashboard; KPI board with kf_* formulas and as-of line,owner,dashboard,Working (build 107),bp3kpi.test.js; rebuild.test.js,IMPROVED
+MP-11.2,Admin queue; filters; day close,office queue; day close,admin,office,Working,office.test.js,KEEP
+MP-12,Event model; idempotency; corrections by new records,perform(); validate(); apply(); event ids,all,data,Working,golden.test.js; snapshot.test.js,KEEP
+MP-13.1,Local first; drafts; media separate; quota warning,KV; putMedia; storage note,all,offline,Working,sync.test.js; extras.test.js,KEEP
+MP-13.2,Sync states visible; stale state; rejected visible,syncStatus(); syncStrip(),staff,offline,Working (added in rebuild),rebuild.test.js; server-sync.test.js,IMPROVED
+MP-13.3,In-app camera only; GPS accuracy; no hidden tracking,camera overlay; evidence metadata,field/tech,evidence,Working,fieldev.test.js; lead-to-handover.e2e.test.js,KEEP
+MP-14,Security: PIN hashing; signatures; injection escape; consent,Sign; pinHash; esc/hx; privacy notice,all,security,Partial (no server enforcement; hash CSP + SRI added in build 107),security.test.js; security2.test.js; privacy.test.js; access.test.js; static.test.js,IMPROVED (server later)
+MP-15,AI advisory only; never decides,no AI; Connections 'AI assistant Not connected',—,—,Working (none present),rebuild.test.js,KEEP
+MP-16,KPI dictionary,kf_* formula per KPI on the board,owner/admin,reports,Working (build 107),rebuild.test.js,IMPROVED
+MP-17.1-29,Demo payments/WhatsApp never reach providers,practice mode guards,all,practice,Working,finish.test.js ('practice mode records nothing'),KEEP
+MP-19.5,Integration connection status list,SCREENS.connections,staff,me,Working (added in rebuild),rebuild.test.js,NEW

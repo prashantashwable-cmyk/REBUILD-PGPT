@@ -9,7 +9,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   const html = fs.readFileSync(path.resolve(__dirname, '..', 'AIEC-Elevator-OS.html'), 'utf8');
   const app = html.indexOf('<div id="app">'), script = html.indexOf('<script>');
   assert(app > 0 && app < script && /class="splash"[\s\S]*Loading/.test(html.slice(app, script)), 'a loading screen is in the page before the app script, in Marathi, Hindi and English');
-  assert(/http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'none'; form-action 'none'"/.test(html), 'a content security policy blocks plugins, base-URL tricks and form posting');
+  assert(/http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-[A-Za-z0-9+\/=]{44}' https:\/\/unpkg.com;[^"]*object-src 'none'; base-uri 'none'; form-action 'none'"/.test(html), 'a content security policy blocks plugins, base-URL tricks and form posting');
   const { browser, page, errors } = await launch();
   await page.evaluate(() => { App.set.lang = 'en'; LANG = 'en'; App.set.introDone = true; App.set.guide = false; enterPractice(); }); await page.waitForTimeout(6000);
   assert(await page.evaluate(() => !document.getElementById('app').hasAttribute('aria-live') && document.getElementById('toast').getAttribute('aria-live') === 'assertive'), 'the whole screen is not re-read on every change; messages still are');

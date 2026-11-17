@@ -45,6 +45,7 @@ export function pgStore(sql, schema = 'aiec') {
     async putSub(ep, box) { await sql`INSERT INTO ${T('subs')} (endpoint, box, t) VALUES (${ep}, ${box}, ${new Date().toISOString()}) ON CONFLICT (endpoint) DO UPDATE SET box = excluded.box, t = excluded.t`; },
     async delSub(ep) { await sql`DELETE FROM ${T('subs')} WHERE endpoint = ${ep}`; },
     async listSubs(box) { return [...await sql`SELECT endpoint FROM ${T('subs')} WHERE box = ${box}`]; },
+    async getSub(ep) { const r = await one(sql`SELECT box FROM ${T('subs')} WHERE endpoint = ${ep}`); return r ? r.box : null; },
     async putObj(k, v) { await sql`INSERT INTO ${T('objs')} (k, v) VALUES (${k}, ${v}) ON CONFLICT (k) DO UPDATE SET v = excluded.v`; },
     async getObj(k) { const r = await one(sql`SELECT v FROM ${T('objs')} WHERE k = ${k}`); return r ? r.v : null; },
     async listObj(prefix) { return (await sql`SELECT k FROM ${T('objs')} WHERE starts_with(k, ${prefix}) ORDER BY k COLLATE "C"`).map(x => x.k); },

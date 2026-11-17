@@ -28,7 +28,10 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert(await ev(`(() => { const e = validate(S, ${REL}); return e && (e.k || e); })()`) === null, 'the limit is a working limit: a release already in the records is never refused by it (old records stay valid)');
   assert((await act('CAPACITY_CHECKED', pid, { note: 'ok' }, 'PADMIN')).err === 'err_cap_note', 'the check needs a real note');
   assert((await act('CAPACITY_CHECKED', pid, { note: 'Ramesh crew free after P003 handover on Monday' }, 'PSALES')).err, 'Sales cannot record it');
-  assert((await act('CAPACITY_CHECKED', pid, { note: 'Ramesh crew free after P003 handover on Monday' }, 'PADMIN')).ok, 'Admin records the capacity check');
+  assert((await act('CAPACITY_CHECKED', pid, { note: 'Ramesh crew free after P003 handover on Monday' }, 'PADMIN')).ok && !(await ev(`S.projects['${pid}'].capOk`)), 'an Admin\'s capacity check becomes a request for the Head Quarter (the job is still held)');
+  const aid = await ev(`S.approvalOrder.map(a => S.approvals[a]).reverse().find(a => a.status === 'pending' && a.action.type === 'CAPACITY_CHECKED').id`);
+  assert((await act('APPROVAL_DECIDED', null, { aid, decision: 'approve' }, 'PADMIN')).err, 'the Admin who asked cannot approve it');
+  assert((await act('APPROVAL_DECIDED', null, { aid, decision: 'approve' }, 'POWNER')).ok, 'the Head Quarter approves the documented capacity exception');
   assert(!(await ev(`capFull(S, S.projects['${pid}'])`)) && !(await ev(`needs(S.projects['${pid}']).some(x => x.k === 'capacity_check')`)), 'that job can now be released');
   assert(await ev(`!!rebuild(EVENTS).projects['${pid}'].capOk`), 'the check is kept as a record and survives a rebuild');
   assert(await ev(`WIZ.release.steps[0].check({ supplier: 'PSUP' }, S.projects['${pid}'])`) === null, 'the release wizard now lets it through');

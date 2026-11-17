@@ -97,7 +97,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   const salt = await ev(`S.users.PCUST.salt`), pin = await ev(`S.users.PCUST.pin`);
   assert((await act('USER_ADDED', null, { uid: 'MCUST', name: 'Mr. Pawar', role: 'customer', projectId: N, salt, pin }, 'PADMIN')).ok, '(the customer gets a login)');
   await as('MCUST'); txt = await page.innerText('main');
-  assert(/Marketplace job/.test(txt) && /Booking/.test(txt) && !/Job \d+% done/.test(txt), 'the customer\'s home shows the Marketplace card, not the AIEC stage tracker');
+  assert(/Marketplace job/.test(txt) && /Booking/.test(txt) && !/Milestones verified/.test(txt), 'the customer\'s home shows the Marketplace card, not the AIEC stage tracker');
   await page.click('main [data-v^="mktPay|"]'); await page.waitForTimeout(300); await fill('utr', 'CUSTUTR77'); await save();
   assert(await ev(`(() => { const p = S.projects['${N}'].mkt.pays[1]; return p && p.by === 'MCUST' && p.amount === 115199 && p.status === 'pending'; })()`), 'the customer records the payment they made');
   assert((await act('MK_PAY_VERIFIED', N, { payId: await ev(`S.projects['${N}'].mkt.pays[1].id`), ok: true }, 'MCUST')).err === 'err_self_verify' && (await tasksOf('PPART1', N)).includes('mkt_verify_pay'), 'the customer cannot confirm their own entry; the company is asked');

@@ -63,9 +63,9 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   /* customer: job % and their own clock, without office escalation words */
   await page.evaluate(() => { loginAs(S.users.PCUST); ACT.permsDone(); Notify.hide(); go('home'); }); await page.waitForTimeout(300);
   const ct = await page.innerText('main');
-  assert(/Job \d+% done\s*⏳ (Day \d+ of \d+|\d+ day\(s\) over)/.test(ct) && !/then goes to|now also with/.test(ct), 'the customer sees how far the job is, and their own time without office escalation');
+  assert(/Milestones verified: \d of 7\s*⏳ (Day \d+ of \d+|\d+ day\(s\) over)/.test(ct) && !/then goes to|now also with/.test(ct), 'the customer sees how far the job is, and their own time without office escalation');
   await page.evaluate(() => { loginAs(S.users.PADMIN); go('project', { pid: Object.values(S.projects).find(x => x.stage === 'installing').id }); }); await page.waitForTimeout(300);
-  assert(/Job \d+% done/.test(await page.innerText('body')), 'the project page shows the whole job %');
+  assert(/Milestones verified: \d of 7/.test(await page.innerText('body')), 'the project page shows verified milestones of the whole job');
 
   /* the same two bars on every responsibility, everywhere it is shown */
   const places = await page.evaluate(() => {

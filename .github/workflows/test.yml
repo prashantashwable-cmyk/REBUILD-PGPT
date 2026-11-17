@@ -1,4 +1,5 @@
 name: tests
+# Runners are pinned to ubuntu-24.04: ubuntu-latest moved to 26.04, where Playwright cannot install Chromium (Nov 2026).
 # Every pull request and every push to main runs the fast checks first (words, script, size), then the browser
 # tests in four parts side by side. A red result means: do not ship this file to phones.
 # Every Monday the same tests also run as if it were 45 days later: rules that start on fixed dates must not break the
@@ -18,7 +19,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   static:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
@@ -28,7 +29,7 @@ jobs:
       - run: npm run check
   browser:
     needs: static
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 60
     strategy:
       fail-fast: false
@@ -52,7 +53,7 @@ jobs:
           AIEC_SHIFT_DAYS: ${{ github.event_name == 'schedule' && '45' || '' }}
   screens:
     needs: static
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
@@ -77,7 +78,7 @@ jobs:
           retention-days: 30
   live:
     if: github.event_name != 'pull_request'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
@@ -85,9 +86,9 @@ jobs:
         run: |
           want=$(grep -o 'aiec-os-v[0-9]*' sw.js | head -1)
           for i in $(seq 1 36); do
-            got=$(curl -fsS "https://prashantashwable-cmyk.github.io/UNLIT-GPT-HTML/sw.js?t=$(date +%s)" | grep -o 'aiec-os-v[0-9]*' | head -1 || true)
+            got=$(curl -fsS "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/sw.js?t=$(date +%s)" | grep -o 'aiec-os-v[0-9]*' | head -1 || true)
             if [ "$got" = "$want" ]; then echo "The public link serves $got"; exit 0; fi
             sleep 30
           done
-          echo "::error::The public link still serves '$got', not '$want'. GitHub Pages is not publishing. Repository Settings > Pages > Source: Deploy from a branch > main, / (root) > Save."
+          echo "::error::The public link still serves '$got', not '$want'. GitHub Pages is not publishing. Repository Settings > Pages > Source: GitHub Actions (workflow pages.yml)."
           exit 1
