@@ -27,8 +27,12 @@ Partner states Paused / Rejected / Offboarded / Expired papers: **113 of 113 fil
 ## Build 109 — full run (run 5)
 Controlled hold on ended partner papers + accessibility test: **114 of 114 files passed**, 2,376 passing assertions; `a11y.test.js`: no WCAG 2 A/AA violations in 72 screen checks. Log: `logs/run5-build109-summary.txt`.
 
-## Build 110 — full run (run 6, current)
+## Build 110 — full run (run 6)
 Server-side review fixes: **116 of 116 files passed**, 2,394 passing assertions. New: `server-hardening.test.js` (9 checks, no browser) and `sync-forgery.test.js` (9 checks on a real, signed company). The forged-settings hole was also reproduced on build 109 and shown closed on build 110. Log: `logs/run6-build110-summary.txt`.
+
+## Build 111 — full run (run 7, current)
+**116 of 116 files passed**, 2,394 passing assertions. Log: `logs/run7-build111-summary.txt`.
+Why build 111: on GitHub's CI fonts, build 110's Admin home measured 2,643 px against the 2,600 px limit in `home-fold.test.js` (the sync line added about 58 px). The status became a chip in the greeting card. Measured at the same moment, the Admin home is now 2,496 px, the same as the original build 105 (2,496 px); build 110 was 2,565 px. The limit was not changed.
 
 ## Tests changed in the rebuild (and why)
 | File | Change | Reason |

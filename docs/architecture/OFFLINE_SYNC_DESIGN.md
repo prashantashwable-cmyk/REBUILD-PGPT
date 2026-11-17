@@ -11,7 +11,7 @@
 2. **Company server (optional):** office phones and each person's box, AES-GCM encrypted end to end; ticks every minute and a few seconds after each action; cursor-based pulls; ids already sent are remembered (`syncSent`), so retries never duplicate.
 
 ## Status the user sees (new in the rebuild)
-The home of every staff role shows one line, in words and with a dot (never colour alone):
+The greeting card on every staff home shows a small chip: a dot and one word (Practice, On this phone, Not synced, Waiting, Synced, Sync failed, Refused, ⏰ when stale, ⚠️ n for rejected entries). Screen readers hear the full sentence; tapping opens it with links to Refused entries and Connections. The chip adds no height to the home screen (build 111). Full sentences:
 
 | State | Shown text |
 |---|---|

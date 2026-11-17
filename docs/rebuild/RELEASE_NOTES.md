@@ -1,5 +1,9 @@
 # Release note — builds 106–110 (rebuild, 17 Nov 2026)
 
+## Build 111
+* The sync status on the home screen is now a small chip in the greeting card (dot + one word; tap for the full sentence) instead of a full-width line. The home screen is back to its original height, which the "home stays short" test requires on CI's fonts. Card spacing returned to the original values.
+* CI: runners pinned to Ubuntu 24.04 and Playwright 1.63.0 (GitHub's `ubuntu-latest` moved to 26.04, where Playwright 1.56 cannot install Chromium).
+
 ## Build 110
 * **Security fix (high):** server settings in a file (company server address and key) are now taken only with a valid Head Quarter/Admin signature over them. Before, a forged or altered file could switch an office phone to another server. **Older files with server settings still load their records but not their server settings**; send a fresh file or one-time code. Connected phones keep working.
 * Office phones refuse an inbox message whose file does not belong to the box that sent it.
